@@ -1,6 +1,6 @@
 // Put each video's YouTube ID here (the part after v= in the URL). Empty = shows "coming soon".
 var VIDEOS={macdock:"",gallery:"",tv:""};
-var CHANNEL="https://www.youtube.com/@gadgetcue";
+var CHANNEL="https://www.youtube.com/channel/UC-5tnuqQOovxDPligynrg6Q";
 document.querySelectorAll('.yt').forEach(function(box){
   var id=VIDEOS[box.dataset.app]||"";
   var link=document.querySelector('[data-watch="'+box.dataset.app+'"]');
