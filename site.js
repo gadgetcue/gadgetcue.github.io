@@ -23,19 +23,24 @@ document.querySelectorAll('.yt').forEach(function(box){
   bar.appendChild(b);label();
 })();
 
-// Mobile bottom sheet menu
+// Mobile floating bar (Home, Apps, Gadgets, Menu) + bottom sheet opened by Menu
 (function(){
-  var cur=document.querySelector('header.top nav a[aria-current]');var here=cur?cur.getAttribute('href'):'index.html';
   var page=location.pathname.split('/').pop()||'index.html';
+  var section={'index.html':'index.html','apps.html':'apps.html','macdock.html':'apps.html','gallery.html':'apps.html','tv.html':'apps.html','gadgets.html':'gadgets.html'}[page]||'index.html';
   function a(h,t,sub){return '<a href="'+h+'"'+(h===page?' aria-current="page"':'')+(sub?' class="sub"':'')+'>'+t+'</a>'}
-  var fab=document.createElement('button');fab.className='menufab';fab.type='button';fab.setAttribute('aria-haspopup','dialog');fab.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu';
+  function f(h,t){return '<a href="'+h+'"'+(h===section?' aria-current="page"':'')+'>'+t+'</a>'}
+  var bar=document.createElement('nav');bar.className='floatbar';bar.setAttribute('aria-label','Main');
+  bar.innerHTML=f('index.html','Home')+f('apps.html','Apps')+f('gadgets.html','Gadgets')+'<button type="button" class="menubtn" aria-haspopup="dialog" aria-expanded="false">Menu</button>';
   var scrim=document.createElement('div');scrim.className='scrim';
-  var sheet=document.createElement('div');sheet.className='sheet';sheet.setAttribute('role','dialog');sheet.setAttribute('aria-label','Site menu');sheet.hidden=false;
+  var sheet=document.createElement('div');sheet.className='sheet';sheet.setAttribute('role','dialog');sheet.setAttribute('aria-label','Site menu');
   sheet.innerHTML='<div class="grab"></div>'+a('index.html','Home')+a('apps.html','Apps')+'<small>Windows</small>'+a('macdock.html','MacDock',1)+a('gallery.html','Gallery for Windows',1)+'<small>Android TV</small>'+a('tv.html','File Manager TV',1)+a('gadgets.html','Gadgets');
-  document.body.appendChild(scrim);document.body.appendChild(sheet);document.body.appendChild(fab);
-  function open(o){document.body.classList.toggle('menuopen',o);fab.setAttribute('aria-expanded',o);if(o){var f=sheet.querySelector('a');f&&f.focus()}else fab.focus()}
-  fab.addEventListener('click',function(){open(!document.body.classList.contains('menuopen'))});
+  document.body.appendChild(scrim);document.body.appendChild(sheet);document.body.appendChild(bar);
+  var btn=bar.querySelector('.menubtn');
+  function open(o){document.body.classList.toggle('menuopen',o);btn.setAttribute('aria-expanded',o);if(o){var x=sheet.querySelector('a');x&&x.focus()}else btn.focus()}
+  btn.addEventListener('click',function(){open(!document.body.classList.contains('menuopen'))});
   scrim.addEventListener('click',function(){open(false)});
   sheet.addEventListener('click',function(e){if(e.target.closest('a'))open(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menuopen'))open(false)});
+  // Upgrade the bar to liquid glass where the browser can bend the page (Chrome / Edge)
+  var g=document.createElement('script');g.src='glass-pill.js';document.head.appendChild(g);
 })();

@@ -1,5 +1,5 @@
-:root{--bg:#0f1117;--fg:#eef0f5;--mut:#9aa3b2;--card:#171a23;--line:#2a2f3b;--acc:#7a9bff;--onacc:#0b0e17;--r:14px;
---font:'Inter',system-ui,sans-serif;--disp:'Space Grotesk','Inter',system-ui,sans-serif}
+:root{--bg:#0b0c10;--fg:#eceff4;--mut:#9aa4b2;--card:#15171d;--line:#262a33;--acc:#b48cff;--onacc:#140a26;--r:14px;
+--font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter',system-ui,sans-serif;--disp:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',system-ui,sans-serif}
 @media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f6f7fa;--fg:#14171c;--mut:#566070;--card:#fff;--line:#dde1e8;--acc:#2f5bea;--onacc:#fff}}
 :root[data-theme=light]{--bg:#f6f7fa;--fg:#14171c;--mut:#566070;--card:#fff;--line:#dde1e8;--acc:#2f5bea;--onacc:#fff}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -107,14 +107,12 @@ body.mac{padding-bottom:84px}
 .cat .badge{align-self:flex-start}
 h2[id]{scroll-margin-top:72px}
 /* Mobile menu: bottom sheet */
-.menufab,.scrim,.sheet{display:none}
+.floatbar,.scrim,.sheet{display:none}
 @media(max-width:700px){
  header nav{display:none !important}
  header.top .w{height:56px}
  body{padding-bottom:84px}
- .menufab{display:flex;gap:8px;align-items:center;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:8;background:var(--acc);color:var(--onacc);border:0;border-radius:999px;padding:14px 20px;font:600 15px var(--font);box-shadow:0 8px 22px #0005;cursor:pointer}
- .menufab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
- .scrim{display:block;position:fixed;inset:0;z-index:9;background:#0008;opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim{display:block;position:fixed;inset:0;z-index:9;background:#0008;opacity:0;pointer-events:none;transition:opacity .25s}
  .sheet{display:grid;gap:2px;position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-radius:24px 24px 0 0;padding:10px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .3s;box-shadow:0 -10px 40px #0005;max-height:80vh;overflow-y:auto}
  .sheet .grab{width:38px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
  .sheet a{display:block;padding:14px 8px;border-radius:12px;text-decoration:none;font:600 18px var(--disp);color:var(--fg)}
@@ -124,8 +122,41 @@ h2[id]{scroll-margin-top:72px}
  .menuopen .scrim{opacity:1;pointer-events:auto}
  .menuopen .sheet{transform:none}
  .menuopen{overflow:hidden}
- .menuopen .menufab{display:none}
+ .menuopen .floatbar{opacity:0;pointer-events:none}
 }
 @media(prefers-reduced-motion:reduce){.sheet,.scrim{transition:none}}
 /* soften the hero glow so it fades in and out instead of ending in hard edges */
 .hero-bg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%)}
+
+/* Floating glass bar (mobile). Reference values: 80px tall, 40px radius, tint 0%, outer shadow blur 27 */
+@media(max-width:700px){
+ body{padding-bottom:116px}
+ .floatbar{display:flex;align-items:center;gap:0;position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:8;height:80px;padding:0 12px;border-radius:40px;max-width:calc(100% - 24px);width:max-content;isolation:isolate;transition:opacity .2s;user-select:none;-webkit-user-select:none;
+  -webkit-backdrop-filter:blur(3px) saturate(180%);backdrop-filter:blur(3px) saturate(180%);
+  background:linear-gradient(160deg,rgba(255,255,255,.34),rgba(255,255,255,.08) 40%,rgba(255,255,255,.05) 62%,rgba(255,255,255,.26));
+  box-shadow:inset 2px 3px 4px -2px rgba(255,255,255,.95),inset -2px -3px 4px -2px rgba(255,255,255,.6),0 4px 27px rgba(0,0,0,.18),0 0 0 1px rgba(255,255,255,.35)}
+ .floatbar>a,.floatbar>.menubtn{position:relative;z-index:2;flex:1 1 0;min-width:60px;height:60px;padding:0 10px;display:grid;place-items:center;border:0;background:none;border-radius:30px;font:700 14px var(--font);color:var(--fg);text-decoration:none;cursor:pointer;text-shadow:0 0 6px var(--bg),0 0 12px var(--bg),0 0 2px var(--bg)}
+ .floatbar>a[aria-current]{background:color-mix(in srgb,var(--bg) 55%,transparent);box-shadow:inset 0 1px 1px rgba(255,255,255,.7)}
+ .floatbar>.menubtn{border-left:1px solid color-mix(in srgb,var(--fg) 18%,transparent);border-radius:0 30px 30px 0;margin-left:4px;padding-left:14px}
+ .floatbar:focus-within{outline:none}
+ :root[data-theme=dark] .floatbar{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 62%,rgba(255,255,255,.16));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.5),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}
+}
+@media(max-width:700px) and (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 62%,rgba(255,255,255,.16));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.5),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}}
+/* Chromium: glass-pill.js adds .lg, bends the page through an SVG displacement filter, tint 0% */
+@media(max-width:700px){
+ .floatbar.lg{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 4px 27px rgba(0,0,0,.18)}
+ .floatbar.lg::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 -15px #fff}
+ .floatbar.lg::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;backdrop-filter:url(#lg-pill);-webkit-backdrop-filter:url(#lg-pill)}
+}
+
+/* Typography: Apple system font (SF) where available, Inter elsewhere; clear weight steps */
+body{font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1{font-weight:800;letter-spacing:-.035em}
+h2{font-weight:700;letter-spacing:-.025em}
+h3{font-weight:600;letter-spacing:-.015em}
+.logo{font-weight:700;letter-spacing:-.02em}
+.lead{font-weight:400}
+header nav a,.chips button,.badge,.crumb{font-weight:500}
+.btn,.floatbar>a,.floatbar>.menubtn,#themebtn{font-weight:600}
+.small,.card p,.app p{font-weight:400}
+.price{font-weight:700}
