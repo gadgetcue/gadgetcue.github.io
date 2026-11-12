@@ -48,3 +48,12 @@ document.querySelectorAll('.yt').forEach(function(box){
   // Upgrade the bar to liquid glass where the browser can bend the page (Chrome / Edge)
   var g=document.createElement('script');g.src='glass-pill.js';document.head.appendChild(g);
 })();
+// Hide the floating bar while the page is scrolling; bring it back when scrolling stops.
+(function(){
+  var t=0,last=window.scrollY;
+  window.addEventListener('scroll',function(){
+    if(Math.abs(window.scrollY-last)<3)return;last=window.scrollY;
+    document.body.classList.add('scrolling');clearTimeout(t);
+    t=setTimeout(function(){document.body.classList.remove('scrolling')},350);
+  },{passive:true});
+})();

@@ -155,3 +155,7 @@ h2[id]{scroll-margin-top:72px}
 
 @media(max-width:700px){header nav{display:none !important}header.top .w{height:56px}}
 .sheet{max-width:520px;margin-inline:auto}
+/* hide the floating bar while scrolling */
+.floatbar{transition:transform .28s cubic-bezier(.3,.8,.3,1),opacity .2s}
+.scrolling .floatbar{transform:translateY(calc(100% + 40px));opacity:0}
+@media(prefers-reduced-motion:reduce){.floatbar{transition:opacity .01s}.scrolling .floatbar{transform:none}}
