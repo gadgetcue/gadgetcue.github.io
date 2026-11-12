@@ -45,8 +45,6 @@ document.querySelectorAll('.yt').forEach(function(box){
   scrim.addEventListener('click',function(){open(false)});
   sheet.addEventListener('click',function(e){if(e.target.closest('a'))open(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menuopen'))open(false)});
-  // Upgrade the bar to liquid glass where the browser can bend the page (Chrome / Edge)
-  var g=document.createElement('script');g.src='glass-pill.js';document.head.appendChild(g);
 })();
 // Hide the floating bar while the page is scrolling; bring it back when scrolling stops.
 (function(){

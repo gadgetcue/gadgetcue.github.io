@@ -146,15 +146,7 @@ h2[id]{scroll-margin-top:72px}
 }
 :root[data-theme=dark] .floatbar .glass{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 40%,rgba(255,255,255,.04) 62%,rgba(255,255,255,.14));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.4),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar .glass{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.06) 40%,rgba(255,255,255,.04) 62%,rgba(255,255,255,.14));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.4),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}}
-/* Chromium: glass-pill.js adds .lg and bends the page behind each shape (SVG displacement filter) */
-.floatbar .glass.lg{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 4px 27px rgba(0,0,0,.18)}
-:root[data-theme=dark] .floatbar .glass.lg{box-shadow:0 4px 27px rgba(0,0,0,.5)}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar .glass.lg{box-shadow:0 4px 27px rgba(0,0,0,.5)}}
-.floatbar .glass.lg::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
-.floatbar .glass.lg::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;backdrop-filter:var(--lgf);-webkit-backdrop-filter:var(--lgf)}
 
-@media(max-width:700px){header nav{display:none !important}header.top .w{height:56px}}
-.sheet{max-width:520px;margin-inline:auto}
 /* hide the floating bar while scrolling */
 .floatbar{transition:transform .28s cubic-bezier(.3,.8,.3,1),opacity .2s}
 .scrolling .floatbar{transform:translateY(calc(100% + 40px));opacity:0}
@@ -224,3 +216,12 @@ footer{background:transparent}
 footer .w{max-width:1180px;justify-content:space-between}
 body.mac .hero-bg,body.gal .hero-bg{background:none}
 .hero-bg h1{font-size:clamp(36px,6.4vw,68px)}
+
+/* Frosted glass for the floating bar (no refraction) */
+.floatbar .glass{-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+ background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.7);
+ box-shadow:0 8px 28px rgba(30,20,80,.16),0 1px 3px rgba(30,20,80,.08)}
+:root[data-theme=dark] .floatbar .glass{background:rgba(32,34,42,.55);border-color:rgba(255,255,255,.12);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar .glass{background:rgba(32,34,42,.55);border-color:rgba(255,255,255,.12);box-shadow:0 8px 28px rgba(0,0,0,.5)}}
+.floatbar .glass,.floatbar .glass svg,.floatbar .glass a{text-shadow:none}
+.floatbar a.circle[aria-current],.floatbar .mid a[aria-current]{background:color-mix(in srgb,var(--fg) 12%,transparent);box-shadow:none}
