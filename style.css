@@ -65,3 +65,27 @@ body.tv .card:hover{border-color:var(--acc);box-shadow:0 0 0 3px #ffb02033}
 
 #themebtn{font:inherit;font-size:13px;cursor:pointer;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;display:inline-flex;gap:6px;align-items:center}
 #themebtn:hover{border-color:var(--acc)}
+/* Mobile */
+.w{padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-top:env(safe-area-inset-top,0px)}
+.chips button,#themebtn,.btn{min-height:44px}
+body.mac{padding-bottom:84px}
+@media(max-width:700px){
+ header.top .w{height:auto;padding-block:8px;gap:8px 12px}
+ header nav{order:3;width:100%;overflow-x:auto;gap:18px;padding-bottom:2px;white-space:nowrap;-webkit-overflow-scrolling:touch}
+ header nav a{padding:8px 0}
+ section{padding-block:32px}
+ .hero{gap:24px}
+ h1{font-size:clamp(32px,10vw,44px)}
+ .lead{font-size:16px}
+ .btns .btn{flex:1 1 100%;text-align:center}
+ .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chips button{flex:none}
+ .yt .p{width:56px;height:56px}
+ .shots,.grid,.apps{grid-template-columns:1fr}
+ .themes{grid-template-columns:1fr}
+ .bezel{padding:8px 8px 16px;border-radius:12px}
+ .steps li{gap:10px}
+ pre{font-size:12px}
+ footer .w{gap:12px 18px}
+}
+@media(hover:none){.dockmenu a:hover,.app:hover{transform:none}}
