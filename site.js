@@ -29,8 +29,12 @@ document.querySelectorAll('.yt').forEach(function(box){
   var section={'index.html':'index.html','apps.html':'apps.html','macdock.html':'apps.html','gallery.html':'apps.html','tv.html':'apps.html','gadgets.html':'gadgets.html'}[page]||'index.html';
   function a(h,t,sub){return '<a href="'+h+'"'+(h===page?' aria-current="page"':'')+(sub?' class="sub"':'')+'>'+t+'</a>'}
   function f(h,t){return '<a href="'+h+'"'+(h===section?' aria-current="page"':'')+'>'+t+'</a>'}
+  var ico={home:'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>'};
   var bar=document.createElement('nav');bar.className='floatbar';bar.setAttribute('aria-label','Main');
-  bar.innerHTML=f('index.html','Home')+f('apps.html','Apps')+f('gadgets.html','Gadgets')+'<button type="button" class="menubtn" aria-haspopup="dialog" aria-expanded="false">Menu</button>';
+  function m(h,t){return '<a href="'+h+'"'+(h===section?' aria-current="page"':'')+'>'+t+'</a>'}
+  bar.innerHTML='<a class="glass circle" href="index.html" aria-label="Home"'+(section==='index.html'?' aria-current="page"':'')+'><svg viewBox="0 0 24 24" aria-hidden="true">'+ico.home+'</svg></a>'+
+    '<div class="glass mid">'+m('apps.html','Apps')+m('gadgets.html','Gadgets')+'</div>'+
+    '<button type="button" class="glass circle menubtn" aria-label="Menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true">'+ico.menu+'</svg></button>';
   var scrim=document.createElement('div');scrim.className='scrim';
   var sheet=document.createElement('div');sheet.className='sheet';sheet.setAttribute('role','dialog');sheet.setAttribute('aria-label','Site menu');
   sheet.innerHTML='<div class="grab"></div>'+a('index.html','Home')+a('apps.html','Apps')+'<small>Windows</small>'+a('macdock.html','MacDock',1)+a('gallery.html','Gallery for Windows',1)+'<small>Android TV</small>'+a('tv.html','File Manager TV',1)+a('gadgets.html','Gadgets');

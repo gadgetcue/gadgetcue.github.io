@@ -4,8 +4,8 @@
   var ua = navigator.userAgent;
   var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   var ok = /Chrome|Chromium|Edg\//.test(ua) && !/Firefox|FxiOS/.test(ua) && !ios && window.CSS && CSS.supports('backdrop-filter', 'url(#a)');
-  var nav = document.querySelector('.floatbar');
-  if (!ok || !nav || /[?&]glass=css/.test(location.search)) return; // ?glass=css previews the Safari/Firefox look
+  var navs = Array.prototype.slice.call(document.querySelectorAll('.floatbar .glass'));
+  if (!ok || !navs.length || /[?&]glass=css/.test(location.search)) return; // ?glass=css previews the Safari/Firefox look
 
   var SURFACE = function (x) { return Math.pow(1 - Math.pow(1 - x, 4), 0.25); }; // convex squircle
   function profile(thick, bezel, ior, n) {
@@ -64,15 +64,15 @@
   svg.style.cssText = 'position:absolute;overflow:hidden'; svg.setAttribute('aria-hidden', 'true');
   var defs = document.createElementNS(svgNS, 'defs'); svg.appendChild(defs); document.body.appendChild(svg);
 
-  var last = '';
-  function build() {
+  function build(nav, id) {
+    var last = nav._last || '';
     var w = Math.round(nav.offsetWidth), h = Math.round(nav.offsetHeight);
     if (w < 40 || h < 20 || nav.offsetParent === null && getComputedStyle(nav).position !== 'fixed') return;
-    if (w + 'x' + h === last) return; last = w + 'x' + h;
+    if (w + 'x' + h === last) return; nav._last = w + 'x' + h;
     var r = Math.floor(h / 2), bezel = Math.max(1, Math.min(60, r - 1)); // bezel width 60, clamped like the reference
     var prof = profile(10, bezel, 3.0, 128), maxD = 1; for (var i = 0; i < prof.length; i++) maxD = Math.max(maxD, Math.abs(prof[i]));
     var disp = dispMap(w, h, r, bezel, prof, maxD), spec = specMap(w, h, r, bezel * 2.5);
-    defs.innerHTML = '<filter id="lg-pill" x="0%" y="0%" width="100%" height="100%">' +
+    var f = document.getElementById(id); if (f) f.remove(); defs.insertAdjacentHTML('beforeend', '<filter id="'+id+'" x="0%" y="0%" width="100%" height="100%">' +
       '<feGaussianBlur in="SourceGraphic" stdDeviation="0" result="b"/>' +
       '<feImage href="' + disp + '" x="0" y="0" width="' + w + '" height="' + h + '" result="map"/>' +
       '<feDisplacementMap in="b" in2="map" scale="' + (maxD * 1.65) + '" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
@@ -80,10 +80,13 @@
       '<feImage href="' + spec + '" x="0" y="0" width="' + w + '" height="' + h + '" result="sp"/>' +
       '<feComposite in="ds" in2="sp" operator="in" result="sm"/>' +
       '<feComponentTransfer in="sp" result="sf"><feFuncA type="linear" slope="1"/></feComponentTransfer>' +
-      '<feBlend in="sm" in2="d" mode="normal" result="ws"/><feBlend in="sf" in2="ws" mode="normal"/></filter>';
+      '<feBlend in="sm" in2="d" mode="normal" result="ws"/><feBlend in="sf" in2="ws" mode="normal"/></filter>');
+    nav.style.setProperty('--lgf', 'url(#' + id + ')');
     nav.style.setProperty('--lg-radius', r + 'px');
   }
-  nav.classList.add('lg');
-  build();
-  if (window.ResizeObserver) new ResizeObserver(build).observe(nav); else window.addEventListener('resize', build);
+  navs.forEach(function (nav, i) {
+    var id = 'lg-' + i, run = function () { build(nav, id); };
+    nav.classList.add('lg'); run();
+    if (window.ResizeObserver) new ResizeObserver(run).observe(nav); else window.addEventListener('resize', run);
+  });
 })();
