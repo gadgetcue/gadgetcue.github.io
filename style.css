@@ -89,3 +89,11 @@ body.mac{padding-bottom:84px}
  footer .w{gap:12px 18px}
 }
 @media(hover:none){.dockmenu a:hover,.app:hover{transform:none}}
+.gad .ph{aspect-ratio:16/10;display:grid;place-items:center;font:700 56px var(--disp);color:var(--acc);background:linear-gradient(135deg,var(--card),var(--line))}
+.gad .price{font:700 18px var(--disp);color:var(--fg);margin:8px 0 0}
+.gad .card{display:flex;flex-direction:column}.gad .card .b{display:flex;flex-direction:column;flex:1}.gad .card .btns{margin-top:auto;padding-top:14px}
+.gad .card img{object-position:center}
+.btn.off{background:var(--line);color:var(--mut)}
+.chips button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.disclose{max-width:62ch}
+.gad .badge{align-self:flex-start}
