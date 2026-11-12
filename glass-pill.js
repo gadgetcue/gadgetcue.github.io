@@ -21,7 +21,9 @@
     }
     return out;
   }
+  var S = Math.min(Math.max(window.devicePixelRatio || 1, 1), 3);
   function geom(w, h, r, bezel, cb) {
+    w = Math.round(w * S); h = Math.round(h * S); r = r * S; bezel = bezel * S;
     var c = document.createElement('canvas'); c.width = w; c.height = h;
     var ctx = c.getContext('2d'), img = ctx.createImageData(w, h), d = img.data;
     var rSq = r * r, r1Sq = (r + 1) * (r + 1), rBSq = Math.pow(Math.max(r - bezel, 0), 2), wB = w - r * 2, hB = h - r * 2;
@@ -68,7 +70,7 @@
     if (w < 40 || h < 20 || nav.offsetParent === null && getComputedStyle(nav).position !== 'fixed') return;
     if (w + 'x' + h === last) return; last = w + 'x' + h;
     var r = Math.floor(h / 2), bezel = Math.max(2, r - 1);
-    var prof = profile(80, bezel, 3.0, 128), maxD = 1; for (var i = 0; i < prof.length; i++) maxD = Math.max(maxD, Math.abs(prof[i]));
+    var prof = profile(60, bezel, 2.2, 128), maxD = 1; for (var i = 0; i < prof.length; i++) maxD = Math.max(maxD, Math.abs(prof[i]));
     var disp = dispMap(w, h, r, bezel, prof, maxD), spec = specMap(w, h, r, bezel * 2.5);
     defs.innerHTML = '<filter id="lg-pill" x="0%" y="0%" width="100%" height="100%">' +
       '<feGaussianBlur in="SourceGraphic" stdDeviation="0.3" result="b"/>' +
