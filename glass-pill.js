@@ -67,11 +67,11 @@
     var w = Math.round(nav.offsetWidth), h = Math.round(nav.offsetHeight);
     if (w < 40 || h < 20 || nav.offsetParent === null && getComputedStyle(nav).position !== 'fixed') return;
     if (w + 'x' + h === last) return; last = w + 'x' + h;
-    var r = Math.floor(h / 2), bezel = Math.max(2, Math.min(Math.round(h * 0.42), r - 1));
-    var prof = profile(46, bezel, 2.2, 128), maxD = 1; for (var i = 0; i < prof.length; i++) maxD = Math.max(maxD, Math.abs(prof[i]));
+    var r = Math.floor(h / 2), bezel = Math.max(2, r - 1);
+    var prof = profile(80, bezel, 3.0, 128), maxD = 1; for (var i = 0; i < prof.length; i++) maxD = Math.max(maxD, Math.abs(prof[i]));
     var disp = dispMap(w, h, r, bezel, prof, maxD), spec = specMap(w, h, r, bezel * 2.5);
     defs.innerHTML = '<filter id="lg-pill" x="0%" y="0%" width="100%" height="100%">' +
-      '<feGaussianBlur in="SourceGraphic" stdDeviation="0.4" result="b"/>' +
+      '<feGaussianBlur in="SourceGraphic" stdDeviation="0.3" result="b"/>' +
       '<feImage href="' + disp + '" x="0" y="0" width="' + w + '" height="' + h + '" result="map"/>' +
       '<feDisplacementMap in="b" in2="map" scale="' + (maxD * 1) + '" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
       '<feColorMatrix in="d" type="saturate" values="4" result="ds"/>' +
