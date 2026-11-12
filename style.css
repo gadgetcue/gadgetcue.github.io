@@ -108,10 +108,7 @@ body.mac{padding-bottom:84px}
 h2[id]{scroll-margin-top:72px}
 /* Mobile menu: bottom sheet */
 .floatbar,.scrim,.sheet{display:none}
-@media(max-width:700px){
- header nav{display:none !important}
- header.top .w{height:56px}
- body{padding-bottom:84px}
+@media all{
   .scrim{display:block;position:fixed;inset:0;z-index:9;background:#0008;opacity:0;pointer-events:none;transition:opacity .25s}
  .sheet{display:grid;gap:2px;position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-radius:24px 24px 0 0;padding:10px max(18px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .3s;box-shadow:0 -10px 40px #0005;max-height:80vh;overflow-y:auto}
  .sheet .grab{width:38px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
@@ -129,7 +126,7 @@ h2[id]{scroll-margin-top:72px}
 .hero-bg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%)}
 
 /* Floating glass bar (mobile). Reference values: 80px tall, 40px radius, tint 0%, outer shadow blur 27 */
-@media(max-width:700px){
+@media all{
  body{padding-bottom:116px}
  .floatbar{display:flex;align-items:center;gap:0;position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:8;height:80px;padding:0 12px;border-radius:40px;max-width:calc(100% - 24px);width:max-content;isolation:isolate;transition:opacity .2s;user-select:none;-webkit-user-select:none;
   -webkit-backdrop-filter:blur(3px) saturate(180%);backdrop-filter:blur(3px) saturate(180%);
@@ -141,9 +138,9 @@ h2[id]{scroll-margin-top:72px}
  .floatbar:focus-within{outline:none}
  :root[data-theme=dark] .floatbar{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 62%,rgba(255,255,255,.16));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.5),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}
 }
-@media(max-width:700px) and (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 62%,rgba(255,255,255,.16));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.5),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .floatbar{background:linear-gradient(160deg,rgba(255,255,255,.2),rgba(255,255,255,.05) 40%,rgba(255,255,255,.03) 62%,rgba(255,255,255,.16));box-shadow:inset 1px 2px 3px -1px rgba(255,255,255,.5),0 4px 27px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.16)}}
 /* Chromium: glass-pill.js adds .lg, bends the page through an SVG displacement filter, tint 0% */
-@media(max-width:700px){
+@media all{
  .floatbar.lg{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 4px 27px rgba(0,0,0,.18)}
  .floatbar.lg::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 -15px #fff}
  .floatbar.lg::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;backdrop-filter:url(#lg-pill);-webkit-backdrop-filter:url(#lg-pill)}
@@ -160,3 +157,6 @@ header nav a,.chips button,.badge,.crumb{font-weight:500}
 .btn,.floatbar>a,.floatbar>.menubtn,#themebtn{font-weight:600}
 .small,.card p,.app p{font-weight:400}
 .price{font-weight:700}
+
+@media(max-width:700px){header nav{display:none !important}header.top .w{height:56px}}
+.sheet{max-width:520px;margin-inline:auto}
