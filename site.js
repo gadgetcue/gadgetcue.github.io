@@ -33,3 +33,10 @@ document.querySelectorAll('.yt').forEach(function(box){
   links.forEach(function(a){var c=a.cloneNode(true);c.textContent=a.textContent==='File Manager TV'?'TV':a.textContent;n.appendChild(c)});
   document.body.appendChild(n);
 })();
+// Upgrade the bottom pill to real liquid glass (refracts the page behind it in Chrome/Edge, frosted glass elsewhere).
+(function(){
+  if(!document.querySelector('.dockmenu'))return;
+  var s=document.createElement('script');s.src='glass-pill.js';
+  s.onload=function(){try{window.mountGlassPill&&window.mountGlassPill()}catch(e){}};
+  document.head.appendChild(s);
+})();
