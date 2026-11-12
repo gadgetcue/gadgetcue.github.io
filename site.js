@@ -22,3 +22,14 @@ document.querySelectorAll('.yt').forEach(function(box){
   b.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}label()});
   bar.appendChild(b);label();
 })();
+
+// Mobile bottom pill: site navigation (pages without their own section dock)
+(function(){
+  if(document.querySelector('.dockmenu'))return;
+  var links=document.querySelectorAll('header.top nav a');if(!links.length)return;
+  var n=document.createElement('nav');n.className='dockmenu pill';n.setAttribute('aria-label','Site pages');
+  var home=location.pathname.split('/').pop()||'index.html';
+  n.innerHTML='<a href="index.html"'+(home==='index.html'||home===''?' aria-current="page"':'')+'>Home</a>';
+  links.forEach(function(a){var c=a.cloneNode(true);c.textContent=a.textContent==='File Manager TV'?'TV':a.textContent;n.appendChild(c)});
+  document.body.appendChild(n);
+})();
