@@ -23,11 +23,19 @@ document.querySelectorAll('.yt').forEach(function(box){
   bar.appendChild(b);label();
 })();
 
-// Mobile bottom tab bar: Home, Apps, Gadgets
+// Mobile bottom sheet menu
 (function(){
-  var items=[['index.html','Home','<path d="M3 11l9-8 9 8M5 10v10h14V10"/>'],['apps.html','Apps','<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'],['gadgets.html','Gadgets','<path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/>']];
   var cur=document.querySelector('header.top nav a[aria-current]');var here=cur?cur.getAttribute('href'):'index.html';
-  var n=document.createElement('nav');n.className='tabbar';n.setAttribute('aria-label','Main');
-  n.innerHTML=items.map(function(i){return '<a href="'+i[0]+'"'+(i[0]===here?' aria-current="page"':'')+'><svg viewBox="0 0 24 24" aria-hidden="true">'+i[2]+'</svg>'+i[1]+'</a>'}).join('');
-  document.body.appendChild(n);
+  var page=location.pathname.split('/').pop()||'index.html';
+  function a(h,t,sub){return '<a href="'+h+'"'+(h===page?' aria-current="page"':'')+(sub?' class="sub"':'')+'>'+t+'</a>'}
+  var fab=document.createElement('button');fab.className='menufab';fab.type='button';fab.setAttribute('aria-haspopup','dialog');fab.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu';
+  var scrim=document.createElement('div');scrim.className='scrim';
+  var sheet=document.createElement('div');sheet.className='sheet';sheet.setAttribute('role','dialog');sheet.setAttribute('aria-label','Site menu');sheet.hidden=false;
+  sheet.innerHTML='<div class="grab"></div>'+a('index.html','Home')+a('apps.html','Apps')+'<small>Windows</small>'+a('macdock.html','MacDock',1)+a('gallery.html','Gallery for Windows',1)+'<small>Android TV</small>'+a('tv.html','File Manager TV',1)+a('gadgets.html','Gadgets');
+  document.body.appendChild(scrim);document.body.appendChild(sheet);document.body.appendChild(fab);
+  function open(o){document.body.classList.toggle('menuopen',o);fab.setAttribute('aria-expanded',o);if(o){var f=sheet.querySelector('a');f&&f.focus()}else fab.focus()}
+  fab.addEventListener('click',function(){open(!document.body.classList.contains('menuopen'))});
+  scrim.addEventListener('click',function(){open(false)});
+  sheet.addEventListener('click',function(e){if(e.target.closest('a'))open(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menuopen'))open(false)});
 })();
