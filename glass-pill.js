@@ -5,7 +5,7 @@
   var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   var ok = /Chrome|Chromium|Edg\//.test(ua) && !/Firefox|FxiOS/.test(ua) && !ios && window.CSS && CSS.supports('backdrop-filter', 'url(#a)');
   var nav = document.querySelector('.dockmenu');
-  if (!ok || !nav) return;
+  if (!ok || !nav || /[?&]glass=css/.test(location.search)) return; // ?glass=css previews the Safari/Firefox look
 
   var SURFACE = function (x) { return Math.pow(1 - Math.pow(1 - x, 4), 0.25); }; // convex squircle
   function profile(thick, bezel, ior, n) {

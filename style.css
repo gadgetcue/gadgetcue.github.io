@@ -122,3 +122,18 @@ body.mac{padding-bottom:84px}
 .dockmenu.lg::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;backdrop-filter:url(#lg-pill);-webkit-backdrop-filter:url(#lg-pill)}
 .dockmenu.lg a{position:relative;z-index:2;height:52px;color:var(--fg);font-weight:700;text-shadow:0 0 6px var(--bg),0 0 12px var(--bg),0 0 2px var(--bg)}
 .dockmenu.lg a[aria-current]{background:color-mix(in srgb,var(--bg) 55%,transparent);box-shadow:inset 0 1px 1px rgba(255,255,255,.6)}
+
+/* Safari / Firefox look: CSS-only glass capsule (no live bending possible there) */
+.dockmenu:not(.lg){padding:10px;gap:4px;overflow:visible;isolation:isolate;border:0;border-radius:999px;
+ background:linear-gradient(160deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.12) 35%,rgba(255,255,255,.06) 62%,rgba(255,255,255,.34) 100%);
+ -webkit-backdrop-filter:blur(7px) saturate(200%) brightness(1.08) contrast(1.05);backdrop-filter:blur(7px) saturate(200%) brightness(1.08) contrast(1.05);
+ box-shadow:inset 2px 3px 4px -2px rgba(255,255,255,.95),inset -2px -3px 4px -2px rgba(255,255,255,.7),inset 0 0 22px rgba(255,255,255,.28),0 14px 34px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.14),0 0 0 1px rgba(255,255,255,.35);
+ user-select:none;-webkit-user-select:none}
+.dockmenu:not(.lg)::before{content:"";position:absolute;left:8%;right:8%;top:3px;height:42%;border-radius:999px;pointer-events:none;z-index:1;
+ background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));opacity:.7}
+.dockmenu:not(.lg)::after{content:"";position:absolute;left:14%;right:14%;bottom:2px;height:22%;border-radius:999px;pointer-events:none;z-index:1;
+ background:linear-gradient(0deg,rgba(255,255,255,.4),rgba(255,255,255,0))}
+.dockmenu:not(.lg) a{position:relative;z-index:2;height:52px;font-weight:700;color:var(--fg);text-shadow:0 0 6px var(--bg),0 0 12px var(--bg),0 0 2px var(--bg)}
+.dockmenu:not(.lg) a[aria-current]{background:color-mix(in srgb,var(--bg) 55%,transparent);box-shadow:inset 0 1px 1px rgba(255,255,255,.7)}
+:root[data-theme=dark] .dockmenu:not(.lg){background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(255,255,255,.06) 40%,rgba(255,255,255,.04) 62%,rgba(255,255,255,.18))}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .dockmenu:not(.lg){background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(255,255,255,.06) 40%,rgba(255,255,255,.04) 62%,rgba(255,255,255,.18))}}
