@@ -10,3 +10,15 @@ document.querySelectorAll('.yt').forEach(function(box){
   box.addEventListener('click',function(){play(0)});
   document.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){play(+b.dataset.t);box.scrollIntoView({behavior:'smooth',block:'center'})})});
 });
+
+// Dark / light toggle in the header. Remembers the choice when storage is available.
+(function(){
+  var root=document.documentElement,bar=document.querySelector('header.top .w');if(!bar)return;
+  function saved(){try{return localStorage.getItem('theme')}catch(e){return null}}
+  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return !(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)}
+  var b=document.createElement('button');b.id='themebtn';b.type='button';
+  function label(){var d=isDark();b.textContent=d?'\u2600 Light':'\u263E Dark';b.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode')}
+  var s=saved();if(s)root.setAttribute('data-theme',s);
+  b.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}label()});
+  bar.appendChild(b);label();
+})();

@@ -51,7 +51,7 @@ footer .w{display:flex;gap:18px;flex-wrap:wrap}
 .app .b{padding:18px}.app p{color:var(--mut);margin:4px 0 0;font-size:15px}
 .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--mut)}
 /* per-app accents */
-body.mac{--acc:#b48cff;--onacc:#140a26}body.gal{--acc:#e58a4a;--onacc:#1d0e03}body.tv{--acc:#ffb020;--onacc:#1a1200;--bg:#07090f;--card:#11151f;--line:#232a3a;--fg:#f2f4f8;--mut:#9aa3b2}
+body.mac{--acc:#b48cff;--onacc:#140a26}body.gal{--acc:#e58a4a;--onacc:#1d0e03}body.tv{--acc:#ffb020;--onacc:#1a1200}
 body.mac .hero-bg{background:radial-gradient(900px 400px at 80% -10%,#7a5cd655,transparent),radial-gradient(700px 400px at 0% 10%,#4a8fe733,transparent)}
 .bezel{background:#161a24;padding:12px 12px 22px;border-radius:16px;border:2px solid #2a3040}
 .bezel .yt{border-radius:6px;box-shadow:none}
@@ -62,3 +62,6 @@ body.tv .card:hover{border-color:var(--acc);box-shadow:0 0 0 3px #ffb02033}
 .themes{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
 .themes img{width:100%}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+#themebtn{font:inherit;font-size:13px;cursor:pointer;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;display:inline-flex;gap:6px;align-items:center}
+#themebtn:hover{border-color:var(--acc)}
