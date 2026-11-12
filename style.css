@@ -127,3 +127,5 @@ h2[id]{scroll-margin-top:72px}
  .menuopen .menufab{display:none}
 }
 @media(prefers-reduced-motion:reduce){.sheet,.scrim{transition:none}}
+/* soften the hero glow so it fades in and out instead of ending in hard edges */
+.hero-bg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 70%,transparent 100%)}
