@@ -23,20 +23,11 @@ document.querySelectorAll('.yt').forEach(function(box){
   bar.appendChild(b);label();
 })();
 
-// Mobile bottom pill: site navigation (pages without their own section dock)
+// Mobile bottom tab bar: Home, Apps, Gadgets
 (function(){
-  if(document.querySelector('.dockmenu'))return;
-  var links=document.querySelectorAll('header.top nav a');if(!links.length)return;
-  var n=document.createElement('nav');n.className='dockmenu pill';n.setAttribute('aria-label','Site pages');
-  var home=location.pathname.split('/').pop()||'index.html';
-  n.innerHTML='<a href="index.html"'+(home==='index.html'||home===''?' aria-current="page"':'')+'>Home</a>';
-  links.forEach(function(a){var c=a.cloneNode(true);c.textContent=a.textContent==='File Manager TV'?'TV':a.textContent;n.appendChild(c)});
+  var items=[['index.html','Home','<path d="M3 11l9-8 9 8M5 10v10h14V10"/>'],['apps.html','Apps','<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'],['gadgets.html','Gadgets','<path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/>']];
+  var cur=document.querySelector('header.top nav a[aria-current]');var here=cur?cur.getAttribute('href'):'index.html';
+  var n=document.createElement('nav');n.className='tabbar';n.setAttribute('aria-label','Main');
+  n.innerHTML=items.map(function(i){return '<a href="'+i[0]+'"'+(i[0]===here?' aria-current="page"':'')+'><svg viewBox="0 0 24 24" aria-hidden="true">'+i[2]+'</svg>'+i[1]+'</a>'}).join('');
   document.body.appendChild(n);
-})();
-// Upgrade the bottom pill to real liquid glass (refracts the page behind it in Chrome/Edge, frosted glass elsewhere).
-(function(){
-  if(!document.querySelector('.dockmenu'))return;
-  var s=document.createElement('script');s.src='glass-pill.js';
-  s.onload=function(){try{window.mountGlassPill&&window.mountGlassPill()}catch(e){}};
-  document.head.appendChild(s);
 })();
