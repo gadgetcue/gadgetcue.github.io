@@ -243,3 +243,19 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .app .dv .dev{max-width:none}
 .app .dv .dev img{aspect-ratio:16/10;width:100%}
 .app .dv .dev-tv img{aspect-ratio:16/9}
+
+/* Menu as a frosted popup above the floating bar */
+.scrim{background:transparent!important}
+.sheet{left:auto!important;right:max(14px,env(safe-area-inset-right,0px))!important;bottom:calc(max(14px,env(safe-area-inset-bottom,0px)) + 76px)!important;width:min(300px,calc(100vw - 28px));max-height:calc(100dvh - 140px);overflow:auto;
+ border-radius:26px!important;padding:10px!important;transform:translateY(14px) scale(.94)!important;transform-origin:bottom right;opacity:0;pointer-events:none;
+ transition:transform .26s cubic-bezier(.3,.9,.3,1),opacity .2s!important;
+ -webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+ background:rgba(255,255,255,.62)!important;border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 28px rgba(30,20,80,.2),0 1px 3px rgba(30,20,80,.08)!important}
+:root[data-theme=dark] .sheet{background:rgba(32,34,42,.6)!important;border-color:rgba(255,255,255,.12);box-shadow:0 8px 28px rgba(0,0,0,.5)!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .sheet{background:rgba(32,34,42,.6)!important;border-color:rgba(255,255,255,.12);box-shadow:0 8px 28px rgba(0,0,0,.5)!important}}
+.sheet .grab{display:none}
+.sheet a{padding:11px 12px!important;font-size:16px!important}
+.sheet a.sub{padding:9px 12px 9px 26px!important;font-size:15px!important}
+.menuopen .sheet{transform:none!important;opacity:1;pointer-events:auto}
+.menuopen .floatbar,.menuopen.scrolling .floatbar{opacity:1!important;pointer-events:auto!important;transform:none!important}
+.menuopen{overflow:auto!important}
