@@ -259,3 +259,7 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .menuopen .sheet{transform:none!important;opacity:1;pointer-events:auto}
 .menuopen .floatbar,.menuopen.scrolling .floatbar{opacity:1!important;pointer-events:auto!important;transform:none!important}
 .menuopen{overflow:auto!important}
+.sheet a{display:flex!important;align-items:center;gap:12px}
+.sheet a svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.sheet a.sub svg{width:20px;height:20px}
+.sheet a.sub{padding-left:14px!important}
