@@ -263,3 +263,5 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .sheet a svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
 .sheet a.sub svg{width:20px;height:20px}
 .sheet a.sub{padding-left:14px!important}
+.floatbar{transition:transform .3s cubic-bezier(.3,.8,.3,1)!important;will-change:transform;-webkit-transform:translateZ(0)}
+.scrolling .floatbar{opacity:1!important}

@@ -47,14 +47,19 @@ document.querySelectorAll('.yt').forEach(function(box){
   sheet.addEventListener('click',function(e){if(e.target.closest('a'))open(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menuopen'))open(false)});
 })();
-// Hide the floating bar only while scrolling down; show it on scroll up or when scrolling stops.
+// Floating bar: hide while scrolling down, show on a deliberate scroll up, near the top or at the bottom.
+// Direction changes need ~12px of travel and bounce overscroll is ignored, so it never flickers.
 (function(){
-  var t=0,last=window.scrollY;
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY,d=y-last;
-    if(Math.abs(d)<3)return;last=y;
-    if(d>0&&y>40){document.body.classList.add('scrolling');clearTimeout(t);
-      t=setTimeout(function(){document.body.classList.remove('scrolling')},600);}
-    else{clearTimeout(t);document.body.classList.remove('scrolling');}
-  },{passive:true});
+  var last=window.scrollY,acc=0,hidden=false,ticking=false,b=document.body;
+  function set(h){if(h!==hidden){hidden=h;b.classList.toggle('scrolling',h)}}
+  function run(){
+    ticking=false;
+    var y=window.scrollY,max=document.documentElement.scrollHeight-window.innerHeight;
+    if(y<0||y>max){last=Math.min(Math.max(y,0),max);return}
+    var d=y-last;last=y;
+    if(y<=24||y>=max-24){set(false);acc=0;return}
+    if(acc*d<0)acc=0;acc+=d;
+    if(acc>12)set(true);else if(acc<-12)set(false);
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(run)}},{passive:true});
 })();
