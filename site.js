@@ -46,12 +46,14 @@ document.querySelectorAll('.yt').forEach(function(box){
   sheet.addEventListener('click',function(e){if(e.target.closest('a'))open(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menuopen'))open(false)});
 })();
-// Hide the floating bar while the page is scrolling; bring it back when scrolling stops.
+// Hide the floating bar only while scrolling down; show it on scroll up or when scrolling stops.
 (function(){
   var t=0,last=window.scrollY;
   window.addEventListener('scroll',function(){
-    if(Math.abs(window.scrollY-last)<3)return;last=window.scrollY;
-    document.body.classList.add('scrolling');clearTimeout(t);
-    t=setTimeout(function(){document.body.classList.remove('scrolling')},350);
+    var y=window.scrollY,d=y-last;
+    if(Math.abs(d)<3)return;last=y;
+    if(d>0&&y>40){document.body.classList.add('scrolling');clearTimeout(t);
+      t=setTimeout(function(){document.body.classList.remove('scrolling')},600);}
+    else{clearTimeout(t);document.body.classList.remove('scrolling');}
   },{passive:true});
 })();
