@@ -15,9 +15,11 @@ Delete any default parking/redirect records for the root first.
 
 (Check these IPs against GitHub's "Managing a custom domain" docs before using.)
 
+Add a file named `CNAME` containing `gadgetcue.in` to the repo root (or set the Custom domain in Pages settings) only once DNS is in place; with it present, github.io redirects to the custom domain.
+
 ## 2. Turn on GitHub Pages (when going live)
 Repo gadgetcue/gadgetcue.github.io > Settings > Pages > Source: Deploy from branch `main` / root.
-Custom domain: `gadgetcue.in` (the CNAME file is already in the repo). Tick "Enforce HTTPS" once the certificate is issued (can take up to an hour).
+Custom domain: `gadgetcue.in` (this creates the CNAME file). Tick "Enforce HTTPS" once the certificate is issued (can take up to an hour).
 Note: Pages on a private repo needs a paid GitHub plan; a public repo is free.
 
 ## 3. Downloads
