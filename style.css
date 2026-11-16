@@ -272,14 +272,24 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .mhome{display:none}
 @media(max-width:700px){
  .page-home>*:not(.mhome){display:none!important}
- .mhome{display:block;padding-block:20px}
- .mhome .w{display:grid;gap:10px}
- .mhome h1{font-size:28px;line-height:1.15;margin:0}
- .mhome p{margin:0 0 8px;color:var(--mut);font-size:16px}
- .mcard{display:grid;gap:2px;padding:16px;border:1px solid var(--line);border-radius:16px 16px 0 0;background:var(--card);color:var(--fg);text-decoration:none;margin-top:6px}
- .mcard b{font-size:18px}.mcard span{color:var(--mut);font-size:15px}
- .mdl{width:100%;justify-content:center;text-align:center;min-height:52px;border-radius:0 0 16px 16px;margin-top:-10px}
- .mmore{display:block;text-align:center;padding:16px;color:var(--acc);font-weight:600;text-decoration:none}
+ .mhome{display:block;padding:8px 0 24px}
+ .mhome .w{display:grid;gap:18px}
+ .mhero{padding:26px 4px 6px;text-align:center;position:relative}
+ .mhero:before{content:"";position:absolute;inset:-10px -30px auto;height:220px;background:radial-gradient(60% 70% at 50% 30%,color-mix(in srgb,var(--acc) 38%,transparent),transparent 70%);z-index:-1;filter:blur(8px)}
+ .mpill{display:inline-block;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc)}
+ .mhero h1{font-size:34px;line-height:1.1;margin:14px 0 10px;letter-spacing:-.02em}
+ .mhero h1 em{font-style:normal;background:linear-gradient(90deg,var(--acc),#ff7ab8);-webkit-background-clip:text;background-clip:text;color:transparent}
+ .mhero p{margin:0 auto;color:var(--mut);font-size:16px;max-width:30ch}
+ .mc{border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 14px 34px -18px rgba(30,20,80,.45)}
+ .mimg{display:block;aspect-ratio:16/10;overflow:hidden;background:#000}
+ .mimg img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+ .mt{padding:16px 18px 4px}
+ .mt h2{margin:0 0 2px;font-size:22px}
+ .mt p{margin:0;color:var(--mut);font-size:15px}
+ .mb{display:flex;align-items:center;gap:10px;padding:14px 18px 18px}
+ .mdl{flex:1;text-align:center;min-height:50px;border-radius:14px;font-size:16px;display:flex;align-items:center;justify-content:center}
+ .mlink{padding:12px 6px;color:var(--fg);font-weight:600;text-decoration:none;min-height:44px;display:flex;align-items:center}
+ .mmore{display:block;text-align:center;padding:14px;color:var(--acc);font-weight:600;text-decoration:none}
  header nav,.ann{display:none}
 }
 
