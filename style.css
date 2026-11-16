@@ -313,3 +313,6 @@ a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
  header.top .w{flex-wrap:nowrap;justify-content:space-between}
  header.top .logo{flex:1}
 }
+
+/* Brand logo mark in the header */
+.logo:before{width:26px;height:31px;border-radius:7px;background:#08111c url(img/logo.jpg) -12.4px -34.2px/101.6px 101.6px no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
