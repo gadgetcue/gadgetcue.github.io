@@ -296,5 +296,5 @@ a,button,.btn,.mcard,.floatbar .glass,.sheet a{transition:transform .12s ease,fi
 /* No blue anywhere on tap: highlight, selection flash, focus box */
 *{-webkit-tap-highlight-color:rgba(0,0,0,0)!important;-webkit-touch-callout:none}
 a,button,summary,.btn,.mcard,.floatbar,.sheet,header.top{-webkit-user-select:none;user-select:none;outline:none}
-a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none;background-color:transparent}
 ::selection{background:color-mix(in srgb,var(--acc) 30%,transparent);color:inherit}
+a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
