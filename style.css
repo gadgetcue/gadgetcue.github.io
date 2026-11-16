@@ -292,3 +292,9 @@ a,button,.btn,.mcard,.floatbar .glass,.sheet a{transition:transform .12s ease,fi
 .floatbar .mid a:active{transform:scale(.94);background:color-mix(in srgb,var(--fg) 14%,transparent)}
 .sheet a:active{background:color-mix(in srgb,var(--fg) 12%,transparent)}
 @media(prefers-reduced-motion:reduce){.btn:active,.mdl:active,button:active,.hbtn:active,.mcard:active,.floatbar .glass:active,.floatbar .mid a:active{transform:none}}
+
+/* No blue anywhere on tap: highlight, selection flash, focus box */
+*{-webkit-tap-highlight-color:rgba(0,0,0,0)!important;-webkit-touch-callout:none}
+a,button,summary,.btn,.mcard,.floatbar,.sheet,header.top{-webkit-user-select:none;user-select:none;outline:none}
+a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none;background-color:transparent}
+::selection{background:color-mix(in srgb,var(--acc) 30%,transparent);color:inherit}
