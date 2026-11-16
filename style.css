@@ -265,3 +265,20 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .sheet a.sub{padding-left:14px!important}
 .floatbar{transition:transform .3s cubic-bezier(.3,.8,.3,1)!important;will-change:transform;-webkit-transform:translateZ(0)}
 .scrolling .floatbar{opacity:1!important}
+
+/* Floating bar: not clickable while hidden; it returns when scrolling stops */
+.scrolling .floatbar,.scrolling .floatbar .glass{pointer-events:none!important}
+/* Minimal mobile homepage */
+.mhome{display:none}
+@media(max-width:700px){
+ .page-home>*:not(.mhome){display:none!important}
+ .mhome{display:block;padding-block:20px}
+ .mhome .w{display:grid;gap:10px}
+ .mhome h1{font-size:28px;line-height:1.15;margin:0}
+ .mhome p{margin:0 0 8px;color:var(--mut);font-size:16px}
+ .mcard{display:grid;gap:2px;padding:16px;border:1px solid var(--line);border-radius:16px 16px 0 0;background:var(--card);color:var(--fg);text-decoration:none;margin-top:6px}
+ .mcard b{font-size:18px}.mcard span{color:var(--mut);font-size:15px}
+ .mdl{width:100%;justify-content:center;text-align:center;min-height:52px;border-radius:0 0 16px 16px;margin-top:-10px}
+ .mmore{display:block;text-align:center;padding:16px;color:var(--acc);font-weight:600;text-decoration:none}
+ header nav,.ann{display:none}
+}

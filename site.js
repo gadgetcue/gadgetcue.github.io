@@ -50,7 +50,7 @@ document.querySelectorAll('.yt').forEach(function(box){
 // Floating bar: hide while scrolling down, show on a deliberate scroll up, near the top or at the bottom.
 // Direction changes need ~12px of travel and bounce overscroll is ignored, so it never flickers.
 (function(){
-  var last=window.scrollY,acc=0,hidden=false,ticking=false,b=document.body;
+  var last=window.scrollY,acc=0,hidden=false,ticking=false,b=document.body,idle=0;
   function set(h){if(h!==hidden){hidden=h;b.classList.toggle('scrolling',h)}}
   function run(){
     ticking=false;
@@ -61,5 +61,5 @@ document.querySelectorAll('.yt').forEach(function(box){
     if(acc*d<0)acc=0;acc+=d;
     if(acc>12)set(true);else if(acc<-12)set(false);
   }
-  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(run)}},{passive:true});
+  window.addEventListener('scroll',function(){clearTimeout(idle);idle=setTimeout(function(){set(false);acc=0},450);if(!ticking){ticking=true;requestAnimationFrame(run)}},{passive:true});
 })();
