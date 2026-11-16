@@ -282,3 +282,13 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
  .mmore{display:block;text-align:center;padding:16px;color:var(--acc);font-weight:600;text-decoration:none}
  header nav,.ann{display:none}
 }
+
+/* Remove the default blue tap flash; add a press effect */
+a,button,summary,.btn,.mcard{-webkit-tap-highlight-color:transparent}
+a,button,.btn,.mcard,.floatbar .glass,.sheet a{transition:transform .12s ease,filter .12s ease,background-color .12s ease}
+.btn:active,.mdl:active,button:active,.hbtn:active{transform:scale(.96);filter:brightness(.92)}
+.mcard:active{transform:scale(.98);filter:brightness(.95)}
+.floatbar .glass:active{transform:scale(.92)}
+.floatbar .mid a:active{transform:scale(.94);background:color-mix(in srgb,var(--fg) 14%,transparent)}
+.sheet a:active{background:color-mix(in srgb,var(--fg) 12%,transparent)}
+@media(prefers-reduced-motion:reduce){.btn:active,.mdl:active,button:active,.hbtn:active,.mcard:active,.floatbar .glass:active,.floatbar .mid a:active{transform:none}}
