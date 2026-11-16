@@ -324,3 +324,7 @@ a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
 .gad .play i:after{content:"";position:absolute;left:25px;top:19px;border-left:20px solid var(--onacc);border-top:13px solid transparent;border-bottom:13px solid transparent}
 .gad .play:active i{transform:scale(.92)}
 .gad iframe.vid{width:100%;aspect-ratio:9/14;min-height:480px;border:0;display:block;background:#000}
+
+.gad .play .th{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;display:block}
+.gad .play:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.35))}
+.gad .play i{z-index:1}
