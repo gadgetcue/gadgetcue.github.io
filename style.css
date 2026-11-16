@@ -316,3 +316,11 @@ a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
 
 /* Brand logo mark in the header */
 .logo:before{width:26px;height:31px;border-radius:7px;background:#08111c url(img/logo.jpg) -12.4px -34.2px/101.6px 101.6px no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+
+/* Inline video on gadget cards */
+.gad .play{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;background:none}
+.gad .play .ph{width:100%}
+.gad .play i{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--acc);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.gad .play i:after{content:"";position:absolute;left:25px;top:19px;border-left:20px solid var(--onacc);border-top:13px solid transparent;border-bottom:13px solid transparent}
+.gad .play:active i{transform:scale(.92)}
+.gad iframe.vid{width:100%;aspect-ratio:9/14;min-height:480px;border:0;display:block;background:#000}

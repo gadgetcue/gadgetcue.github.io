@@ -32,9 +32,9 @@ var grid=document.getElementById('gadgets'),filters=document.getElementById('fil
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function render(tag){
   grid.innerHTML=GADGETS.filter(function(g){return !tag||g.tag===tag}).map(function(g){
-    var img=g.image?'<img src="'+esc(g.image)+'" alt="'+esc(g.name)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</div>';
+    var img=g.instagram?'<button type="button" class="play" data-embed="'+esc(g.instagram.replace(/\/?$/,'/embed/'))+'" aria-label="Play video: '+esc(g.name)+'"><span class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</span><i aria-hidden="true"></i></button>':g.image?'<img src="'+esc(g.image)+'" alt="'+esc(g.name)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</div>';
     var buy=g.link?'<a class="btn" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(g.linkLabel||'Get it')+'</a>':g.amazon?'<a class="btn" href="'+esc(g.amazon)+'" target="_blank" rel="sponsored nofollow noopener">Buy on Amazon</a>':'';
-    var ig=g.instagram?'<a class="btn g" href="'+esc(g.instagram)+'" target="_blank" rel="noopener">Unboxing on Instagram</a>':'';
+    var ig=g.instagram?'<a class="btn g" href="'+esc(g.instagram)+'" target="_blank" rel="noopener">Open in Instagram</a>':'';
     return '<article class="card gad">'+img+'<div class="b"><span class="badge">'+esc(g.tag)+(g.example?' · example':'')+'</span><h3>'+esc(g.name)+'</h3>'+(g.blurb?'<p>'+esc(g.blurb)+'</p>':'')+''+(g.price?'<p class="price">'+esc(g.price)+'</p>':'')+'<div class="btns">'+buy+ig+'</div></div></article>';
   }).join('');
 }
@@ -42,3 +42,7 @@ var tags=[];GADGETS.forEach(function(g){if(g.tag&&tags.indexOf(g.tag)<0)tags.pus
 filters.innerHTML=['All'].concat(tags).map(function(t,i){return '<button type="button" data-tag="'+(i?esc(t):'')+'" aria-pressed="'+(i===0)+'">'+esc(t)+'</button>'}).join('');
 filters.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;filters.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});render(b.dataset.tag)});
 render('');
+
+grid.addEventListener('click',function(e){var b=e.target.closest('.play');if(!b)return;
+  var f=document.createElement('iframe');f.src=b.dataset.embed;f.className='vid';f.setAttribute('allowfullscreen','');f.setAttribute('allow','autoplay; encrypted-media; fullscreen');f.setAttribute('title','Video');f.loading='lazy';
+  b.replaceWith(f)});
