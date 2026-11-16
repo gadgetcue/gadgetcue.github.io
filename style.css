@@ -308,3 +308,8 @@ a,button,.btn,.mcard,.floatbar .glass,.sheet a{transition:transform .12s ease,fi
 a,button,summary,.btn,.mcard,.floatbar,.sheet,header.top{-webkit-user-select:none;user-select:none;outline:none}
 ::selection{background:color-mix(in srgb,var(--acc) 30%,transparent);color:inherit}
 a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
+@media(max-width:700px){
+ .page-home .hbtn{display:none}
+ header.top .w{flex-wrap:nowrap;justify-content:space-between}
+ header.top .logo{flex:1}
+}
