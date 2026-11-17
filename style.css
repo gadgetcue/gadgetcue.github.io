@@ -410,3 +410,16 @@ footer{padding-block:36px}footer a{text-decoration:none;transition:color .2s}foo
 }
 @media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}.card:hover,.app:hover,.btn:hover,.hbtn:hover,.shots img:hover,.gad .card:hover>img{transform:none}}
 @media(hover:none){.six a:before,.card:before,.app:before,.cat:before{display:none}}
+
+/* ===== fileosmac-style home: icon inside the headline, tertiary link, calmer light surface ===== */
+.h1ico{display:inline-block;width:.8em;height:.954em;border-radius:.2em;vertical-align:-.12em;background:#08111c url(img/logo.jpg) -.382em -1.052em/3.126em 3.126em no-repeat;box-shadow:var(--sh2),0 0 0 1px rgba(255,255,255,.12);margin-inline:.04em;-webkit-text-fill-color:initial}
+.heroc .btns{align-items:center}
+.tlink{color:var(--mut);font-weight:600;text-decoration:none;padding:10px 6px;transition:color .2s}
+.tlink:hover{color:var(--fg)}
+.heroc .fine{margin-top:14px}
+.heroc h1{max-width:16ch}
+.herowin{scroll-margin-top:80px}
+.ann{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--acc) 7%,var(--bg))}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]) .win{box-shadow:0 40px 90px -30px rgba(60,50,140,.35),0 8px 24px rgba(40,30,90,.08)}}
+.six a,.more div,.steps3 div{border-radius:20px}
+.block .win,.block .dev{filter:drop-shadow(0 30px 40px rgba(40,30,90,.12))}
