@@ -423,3 +423,81 @@ footer{padding-block:36px}footer a{text-decoration:none;transition:color .2s}foo
 @media (prefers-color-scheme:light){:root:not([data-theme=dark]) .win{box-shadow:0 40px 90px -30px rgba(60,50,140,.35),0 8px 24px rgba(40,30,90,.08)}}
 .six a,.more div,.steps3 div{border-radius:20px}
 .block .win,.block .dev{filter:drop-shadow(0 30px 40px rgba(40,30,90,.12))}
+
+/* ===== FileOS-style restyle: night glass / lavender, floating rounded top bar, pill buttons, big tight headlines, purple glow ===== */
+:root{--bg:#0C0B14;--fg:#EEECF7;--mut:#A6A2BC;--card:#14121f;--line:rgba(255,255,255,.08);--acc:#A897F3;--onacc:#fff;--brand:#6B56DC;--r:22px;
+ --disp:'Instrument Sans','Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;--font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Helvetica Neue',Arial,sans-serif;
+ --glass:linear-gradient(170deg,rgba(255,255,255,.075),rgba(255,255,255,.018));--glass-edge:rgba(255,255,255,.09);--topbar-h:86px}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#F7F6FB;--fg:#16132A;--mut:#5D5A74;--card:#fff;--line:rgba(22,19,42,.08);--acc:#6B56DC;--onacc:#fff;--glass:linear-gradient(170deg,#fff,rgba(255,255,255,.7));--glass-edge:rgba(22,19,42,.07)}}
+:root[data-theme=light]{--bg:#F7F6FB;--fg:#16132A;--mut:#5D5A74;--card:#fff;--line:rgba(22,19,42,.08);--acc:#6B56DC;--onacc:#fff;--glass:linear-gradient(170deg,#fff,rgba(255,255,255,.7));--glass-edge:rgba(22,19,42,.07)}
+html{scroll-padding-top:98px}
+body.mac,body.gal,body.tv{--acc:#A897F3;--onacc:#fff}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]) body.mac,:root:not([data-theme=dark]) body.gal,:root:not([data-theme=dark]) body.tv{--acc:#6B56DC}}
+:root[data-theme=light] body.mac,:root[data-theme=light] body.gal,:root[data-theme=light] body.tv{--acc:#6B56DC}
+/* ambient purple wash behind every page, like the reference's night glass */
+body{background:var(--bg) radial-gradient(70% 520px at 50% -120px,color-mix(in srgb,#6B56DC 26%,transparent),transparent 72%) no-repeat;background-attachment:scroll}
+h1,h2,h3,.logo,.six b,.more b,.steps3 b{font-family:var(--disp)}
+h1,h2{font-weight:600;letter-spacing:-.035em}
+.btn,.hbtn,.chips button,#themebtn,.badge{font-family:var(--font)}
+/* floating rounded frosted top bar, 16px from the top */
+header.top{position:sticky;top:0;z-index:20;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:16px 16px 0;pointer-events:none}
+header.top .w{pointer-events:auto;max-width:1212px;height:auto;min-height:60px;padding:10px 12px 10px 20px;gap:12px 28px;border-radius:24px;border:1px solid var(--line);flex-wrap:nowrap;
+ background:color-mix(in srgb,var(--bg) 62%,transparent);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 30px -14px rgba(20,10,60,.35)}
+.logo{font-size:20px;font-weight:600;letter-spacing:-.03em;margin-right:0}
+header nav{margin-left:8px;margin-right:auto;gap:6px}
+header nav a{padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500}
+header nav a:after{display:none}
+header nav a:hover,header nav a[aria-current]{background:color-mix(in srgb,var(--fg) 8%,transparent);color:var(--fg)}
+.hbtn{padding:11px 20px;border-radius:999px;background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--fg);border:1px solid color-mix(in srgb,var(--brand) 55%,transparent);font-size:14px;font-weight:600;margin-left:0}
+.hbtn:hover{background:color-mix(in srgb,var(--brand) 30%,transparent)}
+#themebtn{border-radius:999px;min-height:40px;background:transparent}
+/* pill buttons with a purple glow */
+.btn{background:var(--brand);color:#fff;border-radius:999px;min-height:48px;padding:0 26px;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;
+ box-shadow:0 8px 24px rgba(107,86,220,.45)}
+.btn:hover{background:#7A64E6;color:#fff;transform:translateY(-1px);box-shadow:0 12px 28px rgba(107,86,220,.5)}
+.btn.g{background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg);border:1px solid var(--line);box-shadow:none}
+.btn.g:hover{background:color-mix(in srgb,var(--fg) 12%,transparent);color:var(--fg);border-color:color-mix(in srgb,var(--brand) 50%,transparent)}
+.btn.off,.btn.off:hover{background:var(--line);color:var(--mut)}
+.chips button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}
+/* hero: huge tight headline, soft purple glow, framed window */
+.heroc{padding-block:clamp(44px,6vw,84px) 8px!important}
+.heroc:before{height:620px;background:radial-gradient(48% 55% at 50% 18%,color-mix(in srgb,#6B56DC 34%,transparent),transparent 72%),radial-gradient(28% 36% at 88% 12%,color-mix(in srgb,#ff7ab8 14%,transparent),transparent 70%)}
+.heroc h1{font-size:clamp(44px,8.4vw,104px);line-height:.98;letter-spacing:-.05em;max-width:12ch;font-weight:600}
+.h1ico{display:inline-block;vertical-align:middle;width:1.15em;height:.8em;border-radius:.22em;margin:0 .06em;background:linear-gradient(135deg,#8A76F5,#6B56DC 55%,#FF7AB8);border:3px solid color-mix(in srgb,var(--fg) 85%,transparent);box-shadow:0 8px 22px rgba(107,86,220,.5),inset 0 2px 3px rgba(255,255,255,.5)}
+.heroc .lead{font-size:clamp(18px,2.2vw,24px);color:var(--mut)}
+.fine{margin-top:16px}
+.bubbles a{color:var(--fg);font-weight:600;text-decoration:none}
+.herowin{position:relative;max-width:1060px;margin-top:40px;padding:clamp(18px,4vw,56px) clamp(18px,4vw,56px) 0;border-radius:36px 36px 0 0;
+ background:linear-gradient(180deg,#8A76F5,#6B56DC 55%,#4F3CC4);box-shadow:0 40px 90px -30px rgba(107,86,220,.65)}
+.herowin .win{border-radius:18px 18px 0 0;border-bottom:0;box-shadow:0 -10px 50px rgba(20,10,60,.35)}
+.win{background:var(--card);box-shadow:0 30px 80px -24px rgba(30,15,100,.45)}
+/* glass cards */
+.six a,.more div,.steps3 div,.card,.app,.cat,.faq details,.mc{background:var(--glass),var(--card);border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 30px -14px rgba(0,0,0,.4)}
+.six a:hover,.card:hover,.app:hover,.cat:hover{border-color:color-mix(in srgb,var(--brand) 55%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 22px 44px -16px rgba(107,86,220,.4)}
+.six small,.eyebrow{color:var(--acc)}
+.eyebrow{background:color-mix(in srgb,var(--brand) 16%,transparent);border:1px solid color-mix(in srgb,var(--brand) 30%,transparent);text-transform:none;letter-spacing:0;font-size:14px;padding:5px 14px}
+.sec-h h2,.block h2{font-weight:600;letter-spacing:-.04em}
+.steps3 em{background:linear-gradient(135deg,#A897F3,#FF7AB8);-webkit-background-clip:text;background-clip:text}
+.cta{background:radial-gradient(60% 90% at 50% 0,color-mix(in srgb,#6B56DC 40%,transparent),transparent 72%),var(--glass),var(--card);border-color:var(--glass-edge);border-radius:36px}
+.ann{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--mut);border-bottom:1px solid var(--line)}
+.ann a{color:var(--fg)}
+.ticks li:before{background-color:color-mix(in srgb,var(--brand) 22%,transparent)}
+.dev-pc:after{background:linear-gradient(#cfd0dc,#8f90a3)}
+footer{border-top:1px solid var(--line)}
+footer .w{max-width:1212px}
+/* floating mobile bar: dark glass like the reference's night theme */
+.floatbar .mid a[aria-current],.floatbar a.circle[aria-current]{background:color-mix(in srgb,var(--brand) 40%,transparent)}
+@media(max-width:700px){
+ header.top{padding:10px 10px 0}
+ header.top .w{min-height:54px;padding:8px 10px 8px 16px;border-radius:20px}
+ .heroc h1{font-size:clamp(40px,12vw,56px)}
+ .mhero:before{background:radial-gradient(60% 70% at 50% 30%,color-mix(in srgb,#6B56DC 45%,transparent),transparent 70%)}
+ .mhero h1{font-family:var(--disp);font-size:38px;letter-spacing:-.045em}
+ .mpill{background:color-mix(in srgb,var(--brand) 18%,transparent);color:var(--acc);border:1px solid color-mix(in srgb,var(--brand) 30%,transparent)}
+ .mdl{background:var(--brand);color:#fff;border-radius:999px}
+ .mc{border-radius:26px}
+}
+/* desktop already has the top bar; the floating pill bar stays a phone/tablet control */
+@media(min-width:901px){.floatbar,.scrim,.sheet{display:none!important}body{padding-bottom:0}body.mac{padding-bottom:0}}
+.hbtn{white-space:nowrap}
+@media(max-width:700px){.hbtn{display:none}}
