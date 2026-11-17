@@ -1,10 +1,14 @@
 // Edit this list to add gadgets. Each one needs a name; the rest is optional.
 // amazon: your affiliate link. instagram: link to the unboxing reel/post. image: path or URL to a photo.
+// Amazon Associates India tracking ID. Added to full amazon.in links that have no tag.
+// Short links (amzn.to, link.amazon) from SiteStripe are already tagged; they are left unchanged.
+var AMAZON_TAG='siddhantsar0a-21';
 var GADGETS=[
   {name:"OnePlus Nord Buds 4 Pro",blurb:"Wireless earbuds. Watch the video, then use the tagged product link on Instagram.",tag:"Audio",instagram:"https://www.instagram.com/reel/DedlTDWon_2/",thumb:"img/gad/nordbuds.jpg"},
   {name:"Apple gadget pick",blurb:"An Apple accessory I recommend. Buy link below.",tag:"Apple",instagram:"https://www.instagram.com/reel/Ddf-Xzgocvg/",thumb:"img/gad/apple.jpg",amazon:"https://link.amazon/B0hd7Pmxg"},
   {name:"Portronics toolkit",blurb:"A handy toolkit from Portronics. Watch the video for the details.",tag:"Accessories",instagram:"https://www.instagram.com/reel/DeBVr8gortN/",thumb:"img/gad/portronics.jpg"},
-  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"},
+  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"}
+,
   {name:"Ant Esports KM1610",image:"img/gad/ant-esports-km1610.jpg",tag:"Gaming",amazon:"https://amzn.to/4sbS26X"},
   {name:"Amkette Hush Pro Epic M",image:"img/gad/amkette-hush-pro-epic-m.jpg",tag:"Productivity",amazon:"https://amzn.to/4c56Myy"},
   {name:"Pure Aroma Cute Panda Scent Oil Diffuser Humidifier",tag:"Utility",amazon:"https://amzn.to/4tOLYTp"},
@@ -30,10 +34,13 @@ var GADGETS=[
 ];
 var grid=document.getElementById('gadgets'),filters=document.getElementById('filters');
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
+function amazonUrl(u){var h=host(u);if(/^amazon\.(in|com)$/.test(h)){try{var x=new URL(u);if(!x.searchParams.get('tag'))x.searchParams.set('tag',AMAZON_TAG);return x.toString()}catch(e){}}return u}
+function store(u){var h=host(u);if(/(^|\.)(amazon\.[a-z.]+|amzn\.to|link\.amazon)$/.test(h))return 'Amazon';if(/(^|\.)(flipkart\.com|fktr\.in|fkrt\.cc)$/.test(h))return 'Flipkart';return ''}
 function render(tag){
   grid.innerHTML=GADGETS.filter(function(g){return !tag||g.tag===tag}).map(function(g){
     var img=g.instagram?'<button type="button" class="play" data-embed="'+esc(g.instagram.replace(/\/?$/,'/embed/'))+'" aria-label="Play video: '+esc(g.name)+'">'+(g.thumb?'<img class="th" src="'+esc(g.thumb)+'" alt="" loading="lazy">':'<span class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</span>')+'<i aria-hidden="true"></i></button>':g.image?'<img src="'+esc(g.image)+'" alt="'+esc(g.name)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</div>';
-    var buy=g.link?'<a class="btn" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(g.linkLabel||'Get it')+'</a>':g.amazon?'<a class="btn" href="'+esc(g.amazon)+'" target="_blank" rel="sponsored nofollow noopener">Buy on Amazon</a>':'';
+    var buy=g.link?'<a class="btn" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(g.linkLabel||'Get it')+'</a>':g.amazon?'<a class="btn" href="'+esc(amazonUrl(g.amazon))+'" target="_blank" rel="sponsored nofollow noopener">'+(store(g.amazon)?'Buy on '+store(g.amazon):'Buy now')+'</a>':'';
     var ig=g.instagram?'<a class="btn g" href="'+esc(g.instagram)+'" target="_blank" rel="noopener">Open in Instagram</a>':'';
     return '<article class="card gad">'+img+'<div class="b"><span class="badge">'+esc(g.tag)+(g.example?' · example':'')+'</span><h3>'+esc(g.name)+'</h3>'+(g.blurb?'<p>'+esc(g.blurb)+'</p>':'')+''+(g.price?'<p class="price">'+esc(g.price)+'</p>':'')+'<div class="btns">'+buy+ig+'</div></div></article>';
   }).join('');
