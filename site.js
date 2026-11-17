@@ -63,3 +63,12 @@ document.querySelectorAll('.yt').forEach(function(box){
   }
   window.addEventListener('scroll',function(){clearTimeout(idle);idle=setTimeout(function(){set(false);acc=0},450);if(!ticking){ticking=true;requestAnimationFrame(run)}},{passive:true});
 })();
+
+// Direct downloads: each button already links to the current installer. If a newer release exists, point it at that file instead.
+document.querySelectorAll('a[data-repo]').forEach(function(a){
+  if(!window.fetch)return;
+  fetch('https://api.github.com/repos/'+a.dataset.repo+'/releases/latest').then(function(r){return r.ok?r.json():null}).then(function(d){
+    if(!d||!d.assets)return;
+    for(var i=0;i<d.assets.length;i++){var s=d.assets[i];if(s.name.toLowerCase().slice(-a.dataset.ext.length)===a.dataset.ext){a.href=s.browser_download_url;return}}
+  }).catch(function(){});
+});
