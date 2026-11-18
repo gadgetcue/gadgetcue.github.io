@@ -20,16 +20,31 @@ document.querySelectorAll('.yt').forEach(function(box){
   document.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){play(+b.dataset.t);box.scrollIntoView({behavior:'smooth',block:'center'})})});
 });
 
-// Dark / light toggle in the header. Remembers the choice when storage is available.
+// Theme setting (System / Light / Dark). Light is the default; the choice is remembered when storage is available.
 (function(){
   var root=document.documentElement,bar=document.querySelector('header.top .w');if(!bar)return;
-  function saved(){try{return localStorage.getItem('theme')}catch(e){return null}}
-  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return !(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)}
-  var b=document.createElement('button');b.id='themebtn';b.type='button';
-  function label(){var d=isDark();b.textContent=d?'\u2600 Light':'\u263E Dark';b.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode')}
-  var s=saved();if(s)root.setAttribute('data-theme',s);
-  b.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}label()});
-  bar.appendChild(b);label();
+  var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function getPref(){var v=null;try{v=localStorage.getItem('theme')}catch(e){}return v==='system'||v==='dark'||v==='light'?v:'light'}
+  var pref=getPref(),segs=[];
+  function apply(){var r=pref==='system'?(mq&&mq.matches?'dark':'light'):pref;root.setAttribute('data-theme',r);root.setAttribute('data-pref',pref);
+    var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',r==='dark'?'#08121C':'#F3F8FD');
+    segs.forEach(function(sg){sg.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===pref)})})}
+  function setPref(v){pref=v;try{localStorage.setItem('theme',v)}catch(e){}apply()}
+  if(mq){var ch=function(){if(pref==='system')apply()};mq.addEventListener?mq.addEventListener('change',ch):mq.addListener&&mq.addListener(ch)}
+  window.addEventListener('storage',function(e){if(e.key==='theme'){pref=getPref();apply()}});
+  function seg(label){var d=document.createElement('div');d.className='seg';d.setAttribute('role','group');d.setAttribute('aria-label',label||'Theme');
+    d.innerHTML='<button type="button" data-v="system">System</button><button type="button" data-v="light">Light</button><button type="button" data-v="dark">Dark</button>';
+    d.addEventListener('click',function(e){var x=e.target.closest('button');if(x)setPref(x.dataset.v)});segs.push(d);return d}
+  var ICON='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var b=document.createElement('button');b.id='themebtn';b.type='button';b.innerHTML=ICON;b.setAttribute('aria-label','Appearance');b.setAttribute('aria-haspopup','true');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','tpop');
+  var pop=document.createElement('div');pop.id='tpop';pop.className='tpop';pop.hidden=true;pop.setAttribute('role','dialog');pop.setAttribute('aria-label','Appearance');
+  pop.innerHTML='<span class="tl">Theme</span>';pop.appendChild(seg('Theme'));
+  function openPop(o){pop.hidden=!o;b.setAttribute('aria-expanded',o);if(o){var r=b.getBoundingClientRect();pop.style.top=(r.bottom+10)+'px';pop.style.right=Math.max(12,document.documentElement.clientWidth-r.right)+'px'}}
+  b.addEventListener('click',function(e){e.stopPropagation();openPop(pop.hidden)});
+  document.addEventListener('click',function(e){if(!pop.hidden&&!pop.contains(e.target))openPop(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden){openPop(false);b.focus()}});
+  window.addEventListener('resize',function(){openPop(false)});
+  bar.appendChild(b);document.body.appendChild(pop);
 
   // Mobile menu: round toggle in the top bar opens a rounded panel with the page links and a Theme row.
   var hdr=bar.parentNode,nav=bar.querySelector('nav');if(!nav)return;
@@ -39,17 +54,14 @@ document.querySelectorAll('.yt').forEach(function(box){
   var html='<a href="index.html">Home</a>';
   nav.querySelectorAll('a').forEach(function(a){html+='<a href="'+a.getAttribute('href')+'"'+(a.hasAttribute('aria-current')?' aria-current="page"':'')+'>'+a.textContent+'</a>'});
   var so=document.querySelectorAll('header .hsoc .sbtn');if(so.length){html+='<hr><div class="msoc"><span>Community</span><div>';so.forEach(function(a){html+=a.outerHTML});html+='</div></div>'}
-  html+='<hr><div class="mtheme"><span>Theme</span><button type="button" class="mthemebtn"></button></div>';
-  p.innerHTML=html;
-  var tb=p.querySelector('.mthemebtn');
-  function ticon(){var d=isDark();tb.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');tb.innerHTML=d?'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>':'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'}
-  tb.addEventListener('click',function(){b.click();ticon()});
+  html+='<hr><div class="mtheme"><span>Theme</span></div>';
+  p.innerHTML=html;p.querySelector('.mtheme').appendChild(seg('Theme'));
   function set(o){p.hidden=!o;hdr.classList.toggle('mopen',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu')}
   tog.addEventListener('click',function(){set(p.hidden)});
   p.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
   document.addEventListener('click',function(e){if(!p.hidden&&!hdr.contains(e.target))set(false)});
-  bar.appendChild(tog);hdr.appendChild(p);ticon();
+  bar.appendChild(tog);hdr.appendChild(p);apply();
 })();
 
 // Direct downloads: each button already links to the current installer. If a newer release exists, point it at that file instead.
