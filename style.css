@@ -683,8 +683,9 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .spill svg,.sbtn svg{width:18px;height:18px;flex:none;display:block}
 .spill.tg svg,.sbtn.tg svg,.msoc .tg svg{color:#27A6E5}
 .spill:hover,.sbtn:hover{transform:translateY(-1px);background:color-mix(in srgb,var(--fg) 12%,transparent);border-color:color-mix(in srgb,#27A6E5 55%,transparent)}
-.spill.tg{background:color-mix(in srgb,#27A6E5 14%,transparent);border-color:color-mix(in srgb,#27A6E5 50%,transparent)}
-.spill.tg:hover{background:color-mix(in srgb,#27A6E5 24%,transparent)}
+.cta.comm .spill.ytb{background:var(--brand,#0A74D6);border-color:transparent;color:#fff;box-shadow:0 8px 22px -8px color-mix(in srgb,var(--brand,#0A74D6) 70%,transparent)}
+.cta.comm .spill.ytb:hover{filter:brightness(1.08);background:var(--brand,#0A74D6)}
+.spill.ytb svg,.sbtn.ytb svg{color:#FF3B30}.cta.comm .spill.ytb svg{color:#fff}
 .spill:active,.sbtn:active{transform:scale(.96)}
 footer .w.soc{justify-content:flex-start;gap:10px;margin-top:18px;padding-top:0}
 footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
