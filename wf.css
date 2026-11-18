@@ -23,8 +23,8 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wfp .heroc .btns,.wfp .heroc .fine,.wfp .heroc .ap-meta,.wfp .heroc .wf-news{animation:wf-up .9s .35s cubic-bezier(.16,1,.3,1) both}
 @keyframes wf-up{from{opacity:0;transform:translateY(24px)}}
 /* hero stage: the showcase flattens as it scrolls in */
-.wfp #demo{perspective:1400px;perspective-origin:50% 0}
-.wfp #demo .sc{transform-origin:50% 0;will-change:transform}
+.wfp #demo,.wfp .scw{perspective:1400px;perspective-origin:50% 0}
+.wfp #demo .sc,.wfp .scw .sc{transform-origin:50% 0;will-change:transform}
 .wfp .wf-glow{position:absolute;inset:auto 0 -60px;height:60%;z-index:-1;pointer-events:none;background:radial-gradient(50% 60% at 50% 100%,color-mix(in srgb,var(--acc) 34%,transparent),transparent 72%);opacity:.8}
 .wfp .scw{position:relative;isolation:isolate}
 /* scroll-in blocks */
@@ -71,7 +71,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wf-tidy i{animation:none;opacity:1;top:20%}
 .wf-r{opacity:1;transform:none;transition:none}
 .wfk-b[aria-selected=true] .wfk-k kbd{animation:none}
-.wfp #demo .sc,.wfp .ft-shot .dev{transform:none!important}
+.wfp #demo .sc,.wfp .scw .sc,.wfp .ft-shot .dev{transform:none!important}
 }
 .wfp .heroc h1,body.wfp .heroc h1{background:none;color:var(--fg);-webkit-text-fill-color:currentColor;-webkit-background-clip:border-box;background-clip:border-box}
 .wfp .ft.wf-alt .ap-h h2{font-size:clamp(34px,4.2vw,60px)}
@@ -86,3 +86,6 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wf-r{will-change:auto}
 @media(max-width:899px),(hover:none){.wf-r[data-r=right],.wf-r[data-r=left]{transform:translateY(24px)}.wf-r[data-r=up]{transform:translateY(24px)}.wf-r[data-r=pop]{transform:translateY(16px)}.wf-tidy i{animation-duration:3.4s}}
 @media(prefers-reduced-motion:reduce){.wfp .heroc .lead{animation:none}}
+
+.wfp .h1ico.wf-ico{animation:wf-chip .9s var(--d,0ms) cubic-bezier(.16,1,.3,1) both}
+@media(prefers-reduced-motion:reduce){.wfp .h1ico.wf-ico{animation:none}}
