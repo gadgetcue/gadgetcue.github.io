@@ -297,7 +297,9 @@ footer{padding-block:36px}footer a{text-decoration:none;transition:color .2s}foo
 .shots img:hover{transform:scale(1.015);box-shadow:var(--sh2)}
 /* scroll reveal (JS adds .rv/.in; no-JS and reduced-motion show everything) */
 .js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.js .rv-card{transform:translateY(34px) scale(.955);transition-duration:.85s,.85s}
 .js .rv.in{opacity:1;transform:none}
+.js .rv{will-change:opacity,transform}
 /* mobile polish */
 @media(max-width:700px){
  .gad .grid{grid-template-columns:1fr}
