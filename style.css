@@ -773,6 +773,7 @@ html.dlopen{overflow:hidden}
 .dqr[hidden]{display:none}
 .dqr img{display:block;margin:0 auto 6px;width:160px;height:160px;border-radius:12px;background:#fff;padding:0}
 .dqrt{margin:0;font-size:13px;color:var(--mut)}
+.dqa{margin:8px 0 4px}.dqa[hidden]{display:none}.dqat{margin:0 0 8px;font-weight:600;font-size:14px}.dqab{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.dqab .btn{min-height:40px!important;padding:0 16px!important;font-size:14px!important}
 .dqm{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px}
 .dqv{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* showcase: uniform slides */
