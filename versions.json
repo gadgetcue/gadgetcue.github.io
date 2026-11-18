@@ -57,12 +57,12 @@
   },
   "sidehatch": {
     "files": {
-      "SideHatch-Setup-0.2.4.exe": 6414336
+      "SideHatch-Setup-0.3.0.exe": 6679040
     },
-    "released": "2026-11-09T05:48:06Z",
+    "released": "2026-11-18T17:35:42Z",
     "repo": "gadgetcue/SideHatch-Plus",
-    "tag": "v0.2.4",
-    "version": "0.2.4"
+    "tag": "v0.3.0",
+    "version": "0.3.0"
   },
   "threefingerdrag": {
     "files": {
@@ -75,12 +75,12 @@
   },
   "tv": {
     "files": {
-      "ModernFileManager_1.0-release.apk": 1433429
+      "ModernFileManager_1.2-release.apk": 2765536
     },
-    "released": "2026-11-02T16:35:31Z",
+    "released": "2026-11-18T17:25:42Z",
     "repo": "gadgetcue/modern-file-manager-tv",
-    "tag": "v1.0",
-    "version": "1.0"
+    "tag": "v1.2",
+    "version": "1.2"
   },
   "tvlauncher": {
     "files": {
@@ -103,11 +103,11 @@
   },
   "windowsfiles": {
     "files": {
-      "Windows-Files-Setup-0.3.1.exe": 12355570
+      "Windows-Files-Setup-0.4.0.exe": 12466728
     },
-    "released": "2026-11-18T06:58:38Z",
+    "released": "2026-11-18T17:26:59Z",
     "repo": "gadgetcue/Windows-Files",
-    "tag": "v0.3.1",
-    "version": "0.3.1"
+    "tag": "v0.4.0",
+    "version": "0.4.0"
   }
 }
