@@ -64,13 +64,24 @@ def md_block(body):
     if in_ul: out.append("</ul>")
     return "".join(out)
 
+def cl_div(rel):
+    b = md_block(rel.get("body"))
+    return f'<div class="cl">{b}</div>' if b else ""
+
+def insert_changelog(s, block):
+    """Place the changelog before the FAQ (or the closing CTA) when the page has no marker yet."""
+    for anchor in ('<section class="ap-sec" id="faq">', '<section class="ap-end">'):
+        if anchor in s:
+            return s.replace(anchor, block + anchor, 1)
+    return s
+
 def changelog_html(repo, rels, app_name):
     items = []
     for i, rel in enumerate(rels):
         ver = rel["tag_name"].lstrip("vV")
         d = datetime.datetime.strptime(rel["published_at"], "%Y-%m-%dT%H:%M:%SZ")
         date = f"{d.strftime('%b')} {d.day}, {d.year}"
-        items.append(f'<details{" open" if i == 0 else ""}><summary>Version {html.escape(ver)} \u00b7 {date}</summary><div class="cl">{md_block(rel.get("body"))}</div></details>')
+        items.append(f'<details{" open" if i == 0 else ""}><summary>Version {html.escape(ver)} \u00b7 {date}</summary>{cl_div(rel)}</details>')
     return '<section class="ap-sec" id="changelog"><div class="w"><div class="ap-h"><h2>What\'s new</h2><p>Release notes for ' + html.escape(app_name) + '.</p></div><div class="faq ap-faq">' + "".join(items) + '</div></div></section>'
 
 def recent_releases(repo, n=5):
@@ -166,7 +177,10 @@ def main():
         if app.get("changelog") and os.path.exists(page):
             s = read(page)
             block = "<!--CHANGELOG-->" + changelog_html(repo, recent_releases(repo), app.get("name", slug)) + "<!--/CHANGELOG-->"
-            s2 = re.sub(r"<!--CHANGELOG-->.*?<!--/CHANGELOG-->", lambda m: block, s, flags=re.S)
+            if "<!--CHANGELOG-->" in s:
+                s2 = re.sub(r"<!--CHANGELOG-->.*?<!--/CHANGELOG-->", lambda m: block, s, flags=re.S)
+            else:
+                s2 = insert_changelog(s, block)
             if s2 != s: write(page, s2); changed.append(f"{slug}: changelog")
         if pv and pv != ver: changed.append(f"{slug}: {pv} -> {ver}")
 
