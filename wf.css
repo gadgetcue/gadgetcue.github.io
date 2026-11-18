@@ -85,6 +85,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wf-w,.wf-chip,.wfp .heroc .lead,.wfp .heroc .btns,.wfp .heroc .fine,.wfp .heroc .ap-meta,.wfp .heroc .wf-news{backface-visibility:hidden}
 .wf-r{will-change:auto}
 @media(max-width:899px),(hover:none){.wf-r[data-r=right],.wf-r[data-r=left]{transform:translateY(24px)}.wf-r[data-r=up]{transform:translateY(24px)}.wf-r[data-r=pop]{transform:translateY(16px)}.wf-tidy i{animation-duration:3.4s}}
+.wf-r.is-in[data-r]{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.wfp .heroc .lead{animation:none}}
 
 .wfp .h1ico.wf-ico{display:inline-block;vertical-align:-.12em;width:.82em;height:.82em;margin-inline:.04em;border-radius:24%;border:0;
