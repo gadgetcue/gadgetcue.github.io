@@ -627,7 +627,7 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .grid>.adslot.ad-wide.on{grid-column:1/-1;margin:6px 0}
 /* tvOS Launcher: crossfade inside a TV frame, and the 4.0 note */
 .xf{position:relative}
-.xf img+img{position:absolute;left:0;top:0;opacity:0}
+.xf img+img{position:absolute;left:0;top:0;opacity:0;height:auto}
 .xf img{animation:xf 12s infinite}
 .xf img+img{animation-name:xf}
 @keyframes xf{0%,22%{opacity:1}28%,94%{opacity:0}100%{opacity:1}}
