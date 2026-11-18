@@ -146,7 +146,7 @@ header nav a{font-size:14px}
 .six a:hover{transform:translateY(-3px);box-shadow:0 18px 40px -14px rgba(40,30,90,.25)}
 .six small{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
 .six b{font:700 20px var(--disp);letter-spacing:-.02em}.six span{color:var(--mut);font-size:15px}
-.block{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,6vw,80px);align-items:center;padding-block:clamp(40px,7vw,84px)}
+.block{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,80px);align-items:center;padding-block:clamp(40px,7vw,84px)}
 .block>*{min-width:0}
 .block.flip>:first-child{order:2}
 .block h2{font-size:clamp(28px,4vw,46px);line-height:1.05}
@@ -585,31 +585,11 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .feat-id span{font-size:13px;color:var(--mut)}
 .nico,.feat-id img{box-shadow:0 0 0 1px rgba(128,160,200,.35)}
 
-/* Laptop screen always matches its screenshot: no bars, nothing cropped. JS sets --ar from the real image size; these are the no-JS / pre-load fallbacks. */
+/* Every laptop is one fixed 16:10 frame; each screenshot is contained inside it on a background matched to its edges, so nothing is cropped and letterboxing blends in. */
 .dev-pc{padding:9px 9px 29px}
-.dev-pc img,.app .dv .dev-pc img{box-sizing:border-box;width:100%;height:auto;border:0;aspect-ratio:var(--ar,16/10);object-fit:fill;background:#14141c;border-radius:6px 6px 2px 2px;outline:9px solid #14161c;outline-offset:0;box-shadow:0 30px 60px -22px rgba(30,20,80,.45)}
-.dev-pc{max-width:min(100%,calc(var(--ar,1.6)*400px + 78px))}
-.sc-s .dev-pc{max-width:min(100%,760px,calc(var(--ar,1.6)*400px + 78px))}
-.dev-pc img[src*="bc/floating-bar"]{--ar:1.0463}
-.dev-pc img[src*="bc/fullscreen"]{--ar:1.7778}
-.dev-pc img[src*="bc/onboarding"]{--ar:2.7491}
-.dev-pc img[src*="bc/settings"]{--ar:1.2708}
-.dev-pc img[src*="gal/"]{--ar:1.5952}
-.dev-pc img[src*="rz/"]{--ar:1.4519}
-.dev-pc img[src*="sh/main"]{--ar:1.3184}
-.dev-pc img[src*="wf/"]{--ar:1.6596}
-.dev-pc img[src*="mac/"]{--ar:1.7778}
-.dev-pc img[src*="tv/"]{--ar:1.7778}
-.dev-pc:has(img[src*="bc/floating-bar"]){--ar:1.0463}
-.dev-pc:has(img[src*="bc/fullscreen"]){--ar:1.7778}
-.dev-pc:has(img[src*="bc/onboarding"]){--ar:2.7491}
-.dev-pc:has(img[src*="bc/settings"]){--ar:1.2708}
-.dev-pc:has(img[src*="gal/"]){--ar:1.5952}
-.dev-pc:has(img[src*="rz/"]){--ar:1.4519}
-.dev-pc:has(img[src*="sh/main"]){--ar:1.3184}
-.dev-pc:has(img[src*="wf/"]){--ar:1.6596}
-.dev-pc:has(img[src*="mac/"]){--ar:1.7778}
-.dev-pc:has(img[src*="tv/"]){--ar:1.7778}
+.dev-pc img,.app .dv .dev-pc img{box-sizing:border-box;width:100%;height:auto;border:0;aspect-ratio:16/10;object-fit:contain;background:#14141c;border-radius:6px 6px 2px 2px;outline:9px solid #14161c;outline-offset:0;box-shadow:0 30px 60px -22px rgba(30,20,80,.45)}
+.dev-pc,.sc-s .dev-pc,.ft-shot .dev-pc{max-width:min(100%,760px)}
+.app .dv .dev-pc{max-width:none}
 
 /* Apps page: platform jump pill. Segments reuse the hero button look: .btn (active, solid brand + glow) and .btn.g (inactive, glass). */
 .osnav{position:sticky;top:8px;z-index:4;display:flex;justify-content:center;padding:0 8px;margin-top:-6px;pointer-events:none;transition:top .3s ease}
@@ -653,3 +633,39 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 @keyframes xf{0%,22%{opacity:1}28%,94%{opacity:0}100%{opacity:1}}
 @media (prefers-reduced-motion:reduce){.xf img{animation:none}.xf img+img{opacity:0}}
 .fine.pv{max-width:560px;margin-inline:auto}
+/* per-screenshot edge colours */
+.dev.dev-pc img[src="img/bc/floating-bar.webp"]{background:linear-gradient(90deg,#1b1a2b,#211e37)}
+.dev.dev-pc img[src="img/bc/fullscreen.webp"]{background:linear-gradient(180deg,#4d3976,#211d30)}
+.dev.dev-pc img[src="img/bc/onboarding.webp"]{background:linear-gradient(180deg,#191827,#23203c)}
+.dev.dev-pc img[src="img/bc/settings.webp"]{background:linear-gradient(90deg,#1b1a2a,#211f38)}
+.dev.dev-pc img[src="img/mac/control-center.jpg"]{background:linear-gradient(180deg,#121318,#020202)}
+.dev.dev-pc img[src="img/mac/desktop.jpg"]{background:linear-gradient(180deg,#121318,#020202)}
+.dev.dev-pc img[src="img/mac/dock-magnify.jpg"]{background:linear-gradient(180deg,#121318,#020202)}
+.dev.dev-pc img[src="img/mac/launchpad.jpg"]{background:linear-gradient(180deg,#121318,#020202)}
+.dev.dev-pc img[src="img/mac/settings.jpg"]{background:linear-gradient(180deg,#121318,#020202)}
+.dev.dev-pc img[src="img/rz/create-dark.png"]{background:linear-gradient(90deg,#1b1c1f,#1b1c1f)}
+.dev.dev-pc img[src="img/rz/dark.png"]{background:linear-gradient(90deg,#242529,#242529)}
+.dev.dev-pc img[src="img/rz/extract-light.png"]{background:linear-gradient(90deg,#b8b9bc,#b8b9bc)}
+.dev.dev-pc img[src="img/rz/light.png"]{background:linear-gradient(90deg,#f0f2f6,#f0f2f6)}
+.dev.dev-pc img[src="img/rz/settings-dark.png"]{background:linear-gradient(90deg,#1b1c1f,#1b1c1f)}
+.dev.dev-pc img[src="img/sh/main-dark.png"]{background:linear-gradient(90deg,#101012,#101012)}
+.dev.dev-pc img[src="img/sh/main-light.png"]{background:linear-gradient(90deg,#d6d6db,#d6d6db)}
+.dev.dev-pc img[src="img/sh/plus-sheet.png"]{background:linear-gradient(90deg,#ebebf0,#ebebf0)}
+.dev.dev-pc img[src="img/tfd/about.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf3)}
+.dev.dev-pc img[src="img/tfd/appearance.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf3)}
+.dev.dev-pc img[src="img/tfd/general.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf3)}
+.dev.dev-pc img[src="img/tfd/gestures.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf3)}
+.dev.dev-pc img[src="img/tfd/touchpad.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf4)}
+.dev.dev-pc img[src="img/tfd/tour.webp"]{background:linear-gradient(180deg,#c8d9fe,#c8cdf3)}
+.dev.dev-pc img[src="img/vp/adjust-light.webp"]{background:linear-gradient(180deg,#000000,#000000)}
+.dev.dev-pc img[src="img/vp/home-dark.webp"]{background:linear-gradient(180deg,#28292e,#1e1f23)}
+.dev.dev-pc img[src="img/vp/home-light.webp"]{background:linear-gradient(180deg,#f3f4f6,#ffffff)}
+.dev.dev-pc img[src="img/vp/playback-dark.webp"]{background:linear-gradient(180deg,#a8687c,#432b47)}
+.dev.dev-pc img[src="img/vp/playlist-dark.webp"]{background:linear-gradient(180deg,#80565f,#56394b)}
+.dev.dev-pc img[src="img/vp/settings-light.webp"]{background:linear-gradient(180deg,#9d9e9f,#a6a6a6)}
+.dev.dev-pc img[src="img/wf/columns-dark.webp"]{background:linear-gradient(180deg,#242529,#0e0f0f)}
+.dev.dev-pc img[src="img/wf/list-light.webp"]{background:linear-gradient(180deg,#eff0f4,#252527)}
+.dev.dev-pc img[src="img/wf/palette-light.webp"]{background:linear-gradient(180deg,#eff0f4,#262627)}
+.dev.dev-pc img[src="img/wf/panes-light.webp"]{background:linear-gradient(180deg,#eff0f4,#252627)}
+.dev.dev-pc img[src="img/wf/quicklook-dark.webp"]{background:linear-gradient(180deg,#242529,#0e0f0f)}
+.dev.dev-pc img[src="img/wf/smartclean-dark.webp"]{background:linear-gradient(180deg,#242529,#0f1010)}

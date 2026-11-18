@@ -114,8 +114,6 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
 })();
 
 /* laptop frames follow the real screenshot ratio */
-(function(){function fit(i){if(!i.naturalWidth)return;var d=i.closest('.dev-pc');if(d)d.style.setProperty('--ar',(i.naturalWidth/i.naturalHeight).toFixed(4))}
-document.querySelectorAll('.dev-pc img').forEach(function(i){i.complete?fit(i):i.addEventListener('load',function(){fit(i)})})})();
 
 /* Apps page: platform jump pill with scroll-spy */
 (function(){
