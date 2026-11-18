@@ -179,7 +179,7 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 /* Device mockups */
 .dev{position:relative;margin-inline:auto;width:100%}
 .dev img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;aspect-ratio:auto}
-.dev-pc{max-width:640px;padding-bottom:20px}
+.dev-pc{max-width:640px}
 .dev-pc img{aspect-ratio:16/10;border:9px solid #14161c;border-bottom-width:11px;border-radius:14px 14px 4px 4px;background:#000;box-shadow:0 30px 60px -22px rgba(30,20,80,.45)}
 .dev-pc:after{content:"";position:absolute;left:-4%;right:-4%;bottom:6px;height:14px;border-radius:2px 2px 14px 14px;background:linear-gradient(#d9dbe2,#a9acb8);box-shadow:0 10px 18px -8px rgba(0,0,0,.35)}
 .dev-pc:before{content:"";position:absolute;left:42%;right:42%;bottom:17px;height:5px;border-radius:0 0 8px 8px;background:#8c909d;z-index:1}
@@ -526,7 +526,7 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .ft .ticks li:before{background-color:color-mix(in srgb,var(--c,var(--acc)) 24%,transparent)}
 .ft-shot{max-width:1000px;margin:0 auto}
 .ft-shot .dev{max-width:none}
-.ft-shot .dev-pc{--B:14px}
+
 .ft-shot .dev-tv{max-width:820px}
 /* detail cards with inner mini-UI */
 .dc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1040px;margin:0 auto}
@@ -586,17 +586,15 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 
 /* Every laptop is one fixed 16:10 frame; each screenshot is contained inside it on a background matched to its edges, so nothing is cropped and letterboxing blends in. */
 /* MacBook look: thin uniform black bezel (slightly thicker on top, tiny camera), screen fills the lid, slim silver base with thumb notch. Bezel is in % of width so it scales with every frame. */
-.dev-pc{--B:12px;--bz:1.8%;padding:var(--bz) var(--bz) calc(var(--bz) + var(--B));box-sizing:border-box}
-.dev-pc img,.app .dv .dev-pc img{position:relative;z-index:1;box-sizing:border-box;display:block;width:100%;max-width:none;height:auto;margin:0;border:0;aspect-ratio:16/10;object-fit:contain;background:#14141c;border-radius:.8% / 1.3%;outline:0;box-shadow:none}
-.dev-pc:before{content:"";position:absolute;z-index:0;left:0;right:0;top:0;bottom:var(--B);border-radius:2% 2% .4% .4% / 3.2% 3.2% .6% .6%;background:radial-gradient(circle 1px at 50% 2.5px,#2b2e36 0,#2b2e36 99%,transparent 100%) no-repeat,#0a0a0c;box-shadow:0 0 0 1px #2a2c33,0 30px 60px -22px rgba(30,20,80,.45);left:0;height:auto}
-.dev-pc:after{content:"";position:absolute;z-index:2;left:-3.5%;right:-3.5%;bottom:0;height:var(--B);border-radius:0 0 calc(var(--B)*1.1) calc(var(--B)*1.1)/0 0 var(--B) var(--B);background:radial-gradient(ellipse 100% 100% at 50% 0,#9a9ea9 0,#a9acb6 70%,transparent 72%) 50% 0/15% 4px no-repeat,linear-gradient(180deg,#f1f2f5 0,#d6d8de 50%,#b3b6c0 100%);box-shadow:0 12px 22px -10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.7)}
-.app .dv .dev-pc:before{background:#0a0a0c}
-@media(min-width:900px){.dev-pc:before{background:radial-gradient(circle 1.4px at 50% 3px,#2b2e36 0,#2b2e36 99%,transparent 100%) no-repeat,#0a0a0c}.app .dv .dev-pc:before{background:#0a0a0c}}
-@media(max-width:700px){.dev-pc{--B:9px}}
-.dev-pc .yt{aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:transparent;overflow:visible;display:block}
-.dev-pc .yt img{border-radius:.8% / 1.3%}
+/* MacBook Pro 14 (Figma community mockup, rebuilt in CSS + one inline SVG). Frame is 1216x734.5 units; the screen is the real 3024x1964 ratio, and bezel, base and notch come from the :after overlay, so it scales to any width. */
+.dev-pc{aspect-ratio:1216/734.5;box-sizing:border-box;padding:0}
+.dev-pc img,.app .dv .dev-pc img,.dev-pc .yt{position:absolute;left:10.24%;top:2.45%;width:79.52%;height:85.5%;z-index:1;box-sizing:border-box;display:block;max-width:none;margin:0;border:0;aspect-ratio:auto;object-fit:contain;background:#14141c;border-radius:.6% / .9%;outline:0;box-shadow:none}
+.dev-pc:before{content:"";position:absolute;z-index:0;height:auto;left:8.88%;right:8.84%;top:0;bottom:6.74%;border-radius:1.6% / 2.7%;background:#000;box-shadow:0 30px 60px -22px rgba(30,20,80,.45)}
+.dev-pc:after{content:"";position:absolute;z-index:2;left:0;right:0;top:0;bottom:0;height:auto;border-radius:0;box-shadow:none;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1216 734.5%22 preserveAspectRatio=%22none%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23AEAFB4%22/%3E%3Cstop offset=%22.19%22 stop-color=%22%23AFB0B5%22/%3E%3Cstop offset=%22.38%22 stop-color=%22%23AFB0B5%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%237D7E82%22/%3E%3Cstop offset=%22.71%22 stop-color=%22%23696A6F%22/%3E%3Cstop offset=%22.85%22 stop-color=%22%23838489%22/%3E%3Cstop offset=%22.93%22 stop-color=%22%23ABACB0%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22n%22%3E%3Cstop offset=%220%22 stop-color=%22%2325262B%22/%3E%3Cstop offset=%22.02%22 stop-color=%22%239FA0A4%22/%3E%3Cstop offset=%22.05%22 stop-color=%22%23C8C8CE%22/%3E%3Cstop offset=%22.48%22 stop-color=%22%23D7D8DD%22/%3E%3Cstop offset=%22.94%22 stop-color=%22%23CBCBD3%22/%3E%3Cstop offset=%22.98%22 stop-color=%22%23595A5E%22/%3E%3Cstop offset=%221%22 stop-color=%22%2327282C%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22f%22%3E%3Cstop offset=%220%22 stop-color=%22%238C8D91%22/%3E%3Cstop offset=%22.17%22 stop-color=%22%23525358%22/%3E%3Cstop offset=%22.47%22 stop-color=%22%23A0A0A2%22/%3E%3Cstop offset=%22.83%22 stop-color=%22%234F5055%22/%3E%3Cstop offset=%221%22 stop-color=%22%23848589%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x=%2266%22 y=%22728%22 width=%2279.5%22 height=%226.5%22 fill=%22url%28%23f%29%22/%3E%3Crect x=%221069.5%22 y=%22728%22 width=%2279.5%22 height=%226.5%22 fill=%22url%28%23f%29%22/%3E%3Cpath d=%22M0 685H1216V716Q1216 728 1204 728H12Q0 728 0 716Z%22 fill=%22url%28%23b%29%22/%3E%3Cpath d=%22M502 685H713.6V696Q713.6 701.5 708 701.5H507.6Q502 701.5 502 696Z%22 fill=%22url%28%23n%29%22/%3E%3Cpath fill-rule=%22evenodd%22 fill=%22%23000%22 d=%22M108 20Q108 0 128 0H1088.5Q1108.5 0 1108.5 20V665Q1108.5 685 1088.5 685H128Q108 685 108 665ZM130.5 18H1091.5V646H130.5Z%22/%3E%3Cpath d=%22M108 20Q108 0 128 0H1088.5Q1108.5 0 1108.5 20V665Q1108.5 685 1088.5 685H128Q108 685 108 665Z%22 fill=%22none%22 stroke=%22%237D7D7F%22 stroke-width=%221.5%22/%3E%3Cpath d=%22M544.5 18H671.5V28Q671.5 38 661.5 38H554.5Q544.5 38 544.5 28Z%22 fill=%22%23000%22/%3E%3Ccircle cx=%22608%22 cy=%2222.5%22 r=%223.4%22 fill=%22%230F0F0F%22 stroke=%22%23151515%22 stroke-width=%22.4%22/%3E%3Ccircle cx=%22608.2%22 cy=%2223%22 r=%221.7%22 fill=%22%231F2531%22/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.dev-pc .yt{background:transparent}
+.dev-pc .yt img{position:static;width:100%;height:100%}
 .dev-pc .yt .p,.dev-pc .yt .tag{z-index:3}
-.dev-pc .yt iframe{position:relative;z-index:1;display:block;width:100%;aspect-ratio:16/10;height:auto;border-radius:.8% / 1.3%;background:#000}
+.dev-pc .yt iframe{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;border-radius:.6% / .9%;background:#000}
 .dev-pc,.sc-s .dev-pc,.ft-shot .dev-pc{max-width:min(100%,760px)}
 .app .dv .dev-pc{max-width:none}
 
