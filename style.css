@@ -381,7 +381,6 @@ header nav a:hover,header nav a[aria-current]{background:color-mix(in srgb,var(-
 .ann{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--mut);border-bottom:1px solid var(--line)}
 .ann a{color:var(--fg)}
 .ticks li:before{background-color:color-mix(in srgb,var(--brand) 22%,transparent)}
-.dev-pc:after{background:linear-gradient(#cfd0dc,#8f90a3)}
 footer{border-top:1px solid var(--line)}
 footer .w{max-width:1212px}
 @media(max-width:700px){
@@ -527,7 +526,7 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .ft .ticks li:before{background-color:color-mix(in srgb,var(--c,var(--acc)) 24%,transparent)}
 .ft-shot{max-width:1000px;margin:0 auto}
 .ft-shot .dev{max-width:none}
-.ft-shot .dev-pc{padding-bottom:26px}
+.ft-shot .dev-pc{--B:14px}
 .ft-shot .dev-tv{max-width:820px}
 /* detail cards with inner mini-UI */
 .dc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1040px;margin:0 auto}
@@ -586,8 +585,14 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .nico,.feat-id img{box-shadow:0 0 0 1px rgba(128,160,200,.35)}
 
 /* Every laptop is one fixed 16:10 frame; each screenshot is contained inside it on a background matched to its edges, so nothing is cropped and letterboxing blends in. */
-.dev-pc{padding:9px 9px 29px}
-.dev-pc img,.app .dv .dev-pc img{box-sizing:border-box;width:100%;height:auto;border:0;aspect-ratio:16/10;object-fit:contain;background:#14141c;border-radius:6px 6px 2px 2px;outline:9px solid #14161c;outline-offset:0;box-shadow:0 30px 60px -22px rgba(30,20,80,.45)}
+/* MacBook look: thin uniform black bezel (slightly thicker on top, tiny camera), screen fills the lid, slim silver base with thumb notch. Bezel is in % of width so it scales with every frame. */
+.dev-pc{--B:12px;padding:0 0 var(--B)}
+.dev-pc img,.app .dv .dev-pc img{position:relative;z-index:1;box-sizing:border-box;display:block;width:96%;max-width:none;height:auto;margin:max(2.6%,7px) 2% 2%;border:0;aspect-ratio:16/10;object-fit:contain;background:#14141c;border-radius:1% / 1.6%;outline:0;box-shadow:none}
+.dev-pc:before{content:"";position:absolute;z-index:0;left:0;right:0;top:0;bottom:var(--B);border-radius:2% 2% .4% .4% / 3.2% 3.2% .6% .6%;background:radial-gradient(circle 1.4px at 50% 3.6px,#2b2e36 0,#2b2e36 99%,transparent 100%) no-repeat,#0a0a0c;box-shadow:0 0 0 1px #2a2c33,0 30px 60px -22px rgba(30,20,80,.45);left:0;height:auto}
+.dev-pc:after{content:"";position:absolute;z-index:2;left:-3.5%;right:-3.5%;bottom:0;height:var(--B);border-radius:0 0 calc(var(--B)*1.1) calc(var(--B)*1.1)/0 0 var(--B) var(--B);background:radial-gradient(ellipse 100% 100% at 50% 0,#9a9ea9 0,#a9acb6 70%,transparent 72%) 50% 0/15% 4px no-repeat,linear-gradient(180deg,#f1f2f5 0,#d6d8de 50%,#b3b6c0 100%);box-shadow:0 12px 22px -10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.7)}
+.app .dv .dev-pc:before{background:#0a0a0c}
+@media(min-width:900px){.dev-pc:before{background:radial-gradient(circle 2px at 50% 9px,#2b2e36 0,#2b2e36 99%,transparent 100%) no-repeat,#0a0a0c}.app .dv .dev-pc:before{background:#0a0a0c}}
+@media(max-width:700px){.dev-pc{--B:9px}}
 .dev-pc,.sc-s .dev-pc,.ft-shot .dev-pc{max-width:min(100%,760px)}
 .app .dv .dev-pc{max-width:none}
 
@@ -787,7 +792,7 @@ html.dlopen{overflow:hidden}
 /* showcase: uniform slides */
 .sc-vp{container-type:inline-size}
 .sc-s{display:grid;grid-template-rows:var(--mh) auto;justify-items:center;align-content:start}
-.sc-s{--mh:calc(min(100cqw - 64px,760px) * .625 + 38px)}
+.sc-s{--mh:calc(min(100cqw - 64px,760px) * .65 + 12px)}
 .sc-s .dev{align-self:center}
 .sc-s figcaption p{min-height:calc(2 * 1.45em)}
 .sc-d.on{width:var(--wmax,var(--w,120px))}
