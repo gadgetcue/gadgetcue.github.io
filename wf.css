@@ -3,7 +3,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 /* hero news pill (glass, secondary) */
 .wf-news{display:inline-flex;align-items:center;gap:10px;margin:0 auto 22px;padding:5px 14px 5px 5px;border-radius:999px;border:1px solid var(--glass-edge,var(--line));background:var(--glass,none),var(--card);color:var(--fg);font:500 14px var(--font,inherit);text-decoration:none;transition:transform .25s var(--ease),border-color .2s}
 .wf-news:hover{border-color:var(--acc);transform:translateY(-1px)}
-.wf-news b{padding:3px 10px;border-radius:999px;background:var(--acc);color:var(--onacc);font-size:12px;font-weight:700}
+.wf-news b{padding:3px 10px;border-radius:999px;background:var(--acc);color:#fff;font-size:12px;font-weight:700}
 .wf-news i{font-style:normal;color:var(--mut)}
 .wfp .heroc .ap-meta{justify-content:center}
 .wfp .heroc .wf-news{display:flex;width:max-content;max-width:100%}
@@ -76,7 +76,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wfp .heroc h1,body.wfp .heroc h1{background:none;color:var(--fg);-webkit-text-fill-color:currentColor;-webkit-background-clip:border-box;background-clip:border-box}
 .wfp .ft.wf-alt .ap-h h2{font-size:clamp(34px,4.2vw,60px)}
 /* other app pages: the same hero chip, no tidy picture */
-.wfp.tv .wf-news b{background:var(--acc);color:var(--onacc)}
+.wfp.tv .wf-news b{background:var(--acc);color:#fff}
 
 .wfp .dev-tv .sizer{aspect-ratio:16/9}
 
