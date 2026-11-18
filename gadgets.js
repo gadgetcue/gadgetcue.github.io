@@ -6,10 +6,10 @@ var AMAZON_TAG='siddhantsar0a-21';
 // YouTube Shorts: add one line per Short. yt = the ID from youtube.com/shorts/<ID>. name, tag and amazon (buy link) are optional.
 // Example: {name:"Product name",yt:"AbCdEfGhIjK",tag:"Audio",amazon:"https://amzn.to/xxxx"},
 var SHORTS=[
-  {name:"Video 1",yt:"ssjguhVwXUA",tag:"Videos",blurb:"Watch the video for the details."},
-  {name:"Video 2",yt:"xFsvUNYe-C8",tag:"Videos",blurb:"Watch the video for the details."},
-  {name:"Video 3",yt:"ta4SZvrnWoQ",tag:"Videos",blurb:"Watch the video for the details."},
-  {name:"Video 4",yt:"pSUtDIlo80k",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Echo Dot 5th Gen",yt:"ssjguhVwXUA",tag:"Smart Home",amazon:"https://link.amazon/B06vRoGVs"},
+  {name:"Extension Board with USB",yt:"xFsvUNYe-C8",tag:"Electronics",amazon:"https://link.amazon/B0gbbLZWd"},
+  {name:"Oneplus Nord Buds 4 Pro",yt:"ta4SZvrnWoQ",tag:"Audio",amazon:"https://link.amazon/B0gCnYMwm"},
+  {name:"Portronics Toolkit",yt:"pSUtDIlo80k",tag:"Accessories",amazon:"https://link.amazon/B07u4Kbm4"},
   {name:"Video 5",yt:"GVP2q_Svido",tag:"Videos",blurb:"Watch the video for the details."},
   {name:"Video 6",yt:"SgH8y4cYIlE",tag:"Videos",blurb:"Watch the video for the details."},
   {name:"Video 7",yt:"f6WOnh-A-Hc",tag:"Videos",blurb:"Watch the video for the details."},
@@ -78,8 +78,6 @@ var GADGETS=[
   {name:"DailyObjects Cover 2",tag:"Utility",amazon:"https://amzn.to/4bc1nWL"},
   {name:"DailyObjects Cover 3",tag:"Utility",amazon:"https://amzn.to/4aF0Xbk"},
   // Amazon search links (tagged); swap for exact product or SiteStripe links when available
-  {name:"OnePlus Nord Buds 4 Pro",tag:"Audio",amazon:"https://www.amazon.in/s?k=OnePlus+Nord+Buds+4+Pro&tag=siddhantsar0a-21"},
-  {name:"Echo Dot",tag:"Audio",amazon:"https://www.amazon.in/s?k=Echo+Dot&tag=siddhantsar0a-21"},
   {name:"Noise Watch",tag:"Utility",amazon:"https://www.amazon.in/s?k=Noise+Watch&tag=siddhantsar0a-21"},
   {name:"CMF by Nothing Headphones",tag:"Audio",amazon:"https://www.amazon.in/s?k=CMF+by+Nothing+Headphones&tag=siddhantsar0a-21"},
   {name:"Macbook Air M5",tag:"Utility",amazon:"https://www.amazon.in/s?k=Macbook+Air+M5&tag=siddhantsar0a-21"},
@@ -94,7 +92,6 @@ var GADGETS=[
   {name:"Anker USB cable",tag:"Utility",amazon:"https://www.amazon.in/s?k=Anker+USB+cable&tag=siddhantsar0a-21"},
   {name:"Digital USB meter",tag:"Utility",amazon:"https://www.amazon.in/s?k=Digital+USB+meter&tag=siddhantsar0a-21"},
   {name:"AirPods Pro Ear Tips",tag:"Utility",amazon:"https://www.amazon.in/s?k=AirPods+Pro+Ear+Tips&tag=siddhantsar0a-21"},
-  {name:"Portronics Extension Board",tag:"Utility",amazon:"https://www.amazon.in/s?k=Portronics+Extension+Board&tag=siddhantsar0a-21"}
 ];
 GADGETS=SHORTS.concat(GADGETS);
 var grid=document.getElementById('gadgets'),filters=document.getElementById('filters');
