@@ -59,7 +59,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 .wfk-b[aria-selected=true] span.t{color:var(--fg)}
 .wfk-out .dev{max-width:none}
 .wfk-out .dev-pc{position:relative}
-.wfk-out .wfk-i{position:absolute;left:10.24%;top:2.45%;width:79.52%;height:85.5%;opacity:0;transition:opacity .45s;z-index:1;border-radius:6px;overflow:hidden}
+.wfk-out .wfk-i{position:absolute;left:10.24%;top:2.53%;width:79.52%;height:85%;opacity:0;transition:opacity .45s;z-index:1;border-radius:6px;overflow:hidden}
 .wfk-out .wfk-i.on{opacity:1}
 .wfk-out .wfk-i img{position:static!important;width:100%;height:100%;object-fit:cover;object-position:top;border:0!important;border-radius:0!important;box-shadow:none!important;aspect-ratio:auto!important}
 .wfk-out .sizer{display:none}
