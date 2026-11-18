@@ -669,3 +669,11 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .dev.dev-pc img[src="img/wf/panes-light.webp"]{background:linear-gradient(180deg,#eff0f4,#252627)}
 .dev.dev-pc img[src="img/wf/quicklook-dark.webp"]{background:linear-gradient(180deg,#242529,#0e0f0f)}
 .dev.dev-pc img[src="img/wf/smartclean-dark.webp"]{background:linear-gradient(180deg,#242529,#0f1010)}
+.ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;max-width:900px;margin:0 auto}
+.ig-c{background:var(--glass),var(--card);border:1px solid var(--glass-edge);border-radius:var(--r);padding:22px 24px;box-shadow:var(--sh1)}
+.ig-c h3{margin:0 0 8px}
+.ig-c p{color:var(--mut);margin:0 0 10px}
+.ig-c ol{margin:0;padding-left:22px;display:grid;gap:6px}
+.ig-note{max-width:900px;margin:16px auto 0;padding:14px 18px;border-radius:16px;border:1px solid color-mix(in srgb,var(--acc) 40%,var(--line));background:color-mix(in srgb,var(--acc) 8%,transparent);font-size:15px;color:var(--mut)}
+.ig-note b{color:inherit}
+.fine a{text-decoration:underline}
