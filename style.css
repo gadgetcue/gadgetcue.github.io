@@ -869,3 +869,7 @@ footer .w.soc{justify-content:center}
 :root[data-pref=oled] .dq{background:rgba(255,255,255,.035)}
 :root[data-pref=oled] .mtheme .seg button{padding:0 12px}
 .faq .cl{margin-top:10px;color:var(--mut)}.faq .cl h4{margin:14px 0 6px;font-size:15px;color:var(--fg)}.faq .cl ul{margin:0;padding-left:20px;display:grid;gap:8px}.faq .cl p{margin:6px 0 0}
+/* iOS: stop the carousel's off-screen slides widening the page */
+html,body{overflow-x:clip;max-width:100%}
+.sc-vp{overflow:hidden;contain:paint}
+.scw,.ft-shot{max-width:100%;overflow-x:clip}
