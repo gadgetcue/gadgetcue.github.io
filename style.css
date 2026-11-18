@@ -700,3 +700,9 @@ footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
 .msoc .sbtn{width:42px;height:42px}
 @media(max-width:700px){.hsoc{display:none}footer .w.soc{margin-top:14px}}
 @media(min-width:701px){.msoc{display:none}}
+
+.ig-vid{max-width:900px;margin:0 auto 20px}
+.ig-vid .ytv{max-width:900px}
+.ytv-th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ytv-go .ytv-p{position:relative;z-index:1}
+.ig-vid figcaption{text-align:center;color:var(--mut);font-size:15px;margin-top:12px}
