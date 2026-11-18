@@ -730,12 +730,8 @@ footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
 @media(prefers-reduced-motion:reduce){.seg button{transition:none}.seg button:active{transform:none}}
 /* Header logo: clean transparent mark (no dark photo tile) that works on light and dark */
 .logo:before{width:24px;height:30px;border-radius:0;box-shadow:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Crect x='1.5' y='1.5' width='21' height='27' rx='5.5' fill='none' stroke='%231B9BFF' stroke-width='3'/%3E%3Cpath d='M9 10.5v9l7.5-4.5z' fill='%231B9BFF' stroke='%231B9BFF' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-/* Watch on YouTube: soft breathing red glow + occasional shine sweep (glow is a box-shadow on the button itself, so parent overflow can't clip it past ~20px) */
-.btn.g.ytb,.cta.comm .spill.ytb{--ytr:#E0201B;position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(180deg,#F03A33,#D3150F);color:#fff;border-color:rgba(255,255,255,.18);box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 6px 16px -6px rgba(224,32,27,.65),0 0 14px 0 rgba(255,50,40,.35);animation:ytglow 3s ease-in-out infinite;text-shadow:0 1px 1px rgba(80,0,0,.35)}
-.btn.g.ytb svg,.cta.comm .spill.ytb svg{color:#fff}
-.btn.g.ytb:before,.cta.comm .spill.ytb:before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;z-index:-1;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);animation:ytshine 4.5s ease-in-out infinite;pointer-events:none}
-.btn.g.ytb:hover,.cta.comm .spill.ytb:hover{background:linear-gradient(180deg,#F84A43,#DE1B14);color:#fff;border-color:rgba(255,255,255,.3);filter:none;box-shadow:0 1px 0 rgba(255,255,255,.3) inset,0 8px 20px -6px rgba(224,32,27,.8),0 0 20px 2px rgba(255,60,50,.5)}
-.btn.g.ytb:focus-visible,.cta.comm .spill.ytb:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
-@keyframes ytglow{0%,100%{box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 6px 16px -6px rgba(224,32,27,.55),0 0 10px 0 rgba(255,50,40,.28)}50%{box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 8px 20px -6px rgba(224,32,27,.85),0 0 20px 3px rgba(255,60,50,.55)}}
-@keyframes ytshine{0%,55%{left:-60%}85%,100%{left:130%}}
-@media (prefers-reduced-motion:reduce){.btn.g.ytb,.cta.comm .spill.ytb{animation:none;box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 6px 16px -6px rgba(224,32,27,.7),0 0 16px 1px rgba(255,50,40,.4)}.btn.g.ytb:before,.cta.comm .spill.ytb:before{animation:none;display:none}}
+/* Watch on YouTube: keep the normal button look (glass secondary / brand community button); only a soft animated YouTube-red glow around it. Glow is a box-shadow on the button, small enough not to be clipped by parents. */
+.btn.g.ytb,.cta.comm .spill.ytb{animation:ytglow 3.2s ease-in-out infinite}
+.btn.g.ytb:hover,.cta.comm .spill.ytb:hover{animation-play-state:paused;box-shadow:0 0 22px 3px rgba(255,60,50,.5)}
+@keyframes ytglow{0%,100%{box-shadow:0 0 6px 0 rgba(255,50,40,.18)}50%{box-shadow:0 0 20px 3px rgba(255,60,50,.5)}}
+@media (prefers-reduced-motion:reduce){.btn.g.ytb,.cta.comm .spill.ytb{animation:none;box-shadow:0 0 14px 1px rgba(255,50,40,.35)}}
