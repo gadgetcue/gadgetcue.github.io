@@ -818,3 +818,8 @@ html.dlopen{overflow:hidden}
 .page-home .sec-h{margin-bottom:20px}
 .page-home .faq details{padding:14px 18px;margin-bottom:8px}
 .page-home .cta.comm{padding:clamp(24px,5vw,44px) 20px}
+
+/* Centered footer (v20261162) */
+footer .w{justify-content:center;text-align:center}
+footer .w>span{justify-content:center}
+footer .w.soc{justify-content:center}
