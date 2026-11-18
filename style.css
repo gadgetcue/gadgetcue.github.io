@@ -807,3 +807,14 @@ html.dlopen{overflow:hidden}
  .gad .card .btns .btn{flex:none;width:100%;min-height:40px;padding:8px 10px;font-size:13px;line-height:1.2;text-align:center}
  .gad .card.playing iframe.vid{min-height:0;aspect-ratio:9/14;max-height:78vh}
 }
+
+/* Shorter home page (v20261161): carousel presents the apps, so the page is hero, showcase, stats, FAQ, community */
+.page-home section{padding-block:clamp(28px,5vw,56px)}
+.page-home .heroc{padding-block:clamp(32px,5vw,64px) 0!important}
+.page-home .heroc h1{margin-bottom:12px}
+.page-home .heroc .btns{margin-top:20px}
+.page-home .scw{margin-top:24px}
+.page-home .stats{padding-block:clamp(16px,3vw,32px)}
+.page-home .sec-h{margin-bottom:20px}
+.page-home .faq details{padding:14px 18px;margin-bottom:8px}
+.page-home .cta.comm{padding:clamp(24px,5vw,44px) 20px}
