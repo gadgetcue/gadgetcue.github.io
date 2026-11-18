@@ -43,23 +43,38 @@ def latest_release(repo):
 def md_inline(t):
     t = html.escape(t, quote=False)
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
-    return re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    t = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2" target="_blank" rel="noopener">\1</a>', t)
+    return re.sub(r"(?<![\w*])\*([^*]+)\*(?![\w*])", r"<i>\1</i>", t)
+
+# Install/download boilerplate in release bodies is not a changelog; skip it.
+SKIP_SECTION = re.compile(r"^(downloads?|install(ation)?)\b", re.I)
+SKIP_LINE = re.compile(r"sha-?256|^\*{0,2}download|^latest build|^silent install|smartscreen|windows protected your pc|^full history|^see the \[|^install guide|code-signed|^!\[|^\||^-{3,}$|no signing keys", re.I)
 
 def md_block(body):
     """Tiny markdown -> HTML for GitHub release notes (headings, bullets, paragraphs)."""
-    out, in_ul = [], False
-    for line in (body or "").replace("\ufeff", "").replace("\r", "").split("\n"):
-        line = line.rstrip()
+    lines = []
+    for raw in (body or "").replace("\ufeff", "").replace("\r", "").split("\n"):
+        if raw[:1] in " \t" and raw.strip() and lines and lines[-1].strip():
+            lines[-1] += " " + raw.strip()  # wrapped continuation of a bullet or paragraph
+        else:
+            lines.append(raw.rstrip())
+    out, in_ul, skip = [], False, False
+    for line in lines:
+        h = re.match(r"^(#{1,6})\s+(.*)$", line)
+        if h:
+            if in_ul: out.append("</ul>"); in_ul = False
+            skip = bool(SKIP_SECTION.match(h.group(2).strip()))
+            if len(h.group(1)) > 2 and not skip:
+                out.append("<h4>" + md_inline(h.group(2)) + "</h4>")
+            continue
+        if skip: continue
         m = re.match(r"^\s*[-*]\s+(.*)$", line)
         if m:
             if not in_ul: out.append("<ul>"); in_ul = True
             out.append("<li>" + md_inline(m.group(1)) + "</li>"); continue
         if in_ul: out.append("</ul>"); in_ul = False
-        h = re.match(r"^(#{1,6})\s+(.*)$", line)
-        if h:
-            if len(h.group(1)) <= 2: continue  # release title repeats the summary line
-            out.append("<h4>" + md_inline(h.group(2)) + "</h4>")
-        elif line.strip():
+        if line.strip() and not SKIP_LINE.search(line.strip()):
             out.append("<p>" + md_inline(line) + "</p>")
     if in_ul: out.append("</ul>")
     return "".join(out)
@@ -84,9 +99,9 @@ def changelog_html(repo, rels, app_name):
         items.append(f'<details{" open" if i == 0 else ""}><summary>Version {html.escape(ver)} \u00b7 {date}</summary>{cl_div(rel)}</details>')
     return '<section class="ap-sec" id="changelog"><div class="w"><div class="ap-h"><h2>What\'s new</h2><p>Release notes for ' + html.escape(app_name) + '.</p></div><div class="faq ap-faq">' + "".join(items) + '</div></div></section>'
 
-def recent_releases(repo, n=5):
+def recent_releases(repo, n=None):
     try:
-        return [r for r in api(f"/repos/{repo}/releases?per_page=20") if not r["draft"] and not r["prerelease"]][:n]
+        return [r for r in api(f"/repos/{repo}/releases?per_page=100") if not r["draft"] and not r["prerelease"]][:n]
     except urllib.error.HTTPError:
         return []
 
