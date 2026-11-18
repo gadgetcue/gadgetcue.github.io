@@ -623,5 +623,6 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .osp.ready .osb{opacity:1}
 .osp a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .osnav~section h2[id]{scroll-margin-top:130px}
-@media (max-width:640px){.osnav{padding-inline:12px}.osp a{padding:9px 16px;font-size:14px}}
+@media (max-width:640px){.osnav{padding-inline:8px}.osp a{padding:9px 12px;font-size:14px;gap:5px}}
 @media (prefers-reduced-motion:reduce){.osnav,.osb,.osp a{transition:none}}
+@media (max-width:640px){.osp a svg{display:none}.osp a{padding:9px 13px}}
