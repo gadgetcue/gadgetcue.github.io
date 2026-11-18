@@ -645,3 +645,11 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .adslot .adl{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
 .adslot ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}
 .grid>.adslot.ad-wide.on{grid-column:1/-1;margin:6px 0}
+/* tvOS Launcher: crossfade inside a TV frame, and the 4.0 note */
+.xf{position:relative}
+.xf img+img{position:absolute;left:0;top:0;opacity:0}
+.xf img{animation:xf 12s infinite}
+.xf img+img{animation-name:xf}
+@keyframes xf{0%,22%{opacity:1}28%,94%{opacity:0}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.xf img{animation:none}.xf img+img{opacity:0}}
+.fine.pv{max-width:560px;margin-inline:auto}
