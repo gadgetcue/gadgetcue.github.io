@@ -10,9 +10,9 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 /* headline: words come in from a blur, with two small pictures among them */
 .wfp .heroc h1{max-width:13ch}
 .wf-w{display:inline-block;animation:wf-word .9s var(--d,0ms) cubic-bezier(.16,1,.3,1) both}
-@keyframes wf-word{from{opacity:0;filter:blur(14px);transform:translateY(.25em)}}
+@keyframes wf-word{from{opacity:0;transform:translateY(.25em)}}
 .wf-chip{display:inline-block;vertical-align:-.12em;height:.82em;aspect-ratio:1;margin-inline:.04em;border-radius:24%;animation:wf-chip .9s var(--d,0ms) cubic-bezier(.16,1,.3,1) both;-webkit-text-fill-color:initial}
-@keyframes wf-chip{from{opacity:0;filter:blur(10px);transform:scale(.3) rotate(-24deg)}}
+@keyframes wf-chip{from{opacity:0;transform:scale(.5)}}
 .wf-chip img{display:block;width:100%;height:100%;border-radius:inherit;box-shadow:0 8px 24px -8px rgba(10,60,160,.55)}
 .wf-tidy{aspect-ratio:1.5;position:relative;overflow:hidden;border-radius:.2em;background:var(--glass,none),var(--card);border:1px solid var(--glass-edge,var(--line))}
 .wf-tidy i{position:absolute;top:-30%;width:22%;height:30%;border-radius:12%;background:var(--c);left:var(--x);animation:wf-drop 2.8s var(--fd) cubic-bezier(.5,0,.4,1) infinite;opacity:0}
@@ -75,3 +75,14 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 }
 .wfp .heroc h1,body.wfp .heroc h1{background:none;color:var(--fg);-webkit-text-fill-color:currentColor;-webkit-background-clip:border-box;background-clip:border-box}
 .wfp .ft.wf-alt .ap-h h2{font-size:clamp(34px,4.2vw,60px)}
+/* other app pages: the same hero chip, no tidy picture */
+.wfp.tv .wf-news b{background:var(--acc);color:var(--onacc)}
+
+.wfp .dev-tv .sizer{aspect-ratio:16/9}
+
+/* steady load: no blur, no layout work during the intro */
+.wfp .heroc .lead{animation:wf-up .9s .4s cubic-bezier(.16,1,.3,1) both}
+.wf-w,.wf-chip,.wfp .heroc .lead,.wfp .heroc .btns,.wfp .heroc .fine,.wfp .heroc .ap-meta,.wfp .heroc .wf-news{backface-visibility:hidden}
+.wf-r{will-change:auto}
+@media(max-width:899px),(hover:none){.wf-r[data-r=right],.wf-r[data-r=left]{transform:translateY(24px)}.wf-r[data-r=up]{transform:translateY(24px)}.wf-r[data-r=pop]{transform:translateY(16px)}.wf-tidy i{animation-duration:3.4s}}
+@media(prefers-reduced-motion:reduce){.wfp .heroc .lead{animation:none}}
