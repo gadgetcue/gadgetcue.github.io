@@ -628,6 +628,17 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 @media (max-width:640px){.osp{gap:6px;padding-inline:4px}.osp a{padding:0 12px;font-size:14px}.osp a svg{display:none}}
 @media (prefers-reduced-motion:reduce){.osnav,.osb,.osp a{transition:none}.osp a:hover,.osp a:active{transform:none}}
 
+/* tvOS Launcher: Watch on YouTube (click-to-load playlist) */
+.feat-x .btn{margin:18px 10px 0 0}
+.ytv{position:relative;aspect-ratio:16/9;max-width:960px;margin:0 auto;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#0a2a5e,#06142e);box-shadow:0 24px 60px -24px rgba(10,60,140,.55)}
+.ytv iframe,.ytv-go{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytv-go{display:grid;place-items:center;align-content:center;gap:16px;background:radial-gradient(120% 90% at 50% 0,rgba(60,140,255,.35),transparent 60%);color:#fff;cursor:pointer;font:600 clamp(15px,2vw,20px) var(--font)}
+.ytv-p{width:76px;height:76px;border-radius:50%;background:var(--brand,#0A74D6);box-shadow:0 10px 30px rgba(10,116,214,.55);position:relative;transition:transform .2s}
+.ytv-p:after{content:"";position:absolute;left:30px;top:23px;border-left:24px solid #fff;border-block:15px solid transparent}
+.ytv-go:hover .ytv-p,.ytv-go:focus-visible .ytv-p{transform:scale(1.08)}
+.ytv-go:focus-visible{outline:2px solid #fff;outline-offset:-6px}
+.ytv-fb{text-align:center;margin:18px 0 0}
+@media(prefers-reduced-motion:reduce){.ytv-p{transition:none}.ytv-go:hover .ytv-p{transform:none}}
 /* Ads: hidden until a slot number is set in site.js */
 .adslot{display:none}
 .adslot.on{display:block;margin:28px 0;min-height:120px;text-align:center}

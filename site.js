@@ -145,3 +145,6 @@ document.querySelectorAll('.dev-pc img').forEach(function(i){i.complete?fit(i):i
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){var c=cur;cur=null;mark(c||links[0])});
   spy();
 })();
+
+/* tvOS Launcher: load the YouTube playlist only after a click */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ytv-go');if(!b)return;var h=b.parentNode,l=h.getAttribute('data-list');if(!l)return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(l)+'&autoplay=1';f.title='tvOS Launcher on YouTube';f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';h.replaceChild(f,b)});
