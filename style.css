@@ -584,3 +584,4 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .feat-id img{width:44px;height:44px;border-radius:12px;object-fit:cover}
 .feat-id div{display:flex;flex-direction:column;line-height:1.3}
 .feat-id span{font-size:13px;color:var(--mut)}
+.nico,.feat-id img{box-shadow:0 0 0 1px rgba(128,160,200,.35)}
