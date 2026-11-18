@@ -412,3 +412,23 @@ footer .w{max-width:1212px}
 .cmp td a:hover{color:var(--acc)}
 @media(max-width:700px){.apps{grid-template-columns:1fr}header nav{display:flex}}
 @media(max-width:700px){header.top .w{flex-wrap:wrap;row-gap:4px}header.top .logo{flex:0 1 auto}#themebtn{margin-left:auto}header nav{order:3;width:100%;overflow-x:auto;margin:0;white-space:nowrap}}
+
+/* Mobile menu (matches the floating bar + dropdown pattern) */
+.mtog,.mpanel{display:none}
+@media(max-width:700px){
+ header.top{padding:12px 12px 0}
+ header.top .w{flex-wrap:nowrap;gap:10px;min-height:56px;padding:8px 8px 8px 14px;border-radius:22px}
+ header.top .logo{flex:1;min-width:0;font-size:19px}
+ header nav,#themebtn{display:none}
+ header.top .hbtn{display:inline-flex;align-items:center;padding:11px 16px;font-size:14px;white-space:nowrap;margin:0}
+ .mtog{display:inline-flex;align-items:center;justify-content:center;flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg);cursor:pointer;padding:0}
+ .mtog .cls,.mopen .mtog .ham{display:none}.mopen .mtog .cls{display:inline}
+ .mpanel{display:block;pointer-events:auto;position:absolute;left:12px;right:12px;top:calc(100% + 8px);margin-top:-1px;padding:10px 8px 8px;border-radius:24px;border:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 92%,var(--brand));-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);box-shadow:0 24px 50px -18px rgba(5,20,45,.55)}
+ .mpanel[hidden]{display:none}
+ .mpanel>a{display:block;padding:14px 16px;font-size:18px;font-weight:500;color:var(--fg);text-decoration:none;border-radius:14px}
+ .mpanel>a[aria-current]{color:var(--acc)}.mpanel>a:active{background:color-mix(in srgb,var(--fg) 8%,transparent)}
+ .mpanel hr{border:0;border-top:1px solid var(--line);margin:8px 10px}
+ .mtheme{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;font-size:18px;font-weight:500}
+ .mthemebtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--fg);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+}
