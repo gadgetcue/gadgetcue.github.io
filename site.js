@@ -1,5 +1,5 @@
 // Ads. Paste each AdSense ad unit's data-ad-slot number between the quotes. Empty = that placement stays hidden.
-var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:"3070926906"}};
+var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:"3070926906",dl:"3070926906"}};
 function gcAdHTML(k){var s=ADS.slots[k];if(!s)return"";return'<ins class="adsbygoogle" style="display:block" data-ad-client="'+ADS.client+'" data-ad-slot="'+s+'" data-ad-format="auto" data-full-width-responsive="true"></ins>'}
 // Fills the .adslot boxes inside scope (or the whole page) and asks AdSense to serve them. Empty slot number = box stays collapsed.
 function gcAds(scope){(scope||document).querySelectorAll('.adslot:not([data-done])').forEach(function(b){
@@ -159,3 +159,36 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
 
 /* tvOS Launcher: load the YouTube playlist only after a click */
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ytv-go');if(!b)return;var h=b.parentNode,l=h.getAttribute('data-list'),v=h.getAttribute('data-vid');if(!l&&!v)return;var f=document.createElement('iframe');f.src=v?'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v)+'?autoplay=1&rel=0':'https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(l)+'&autoplay=1';f.title=v?'Guide To Install & Set As Default tvOS Launcher in Android/ Google TV':'tvOS Launcher on YouTube';f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';h.replaceChild(f,b)});
+
+// Download interstitial: a plain click on a real download button shows a labelled ad, counts down, then starts the file.
+// Never blocks the download: if the ad fails or is blocked, the countdown still ends and the file starts. Esc / Skip / Download now start it right away.
+(function(){
+  var SECS=5,links=document.querySelectorAll('a.btn[download],a[data-repo]');if(!links.length)return;
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ov=document.createElement('div');ov.className='dlov';ov.hidden=true;
+  ov.innerHTML='<div class="dlm" role="dialog" aria-modal="true" aria-labelledby="dlt" aria-describedby="dlc"><h2 id="dlt">Your download is almost ready</h2><div class="dlad"></div><p id="dlc" class="dlc" aria-live="polite"></p><div class="dlbar" aria-hidden="true"><i></i></div><div class="dlb"><button type="button" class="btn dlgo">Download now</button><button type="button" class="btn g dlx">Close</button></div><p class="dln">Ads help keep these apps free.</p></div>';
+  document.body.appendChild(ov);
+  var m=ov.querySelector('.dlm'),adbox=ov.querySelector('.dlad'),msg=ov.querySelector('.dlc'),bar=ov.querySelector('.dlbar i'),go=ov.querySelector('.dlgo'),x=ov.querySelector('.dlx');
+  var cur=null,timer=null,left=0,from=null,done=false;
+  function start(){if(done||!cur)return;done=true;var a=document.createElement('a');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%'}
+  function close(){clearInterval(timer);ov.hidden=true;document.documentElement.classList.remove('dlopen');adbox.innerHTML='';if(from&&from.focus)from.focus()}
+  function tick(){left--;if(left<=0){clearInterval(timer);start();setTimeout(close,1200);return}msg.textContent='Download starts in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
+  function open(a){
+    cur=a;from=a;done=false;left=SECS;
+    adbox.innerHTML='<div class="adslot" data-ad="dl"></div>';gcAds(adbox);
+    msg.textContent='Download starts in '+left+' seconds.';bar.style.width='0%';
+    ov.hidden=false;document.documentElement.classList.add('dlopen');go.focus();
+    clearInterval(timer);timer=setInterval(tick,1000);
+  }
+  go.addEventListener('click',function(){start();close()});
+  x.addEventListener('click',function(){done=true;close()});
+  ov.addEventListener('click',function(e){if(e.target===ov){done=true;close()}});
+  document.addEventListener('keydown',function(e){
+    if(ov.hidden)return;
+    if(e.key==='Escape'){done=true;close();return}
+    if(e.key==='Tab'){var f=m.querySelectorAll('button'),a=f[0],z=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}else if(!m.contains(document.activeElement)){e.preventDefault();a.focus()}}});
+  links.forEach(function(a){a.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.classList.contains('off'))return;
+    e.preventDefault();open(a)})});
+})();
