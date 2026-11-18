@@ -45,11 +45,12 @@ def md_inline(t):
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
     t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
     t = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", r'<a href="\2" target="_blank" rel="noopener">\1</a>', t)
+    t = re.sub(r"^_(.+)_$", r"<i>\1</i>", t.strip())
     return re.sub(r"(?<![\w*])\*([^*]+)\*(?![\w*])", r"<i>\1</i>", t)
 
 # Install/download boilerplate in release bodies is not a changelog; skip it.
 SKIP_SECTION = re.compile(r"^(downloads?|install(ation)?)\b", re.I)
-SKIP_LINE = re.compile(r"sha-?256|^\*{0,2}download|^latest build|^silent install|smartscreen|windows protected your pc|^full history|^see the \[|^install guide|code-signed|^!\[|^\||^-{3,}$|no signing keys", re.I)
+SKIP_LINE = re.compile(r"free to download|sha-?256|^\*{0,2}download|^latest build|^silent install|smartscreen|windows protected your pc|^full history|^see the \[|^install guide|code-signed|^!\[|^\||^-{3,}$|no signing keys", re.I)
 
 def md_block(body):
     """Tiny markdown -> HTML for GitHub release notes (headings, bullets, paragraphs)."""
