@@ -593,6 +593,10 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .app .dv .dev-pc:before{background:#0a0a0c}
 @media(min-width:900px){.dev-pc:before{background:radial-gradient(circle 1.4px at 50% 3px,#2b2e36 0,#2b2e36 99%,transparent 100%) no-repeat,#0a0a0c}.app .dv .dev-pc:before{background:#0a0a0c}}
 @media(max-width:700px){.dev-pc{--B:9px}}
+.dev-pc .yt{aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:transparent;overflow:visible;display:block}
+.dev-pc .yt img{border-radius:.8% / 1.3%}
+.dev-pc .yt .p,.dev-pc .yt .tag{z-index:3}
+.dev-pc .yt iframe{position:relative;z-index:1;display:block;width:100%;aspect-ratio:16/10;height:auto;border-radius:.8% / 1.3%;background:#000}
 .dev-pc,.sc-s .dev-pc,.ft-shot .dev-pc{max-width:min(100%,760px)}
 .app .dv .dev-pc{max-width:none}
 
