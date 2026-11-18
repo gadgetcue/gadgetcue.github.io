@@ -1,0 +1,49 @@
+name: Sync app installers
+
+# Runs every 3 hours and on demand (Actions tab -> Sync app installers -> Run workflow).
+# Needs the repository secret APP_REPOS_TOKEN: a fine-grained personal access token with
+# read-only "Contents" access to the app repos. See scripts/README.md.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sync-installers
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check token
+        env:
+          APP_REPOS_TOKEN: ${{ secrets.APP_REPOS_TOKEN }}
+        run: |
+          if [ -z "$APP_REPOS_TOKEN" ]; then
+            echo "::error::Secret APP_REPOS_TOKEN is not set. Private app repos cannot be read. See scripts/README.md"
+            exit 1
+          fi
+      - name: Sync releases
+        id: sync
+        env:
+          GH_TOKEN: ${{ secrets.APP_REPOS_TOKEN }}
+        run: python3 scripts/sync_releases.py
+      - name: Commit and push
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync app installers from GitHub releases [skip ci]"
+          git push origin HEAD:main
+      - name: Ask Pages to rebuild
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
