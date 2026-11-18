@@ -103,3 +103,7 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
   window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
   h.addEventListener('focusin',function(){h.classList.remove('nav-hide')});
 })();
+
+/* laptop frames follow the real screenshot ratio */
+(function(){function fit(i){if(!i.naturalWidth)return;var d=i.closest('.dev-pc');if(d)d.style.setProperty('--ar',(i.naturalWidth/i.naturalHeight).toFixed(4))}
+document.querySelectorAll('.dev-pc img').forEach(function(i){i.complete?fit(i):i.addEventListener('load',function(){fit(i)})})})();
