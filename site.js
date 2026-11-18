@@ -107,3 +107,31 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
 /* laptop frames follow the real screenshot ratio */
 (function(){function fit(i){if(!i.naturalWidth)return;var d=i.closest('.dev-pc');if(d)d.style.setProperty('--ar',(i.naturalWidth/i.naturalHeight).toFixed(4))}
 document.querySelectorAll('.dev-pc img').forEach(function(i){i.complete?fit(i):i.addEventListener('load',function(){fit(i)})})})();
+
+/* Apps page: platform jump pill with scroll-spy */
+(function(){
+  var bar=document.querySelector('.osp');if(!bar)return;
+  var links=[].slice.call(bar.querySelectorAll('a')),blob=bar.querySelector('.osb'),cur=null;
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function mark(l){
+    if(!l)return;cur=l;
+    links.forEach(function(a){var on=a===l;a.classList.toggle('on',on);on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')});
+    blob.style.width=l.offsetWidth+'px';blob.style.transform='translateX('+l.offsetLeft+'px)';bar.classList.add('ready');
+    if(bar.scrollWidth>bar.clientWidth)bar.scrollLeft=l.offsetLeft-(bar.clientWidth-l.offsetWidth)/2;
+  }
+  var tg=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function spy(){
+    var line=window.innerHeight*.35,best=links[0];
+    tg.forEach(function(h,i){if(h&&h.getBoundingClientRect().top<=line)best=links[i]});
+    if(best!==cur)mark(best);
+  }
+  links.forEach(function(a,i){a.addEventListener('click',function(e){
+    var h=tg[i];if(!h)return;e.preventDefault();mark(a);
+    h.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});
+    if(history.replaceState)history.replaceState(null,'','#'+h.id);
+  })});
+  var t=0;window.addEventListener('scroll',function(){if(!t){t=requestAnimationFrame(function(){t=0;spy()})}},{passive:true});
+  window.addEventListener('resize',function(){var c=cur;cur=null;mark(c||links[0])});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){var c=cur;cur=null;mark(c||links[0])});
+  spy();
+})();
