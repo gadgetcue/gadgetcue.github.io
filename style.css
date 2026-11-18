@@ -735,3 +735,22 @@ footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
 .btn.g.ytb:hover,.cta.comm .spill.ytb:hover{animation:none;box-shadow:0 12px 28px rgba(255,59,48,.5)}
 @keyframes ytglow{0%,100%{box-shadow:0 8px 24px rgba(255,59,48,.22)}50%{box-shadow:0 8px 24px rgba(255,59,48,.45)}}
 @media (prefers-reduced-motion:reduce){.btn.g.ytb,.cta.comm .spill.ytb{animation:none;box-shadow:0 8px 24px rgba(255,59,48,.35)}}
+
+/* Download interstitial */
+.dlov{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(6,14,24,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.dlov[hidden]{display:none}
+html.dlopen{overflow:hidden}
+.dlm{width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;padding:22px;border-radius:28px;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 80px -20px rgba(0,0,0,.45);text-align:center;color:var(--fg)}
+:root[data-theme=dark] .dlm{background:#0E1C2B}
+.dlm h2{margin:0 0 14px;font-size:20px}
+.dlad{min-height:0}
+.dlad .adslot.on{margin:0 0 14px;min-height:100px;padding:10px;border-radius:18px;border:1px dashed var(--line)}
+.dlc{margin:0 0 10px;color:var(--mut);font-size:15px}
+.dlbar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:16px}
+.dlbar i{display:block;height:100%;width:0;background:var(--acc);border-radius:99px;transition:width 1s linear}
+.dlb{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.dlb .btn,.dlb .btn.g{margin:0;border:1px solid var(--line);cursor:pointer;font:inherit;font-weight:600;padding:12px 22px}
+.dlb .btn.dlgo{background:var(--acc);color:#fff!important;border-color:transparent}
+.dlb .btn.g{background:transparent;color:var(--fg)}
+.dln{margin:12px 0 0;font-size:12px;color:var(--mut)}
+@media(prefers-reduced-motion:reduce){.dlbar i{transition:none}}
