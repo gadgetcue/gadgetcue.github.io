@@ -706,3 +706,9 @@ footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
 .ytv-th{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ytv-go .ytv-p{position:relative;z-index:1}
 .ig-vid figcaption{text-align:center;color:var(--mut);font-size:15px;margin-top:12px}
+
+.soon{margin:8px 0 0;font-size:14px;color:var(--mut)}
+.soon b{color:var(--acc)}
+.soonb{display:inline-block;max-width:640px;margin:0 auto 18px;padding:10px 18px;border-radius:999px;border:1px solid color-mix(in srgb,var(--acc) 45%,var(--line));background:color-mix(in srgb,var(--acc) 10%,transparent);font-size:15px;color:var(--mut)}
+.soonb b{color:var(--acc)}
+@media(max-width:600px){.soonb{border-radius:16px}}
