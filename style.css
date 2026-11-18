@@ -38,8 +38,8 @@ section{padding-block:clamp(36px,6vw,72px)}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
 .shots img{border-radius:var(--r);border:1px solid var(--line)}
 .steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:12px;max-width:640px}
-.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start}
-.steps li:before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--onacc);display:grid;place-items:center;font-weight:700}
+.steps li{counter-increment:s;position:relative;display:block;padding-left:44px;min-height:30px;line-height:1.55;padding-top:3px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--acc);color:var(--onacc);display:grid;place-items:center;font-weight:700}
 pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;font-size:13px}
 details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;max-width:760px}
 summary{cursor:pointer;font-weight:600}
@@ -81,7 +81,7 @@ body.mac{padding-bottom:84px}
  .shots,.grid,.apps{grid-template-columns:1fr}
  .themes{grid-template-columns:1fr}
  .bezel{padding:8px 8px 16px;border-radius:12px}
- .steps li{gap:10px}
+ .steps li{padding-left:40px}
  pre{font-size:12px}
  footer .w{gap:12px 18px}
 }
