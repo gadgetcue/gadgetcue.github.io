@@ -850,7 +850,7 @@ footer .w.soc{justify-content:center}
 
 /* Shorter At a glance table (v20261166) */
 .page-home .cmp th,.page-home .cmp td{padding:9px 16px}
-.page-home #compare .sec-h{margin-bottom:14px}
+.page-home #compare .sec-h{margin-bottom:22px}
 @media(max-width:700px){.page-home .cmp{min-width:0;font-size:13.5px}
 .page-home .cmp{font-size:12.5px;table-layout:fixed}
 .page-home .cmp th,.page-home .cmp td{padding:8px 8px}
