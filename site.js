@@ -71,3 +71,18 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
     },{passive:true});
   }
 })();
+
+// Top bar: slide away when scrolling down, come back on scroll up / at the top / while the menu is open.
+(function(){
+  var h=document.querySelector('header.top');if(!h)return;
+  var last=window.pageYOffset||0,tick=false;
+  function upd(){
+    tick=false;var y=Math.max(0,window.pageYOffset||0),d=y-last;
+    if(y<=10||h.classList.contains('mopen'))h.classList.remove('nav-hide');
+    else if(d>6&&y>80)h.classList.add('nav-hide');
+    else if(d<-4)h.classList.remove('nav-hide');
+    if(Math.abs(d)>4||y<=10)last=y;
+  }
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  h.addEventListener('focusin',function(){h.classList.remove('nav-hide')});
+})();

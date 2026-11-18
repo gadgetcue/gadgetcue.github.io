@@ -485,3 +485,9 @@ footer .w{max-width:1212px}
 @media (max-width:520px){.sc-bar{gap:3px}.sc-d.on{width:var(--w,100px)}.sc-d span{font-size:14px}}
 @media (prefers-reduced-motion:reduce){.sc-track,.sc-s,.sc-d{transition:none}.sc-d.on:after{animation:none!important;width:100%}}
 .scw{max-width:1100px;margin:40px auto 0;scroll-margin-top:80px}
+
+/* ===== Top bar hides on scroll down, returns on scroll up ===== */
+header.top{transition:transform .35s cubic-bezier(.22,.8,.3,1),opacity .3s ease;will-change:transform}
+header.top.nav-hide{transform:translateY(-130%);opacity:0;pointer-events:none}
+header.top.nav-hide .w{pointer-events:none}
+@media (prefers-reduced-motion:reduce){header.top{transition:none}}
