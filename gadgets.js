@@ -74,7 +74,27 @@ var GADGETS=[
   {name:"CMF by Nothing Buds 2 Plus",image:"img/gad/cmf-by-nothing-buds-2-plus.png",tag:"Audio",amazon:"https://fktr.in/T4Ztz5f"},
   {name:"Ulanzi Ball Head",image:"img/gad/ulanzi-ball-head.jpg",tag:"Utility",amazon:"https://bitli.in/1M1s4lH"},
   {name:"Amkette XS Series Flow 2 Programmable Wireless Mouse",image:"img/gad/amkette-xs-series-flow-2-programmable-wi.jpg",tag:"Productivity",amazon:"https://bitli.in/HUwd5Bt"},
-  {name:"DailyObjects Cover",image:"img/gad/dailyobjects-cover.jpg",tag:"Utility",amazon:"https://amzn.to/4y0kfSB"}
+  {name:"DailyObjects Cover",image:"img/gad/dailyobjects-cover.jpg",tag:"Utility",amazon:"https://amzn.to/4y0kfSB"},
+  {name:"DailyObjects Cover 2",tag:"Utility",amazon:"https://amzn.to/4bc1nWL"},
+  {name:"DailyObjects Cover 3",tag:"Utility",amazon:"https://amzn.to/4aF0Xbk"},
+  // Amazon search links (tagged); swap for exact product or SiteStripe links when available
+  {name:"OnePlus Nord Buds 4 Pro",tag:"Audio",amazon:"https://www.amazon.in/s?k=OnePlus+Nord+Buds+4+Pro&tag=siddhantsar0a-21"},
+  {name:"Echo Dot",tag:"Audio",amazon:"https://www.amazon.in/s?k=Echo+Dot&tag=siddhantsar0a-21"},
+  {name:"Noise Watch",tag:"Utility",amazon:"https://www.amazon.in/s?k=Noise+Watch&tag=siddhantsar0a-21"},
+  {name:"CMF by Nothing Headphones",tag:"Audio",amazon:"https://www.amazon.in/s?k=CMF+by+Nothing+Headphones&tag=siddhantsar0a-21"},
+  {name:"Macbook Air M5",tag:"Utility",amazon:"https://www.amazon.in/s?k=Macbook+Air+M5&tag=siddhantsar0a-21"},
+  {name:"iPhone 17 Pro",tag:"Utility",amazon:"https://www.amazon.in/s?k=iPhone+17+Pro&tag=siddhantsar0a-21"},
+  {name:"Camera arm",tag:"Utility",amazon:"https://www.amazon.in/s?k=Camera+arm&tag=siddhantsar0a-21"},
+  {name:"Wireless Charging station",tag:"Utility",amazon:"https://www.amazon.in/s?k=Wireless+Charging+station&tag=siddhantsar0a-21"},
+  {name:"Kreo Keyboard",tag:"Productivity",amazon:"https://www.amazon.in/s?k=Kreo+Keyboard&tag=siddhantsar0a-21"},
+  {name:"FM Radio",tag:"Utility",amazon:"https://www.amazon.in/s?k=FM+Radio&tag=siddhantsar0a-21"},
+  {name:"Calculator",tag:"Utility",amazon:"https://www.amazon.in/s?k=Calculator&tag=siddhantsar0a-21"},
+  {name:"Infinix Charger",tag:"Utility",amazon:"https://www.amazon.in/s?k=Infinix+Charger&tag=siddhantsar0a-21"},
+  {name:"DJI Mic receiver",tag:"Camera Accessories",amazon:"https://www.amazon.in/s?k=DJI+Mic+receiver&tag=siddhantsar0a-21"},
+  {name:"Anker USB cable",tag:"Utility",amazon:"https://www.amazon.in/s?k=Anker+USB+cable&tag=siddhantsar0a-21"},
+  {name:"Digital USB meter",tag:"Utility",amazon:"https://www.amazon.in/s?k=Digital+USB+meter&tag=siddhantsar0a-21"},
+  {name:"AirPods Pro Ear Tips",tag:"Utility",amazon:"https://www.amazon.in/s?k=AirPods+Pro+Ear+Tips&tag=siddhantsar0a-21"},
+  {name:"Portronics Extension Board",tag:"Utility",amazon:"https://www.amazon.in/s?k=Portronics+Extension+Board&tag=siddhantsar0a-21"}
 ];
 GADGETS=SHORTS.concat(GADGETS);
 var grid=document.getElementById('gadgets'),filters=document.getElementById('filters');
