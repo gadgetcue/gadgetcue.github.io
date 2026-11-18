@@ -20,20 +20,20 @@ document.querySelectorAll('.yt').forEach(function(box){
   document.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){play(+b.dataset.t);box.scrollIntoView({behavior:'smooth',block:'center'})})});
 });
 
-// Theme setting (System / Light / Dark). Light is the default; the choice is remembered when storage is available.
+// Theme setting (System / Light / Dark / OLED). Light is the default; the choice is remembered when storage is available.
 (function(){
   var root=document.documentElement,bar=document.querySelector('header.top .w');if(!bar)return;
   var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
-  function getPref(){var v=null;try{v=localStorage.getItem('theme')}catch(e){}return v==='system'||v==='dark'||v==='light'?v:'light'}
+  function getPref(){var v=null;try{v=localStorage.getItem('theme')}catch(e){}return v==='system'||v==='dark'||v==='light'||v==='oled'?v:'light'}
   var pref=getPref(),segs=[];
-  function apply(){var r=pref==='system'?(mq&&mq.matches?'dark':'light'):pref;root.setAttribute('data-theme',r);root.setAttribute('data-pref',pref);
-    var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',r==='dark'?'#08121C':'#F3F8FD');
+  function apply(){var r=pref==='system'?(mq&&mq.matches?'dark':'light'):pref;root.setAttribute('data-theme',r==='oled'?'dark':r);root.setAttribute('data-pref',pref);
+    var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',r==='oled'?'#000000':r==='dark'?'#08121C':'#F3F8FD');
     segs.forEach(function(sg){sg.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===pref)})})}
   function setPref(v){pref=v;try{localStorage.setItem('theme',v)}catch(e){}apply()}
   if(mq){var ch=function(){if(pref==='system')apply()};mq.addEventListener?mq.addEventListener('change',ch):mq.addListener&&mq.addListener(ch)}
   window.addEventListener('storage',function(e){if(e.key==='theme'){pref=getPref();apply()}});
   function seg(label){var d=document.createElement('div');d.className='seg';d.setAttribute('role','group');d.setAttribute('aria-label',label||'Theme');
-    d.innerHTML='<button type="button" data-v="system">System</button><button type="button" data-v="light">Light</button><button type="button" data-v="dark">Dark</button>';
+    d.innerHTML='<button type="button" data-v="system">System</button><button type="button" data-v="light">Light</button><button type="button" data-v="dark">Dark</button><button type="button" data-v="oled">OLED</button>';
     d.addEventListener('click',function(e){var x=e.target.closest('button');if(x)setPref(x.dataset.v)});segs.push(d);return d}
   var ICON='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
   var b=document.createElement('button');b.id='themebtn';b.type='button';b.innerHTML=ICON;b.setAttribute('aria-label','Appearance');b.setAttribute('aria-haspopup','true');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','tpop');
