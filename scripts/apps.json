@@ -1,0 +1,25 @@
+{
+  "_note": "One entry per app. 'page' is the app page whose version/file names get updated. 'host' is 'downloads' (file copied into downloads/, used for private repos) or 'release' (public repo; page links to GitHub release URL, only the file name is updated). 'files' are regexes matching the asset names to publish. 'update_text' false = do not touch 'Version x' text (used while a notice is shown).",
+  "apps": [
+    {"slug": "rustzip", "repo": "gadgetcue/RustZip", "page": "rustzip.html", "host": "downloads", "update_text": true,
+     "files": ["^RustZip-Setup-.*\\.exe$", "^RustZip-.*\\.dmg$", "^RustZip-.*\\.AppImage$"]},
+    {"slug": "brightness", "repo": "gadgetcue/Brightness-Controller", "page": "brightness.html", "host": "downloads", "update_text": true,
+     "files": ["^BrightnessController-Setup-.*\\.exe$"]},
+    {"slug": "sidehatch", "repo": "gadgetcue/SideHatch-Plus", "page": "sidehatch.html", "host": "downloads", "update_text": true,
+     "files": ["^SideHatch-Setup-.*\\.exe$"]},
+    {"slug": "threefingerdrag", "repo": "gadgetcue/3-finger-drag", "page": "threefingerdrag.html", "host": "downloads", "update_text": true,
+     "files": ["^ThreeFingerDrag-Setup.*\\.exe$"]},
+    {"slug": "videoplayer", "repo": "gadgetcue/Video-Player", "page": "videoplayer.html", "host": "downloads", "update_text": true,
+     "files": ["^VideoPlayer-Setup-.*\\.exe$"]},
+    {"slug": "windowsfiles", "repo": "gadgetcue/Windows-Files", "page": "windowsfiles.html", "host": "downloads", "update_text": true,
+     "files": ["^Windows-Files-Setup-.*\\.exe$"]},
+    {"slug": "tvlauncher", "repo": "gadgetcue/tvos-launcher-4.0", "page": "tvlauncher.html", "host": "downloads", "update_text": false,
+     "files": ["^tvOS_[0-9.]+-full-release-v35\\.apk$", "^tvOS_[0-9.]+-standard-release-v35\\.apk$"]},
+    {"slug": "macdock", "repo": "gadgetcue/MacDock", "page": "macdock.html", "host": "release", "update_text": true,
+     "files": ["^MacDock-v.*\\.zip$"]},
+    {"slug": "gallery", "repo": "gadgetcue/Gallery-Windows", "page": "gallery.html", "host": "release", "update_text": true,
+     "files": ["^Gallery-Setup-.*\\.exe$"]},
+    {"slug": "tv", "repo": "gadgetcue/modern-file-manager-tv", "page": "tv.html", "host": "release", "update_text": false,
+     "files": ["^ModernFileManager_.*-release\\.apk$"]}
+  ]
+}

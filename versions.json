@@ -1,0 +1,95 @@
+{
+  "brightness": {
+    "files": {
+      "BrightnessController-Setup-1.0.5.exe": 2512896
+    },
+    "released": "2026-11-18T03:15:45Z",
+    "repo": "gadgetcue/Brightness-Controller",
+    "tag": "v1.0.5",
+    "version": "1.0.5"
+  },
+  "gallery": {
+    "files": {
+      "Gallery-Setup-2.0.0.exe": 46429819
+    },
+    "released": "2026-11-08T14:33:19Z",
+    "repo": "gadgetcue/Gallery-Windows",
+    "tag": "v2.0.0",
+    "version": "2.0.0"
+  },
+  "macdock": {
+    "files": {
+      "MacDock-v2.1.zip": 35688943
+    },
+    "released": "2026-11-16T13:59:11Z",
+    "repo": "gadgetcue/MacDock",
+    "tag": "v2.1",
+    "version": "2.1"
+  },
+  "rustzip": {
+    "files": {
+      "RustZip-1.1.3-x86_64.AppImage": 8186360,
+      "RustZip-1.1.3.dmg": 11791023,
+      "RustZip-Setup-1.1.3.exe": 13055488
+    },
+    "released": "2026-11-11T18:43:18Z",
+    "repo": "gadgetcue/RustZip",
+    "tag": "v1.1.3",
+    "version": "1.1.3"
+  },
+  "sidehatch": {
+    "files": {
+      "SideHatch-Setup-0.2.4.exe": 6414336
+    },
+    "released": "2026-11-09T05:48:06Z",
+    "repo": "gadgetcue/SideHatch-Plus",
+    "tag": "v0.2.4",
+    "version": "0.2.4"
+  },
+  "threefingerdrag": {
+    "files": {
+      "ThreeFingerDrag-Setup.exe": 4252160
+    },
+    "released": "2026-11-18T03:58:58Z",
+    "repo": "gadgetcue/3-finger-drag",
+    "tag": "v0.1.0",
+    "version": "0.1.0"
+  },
+  "tv": {
+    "files": {
+      "ModernFileManager_1.0-release.apk": 1433429
+    },
+    "released": "2026-11-02T16:35:31Z",
+    "repo": "gadgetcue/modern-file-manager-tv",
+    "tag": "v1.0",
+    "version": "1.0"
+  },
+  "tvlauncher": {
+    "files": {
+      "tvOS_3.3-full-release-v35.apk": 1109607,
+      "tvOS_3.3-standard-release-v35.apk": 1092964
+    },
+    "released": "2026-11-18T04:47:11Z",
+    "repo": "gadgetcue/tvos-launcher-4.0",
+    "tag": "v3.3",
+    "version": "3.3"
+  },
+  "videoplayer": {
+    "files": {
+      "VideoPlayer-Setup-0.1.0.exe": 37769216
+    },
+    "released": "2026-11-18T04:31:16Z",
+    "repo": "gadgetcue/Video-Player",
+    "tag": "v0.1.0",
+    "version": "0.1.0"
+  },
+  "windowsfiles": {
+    "files": {
+      "Windows-Files-Setup-0.3.1.exe": 12355570
+    },
+    "released": "2026-11-18T06:58:38Z",
+    "repo": "gadgetcue/Windows-Files",
+    "tag": "v0.3.1",
+    "version": "0.3.1"
+  }
+}
