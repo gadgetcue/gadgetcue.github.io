@@ -56,7 +56,7 @@ render('');
 
 grid.addEventListener('click',function(e){var b=e.target.closest('.play');if(!b)return;
   var f=document.createElement('iframe');f.src=b.dataset.embed;f.className='vid';f.setAttribute('allowfullscreen','');f.setAttribute('allow','autoplay; encrypted-media; fullscreen');f.setAttribute('title','Video');f.loading='lazy';
-  b.replaceWith(f)});
+  var c=b.closest('.card');if(c)c.classList.add('playing');b.replaceWith(f)});
 /* press feedback: ripple + pop, and keep the selected pill in view */
 (function(){var f=document.getElementById('filters');if(!f)return;
 f.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
