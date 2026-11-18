@@ -21,6 +21,25 @@ document.querySelectorAll('.yt').forEach(function(box){
   var s=saved();if(s)root.setAttribute('data-theme',s);
   b.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}label()});
   bar.appendChild(b);label();
+
+  // Mobile menu: round toggle in the top bar opens a rounded panel with the page links and a Theme row.
+  var hdr=bar.parentNode,nav=bar.querySelector('nav');if(!nav)return;
+  var tog=document.createElement('button');tog.type='button';tog.className='mtog';tog.setAttribute('aria-label','Open menu');tog.setAttribute('aria-expanded','false');tog.setAttribute('aria-controls','mpanel');
+  tog.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="ham" d="M4 7h16M4 12h16M4 17h16"/><path class="cls" d="M6 6l12 12M18 6L6 18"/></svg>';
+  var p=document.createElement('div');p.id='mpanel';p.className='mpanel';p.hidden=true;
+  var html='<a href="index.html">Home</a>';
+  nav.querySelectorAll('a').forEach(function(a){html+='<a href="'+a.getAttribute('href')+'"'+(a.hasAttribute('aria-current')?' aria-current="page"':'')+'>'+a.textContent+'</a>'});
+  html+='<hr><div class="mtheme"><span>Theme</span><button type="button" class="mthemebtn"></button></div>';
+  p.innerHTML=html;
+  var tb=p.querySelector('.mthemebtn');
+  function ticon(){var d=isDark();tb.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');tb.innerHTML=d?'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>':'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'}
+  tb.addEventListener('click',function(){b.click();ticon()});
+  function set(o){p.hidden=!o;hdr.classList.toggle('mopen',o);tog.setAttribute('aria-expanded',o);tog.setAttribute('aria-label',o?'Close menu':'Open menu')}
+  tog.addEventListener('click',function(){set(p.hidden)});
+  p.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  document.addEventListener('click',function(e){if(!p.hidden&&!hdr.contains(e.target))set(false)});
+  bar.appendChild(tog);hdr.appendChild(p);ticon();
 })();
 
 // Direct downloads: each button already links to the current installer. If a newer release exists, point it at that file instead.
