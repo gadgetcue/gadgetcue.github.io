@@ -190,7 +190,7 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .dev-tv .soon{border:4px solid #0b0c10;border-radius:6px;background:#0d1520;color:#9fb3c8;box-shadow:0 0 0 1px #2a2d36,0 26px 50px -24px rgba(10,20,60,.55)}
 .dev-phone{max-width:230px}
 .dev-phone img{aspect-ratio:9/19;border:8px solid #14161c;border-radius:34px;background:#000;box-shadow:0 30px 60px -22px rgba(30,20,80,.5)}
-.app .dv{padding:26px 18px 6px;background:linear-gradient(160deg,color-mix(in srgb,var(--acc,#8b6cff) 14%,transparent),transparent 70%)}
+.app .dv{padding:26px 30px 10px;background:linear-gradient(160deg,color-mix(in srgb,var(--acc,#8b6cff) 14%,transparent),transparent 70%)}
 .app .dv .dev{max-width:none}
 .app .dv .dev img{aspect-ratio:16/10;width:100%}
 .app .dv .dev-tv img{aspect-ratio:16/9}
@@ -464,7 +464,7 @@ footer .w{max-width:1212px}
 :root[data-theme=light] .sc{background:radial-gradient(120% 70% at 50% 100%,#3DB4FF 0%,rgba(61,180,255,.3) 40%,transparent 72%),linear-gradient(180deg,#dcecfb,#c3defa 60%,#a9d0f7);border-color:rgba(10,108,196,.15);color:#0A1826}
 .sc-vp{overflow:hidden;touch-action:pan-y;cursor:grab}.sc-vp.drag{cursor:grabbing}
 .sc-track{display:flex;transition:transform .7s cubic-bezier(.2,.7,.2,1);will-change:transform}.sc-vp.drag .sc-track{transition:none}
-.sc-s{flex:0 0 100%;margin:0;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:.35;transform:scale(.96);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.sc-s{flex:0 0 100%;box-sizing:border-box;padding:6px 32px 34px;margin:0;display:flex;flex-direction:column;align-items:center;gap:18px;opacity:.35;transform:scale(.96);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
 .sc-s.on{opacity:1;transform:none}
 .sc-s .dev{position:relative;width:100%;max-width:760px;margin:0 auto}
 .sc-s .dev-tv{max-width:600px}
@@ -614,18 +614,18 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 /* Apps page: platform jump pill. Segments reuse the hero button look: .btn (active, solid brand + glow) and .btn.g (inactive, glass). */
 .osnav{position:sticky;top:8px;z-index:4;display:flex;justify-content:center;padding:0 8px;margin-top:-6px;pointer-events:none;transition:top .3s ease}
 header.top:not(.nav-hide)~.osnav{top:68px}
-.osp{position:relative;display:inline-flex;max-width:100%;gap:8px;padding:6px 6px 22px;margin-bottom:-6px;pointer-events:auto;scrollbar-width:none}
+.osp{position:relative;display:inline-flex;max-width:100%;gap:8px;padding:16px 28px 36px;margin:-10px 0 -20px;pointer-events:auto;scrollbar-width:none}
 .osp.scroll{overflow-x:auto}
 .osp::-webkit-scrollbar{display:none}
 .osp a{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:0 22px;border-radius:999px;font-family:var(--font);font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;color:var(--fg);background:color-mix(in srgb,var(--fg) 6%,transparent);border:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .2s var(--ease),background-color .2s,border-color .2s,color .2s}
 @media (hover:hover){.osp a:hover{background:color-mix(in srgb,var(--fg) 10%,transparent);border-color:color-mix(in srgb,var(--brand) 45%,transparent);transform:translateY(-1px)}}
 .osp a:active{transform:scale(.96)}
 .osp.ready a.on,.osp.ready a.on:hover,.osp.ready a.on:active{color:#fff;background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
-.osb{position:absolute;z-index:0;top:6px;bottom:22px;left:0;width:0;border-radius:999px;background:var(--brand);box-shadow:0 8px 24px rgba(10,116,214,.45);opacity:0;transition:transform .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1),opacity .2s}
+.osb{position:absolute;z-index:0;top:16px;bottom:36px;left:0;width:0;border-radius:999px;background:var(--brand);box-shadow:0 8px 24px rgba(10,116,214,.45);opacity:0;transition:transform .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1),opacity .2s}
 .osp.ready .osb{opacity:1}
 .osp a:focus{outline:none}.osp a:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 .osnav~section h2[id]{scroll-margin-top:130px}
-@media (max-width:640px){.osp{gap:6px;padding-inline:4px}.osp a{padding:0 12px;font-size:14px}.osp a svg{display:none}}
+@media (max-width:640px){.osp{gap:6px;padding-inline:26px}.osp a{padding:0 12px;font-size:14px}.osp a svg{display:none}}
 @media (prefers-reduced-motion:reduce){.osnav,.osb,.osp a{transition:none}.osp a:hover,.osp a:active{transform:none}}
 
 /* tvOS Launcher: Watch on YouTube (click-to-load playlist) */
