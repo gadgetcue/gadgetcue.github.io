@@ -1,5 +1,5 @@
 // Ads. Paste each AdSense ad unit's data-ad-slot number between the quotes. Empty = that placement stays hidden.
-var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:""}};
+var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:"3070926906"}};
 function gcAdHTML(k){var s=ADS.slots[k];if(!s)return"";return'<ins class="adsbygoogle" style="display:block" data-ad-client="'+ADS.client+'" data-ad-slot="'+s+'" data-ad-format="auto" data-full-width-responsive="true"></ins>'}
 // Fills the .adslot boxes inside scope (or the whole page) and asks AdSense to serve them. Empty slot number = box stays collapsed.
 function gcAds(scope){(scope||document).querySelectorAll('.adslot:not([data-done])').forEach(function(b){
