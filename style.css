@@ -639,3 +639,9 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .ytv-go:focus-visible{outline:2px solid #fff;outline-offset:-6px}
 .ytv-fb{text-align:center;margin:18px 0 0}
 @media(prefers-reduced-motion:reduce){.ytv-p{transition:none}.ytv-go:hover .ytv-p{transform:none}}
+/* Ads: hidden until a slot number is set in site.js */
+.adslot{display:none}
+.adslot.on{display:block;margin:28px 0;min-height:120px;text-align:center}
+.adslot .adl{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.adslot ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}
+.grid>.adslot.ad-wide.on{grid-column:1/-1;margin:6px 0}
