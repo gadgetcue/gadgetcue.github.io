@@ -760,9 +760,10 @@ html.dlopen{overflow:hidden}
 .dq{margin:16px 0 0;padding:14px;border-radius:20px;border:1px solid var(--line);background:color-mix(in srgb,var(--acc) 7%,transparent);text-align:center}
 .dqh{margin:0 0 4px;font-weight:700;font-size:15px}
 .dqs{margin:0 0 12px;font-size:13px;line-height:1.45;color:var(--mut)}
-.dqc{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px}
+.dqc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:10px}
 .dq .btn{margin:0;cursor:pointer;font:inherit;font-weight:600;font-size:15px}
-.dqc .btn{padding:0 20px}
+.dqc .btn{width:100%;padding:0 6px}
+@media(max-width:340px){.dqc{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .dqf{display:flex;align-items:center;gap:8px;max-width:320px;margin:0 auto;padding:4px 4px 4px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card)}
 .dqf input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:inherit;font-size:16px;padding:8px 0;-moz-appearance:textfield}
 .dqf input::-webkit-outer-spin-button,.dqf input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
