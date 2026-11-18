@@ -754,3 +754,11 @@ html.dlopen{overflow:hidden}
 .dlb .btn.g{background:transparent;color:var(--fg)}
 .dln{margin:12px 0 0;font-size:12px;color:var(--mut)}
 @media(prefers-reduced-motion:reduce){.dlbar i{transition:none}}
+/* showcase: uniform slides */
+.sc-vp{container-type:inline-size}
+.sc-s{display:grid;grid-template-rows:var(--mh) auto;justify-items:center;align-content:start}
+.sc-s{--mh:calc(min(100cqw - 64px,760px) * .625 + 38px)}
+.sc-s .dev{align-self:center}
+.sc-s figcaption p{min-height:calc(2 * 1.45em)}
+.sc-d.on{width:var(--wmax,var(--w,120px))}
+@media (max-width:520px){.sc-s figcaption p{min-height:calc(3 * 1.45em)}}
