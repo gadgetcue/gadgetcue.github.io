@@ -823,3 +823,15 @@ html.dlopen{overflow:hidden}
 footer .w{justify-content:center;text-align:center}
 footer .w>span{justify-content:center}
 footer .w.soc{justify-content:center}
+
+/* Compact home apps grid (v20261164) */
+.page-home .apps{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.page-home .acard .mini,.page-home .acard .b>p:not(.soon){display:none}
+.page-home .acard .dv{padding:14px 14px 4px}
+.page-home .acard .b{padding:10px 14px 14px;gap:4px}
+.page-home .acard h3{font-size:16px;margin:4px 0 0}
+.page-home .acard .soon{font-size:12.5px;margin:2px 0 0}
+.page-home #apps .sec-h .lead{display:none}
+@media(max-width:700px){.page-home .apps{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.page-home .acard .dv{padding:10px 10px 2px}.page-home .acard .b{padding:8px 10px 12px}
+.page-home .acard h3{font-size:14px}.page-home .acard .badge{font-size:10.5px;padding:3px 8px}.page-home .acard .tlink{font-size:13px}}
