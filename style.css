@@ -730,11 +730,11 @@ footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
 @media(prefers-reduced-motion:reduce){.seg button{transition:none}.seg button:active{transform:none}}
 /* Header logo: clean transparent mark (no dark photo tile) that works on light and dark */
 .logo:before{width:24px;height:30px;border-radius:0;box-shadow:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Crect x='1.5' y='1.5' width='21' height='27' rx='5.5' fill='none' stroke='%231B9BFF' stroke-width='3'/%3E%3Cpath d='M9 10.5v9l7.5-4.5z' fill='%231B9BFF' stroke='%231B9BFF' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-/* Watch on YouTube: keep the normal button look (glass secondary / brand community button); only a soft animated YouTube-red glow around it. Glow is a box-shadow on the button, small enough not to be clipped by parents. */
-.btn.g.ytb,.cta.comm .spill.ytb{animation:ytglow 3.2s ease-in-out infinite}
-.btn.g.ytb:hover,.cta.comm .spill.ytb:hover{animation-play-state:paused;box-shadow:0 0 22px 3px rgba(255,60,50,.5)}
-@keyframes ytglow{0%,100%{box-shadow:0 0 6px 0 rgba(255,50,40,.18)}50%{box-shadow:0 0 20px 3px rgba(255,60,50,.5)}}
-@media (prefers-reduced-motion:reduce){.btn.g.ytb,.cta.comm .spill.ytb{animation:none;box-shadow:0 0 14px 1px rgba(255,50,40,.35)}}
+/* Watch on YouTube: same soft drop shadow as the primary (Learn more) button, in YouTube red, gently breathing. Keeps each button's normal fill. */
+.btn.g.ytb,.cta.comm .spill.ytb{box-shadow:0 8px 24px rgba(255,59,48,.45);animation:ytglow 3.4s ease-in-out infinite}
+.btn.g.ytb:hover,.cta.comm .spill.ytb:hover{animation:none;box-shadow:0 12px 28px rgba(255,59,48,.5)}
+@keyframes ytglow{0%,100%{box-shadow:0 8px 24px rgba(255,59,48,.22)}50%{box-shadow:0 8px 24px rgba(255,59,48,.45)}}
+@media (prefers-reduced-motion:reduce){.btn.g.ytb,.cta.comm .spill.ytb{animation:none;box-shadow:0 8px 24px rgba(255,59,48,.35)}}
 
 /* Download interstitial */
 .dlov{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(6,14,24,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
