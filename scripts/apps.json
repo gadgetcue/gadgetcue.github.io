@@ -11,7 +11,9 @@
     "^RustZip-Setup-.*\\.exe$",
     "^RustZip-.*\\.dmg$",
     "^RustZip-.*\\.AppImage$"
-   ]
+   ],
+   "changelog": true,
+   "name": "RustZip"
   },
   {
    "slug": "brightness",
@@ -21,7 +23,9 @@
    "update_text": true,
    "files": [
     "^BrightnessController-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "Brightness Controller"
   },
   {
    "slug": "sidehatch",
@@ -31,7 +35,9 @@
    "update_text": true,
    "files": [
     "^SideHatch-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "SideHatch"
   },
   {
    "slug": "threefingerdrag",
@@ -41,7 +47,9 @@
    "update_text": true,
    "files": [
     "^ThreeFingerDrag-Setup.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "3 Finger Drag"
   },
   {
    "slug": "videoplayer",
@@ -51,7 +59,9 @@
    "update_text": true,
    "files": [
     "^VideoPlayer-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "Video Player"
   },
   {
    "slug": "windowsfiles",
@@ -61,7 +71,9 @@
    "update_text": true,
    "files": [
     "^Windows-Files-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "Windows Files"
   },
   {
    "slug": "tvlauncher",
@@ -72,7 +84,9 @@
    "files": [
     "^tvOS_[0-9.]+-full-release-v35\\.apk$",
     "^tvOS_[0-9.]+-standard-release-v35\\.apk$"
-   ]
+   ],
+   "changelog": true,
+   "name": "tvOS Launcher"
   },
   {
    "slug": "iphoneconnect",
@@ -82,7 +96,9 @@
    "update_text": true,
    "files": [
     "^iPhone-Connect-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "iPhone Connect"
   },
   {
    "slug": "safariwindows",
@@ -92,7 +108,9 @@
    "update_text": true,
    "files": [
     "^Safari-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "Safari for Windows"
   },
   {
    "slug": "macdock",
@@ -114,7 +132,9 @@
    "update_text": true,
    "files": [
     "^Gallery-Setup-.*\\.exe$"
-   ]
+   ],
+   "changelog": true,
+   "name": "Gallery"
   },
   {
    "slug": "tv",
@@ -124,7 +144,9 @@
    "update_text": false,
    "files": [
     "^ModernFileManager_.*-release\\.apk$"
-   ]
+   ],
+   "changelog": true,
+   "name": "File Manager TV"
   }
  ]
 }
