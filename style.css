@@ -677,3 +677,26 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .ig-note{max-width:900px;margin:16px auto 0;padding:14px 18px;border-radius:16px;border:1px solid color-mix(in srgb,var(--acc) 40%,var(--line));background:color-mix(in srgb,var(--acc) 8%,transparent);font-size:15px;color:var(--mut)}
 .ig-note b{color:inherit}
 .fine a{text-decoration:underline}
+
+/* Community / social buttons */
+.spill{margin:0!important;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--fg) 6%,transparent);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);color:var(--fg);font-size:14px;font-weight:600;line-height:1.2;text-decoration:none;transition:transform .2s var(--ease,ease),border-color .2s,background .2s,box-shadow .2s}
+.spill svg,.sbtn svg{width:18px;height:18px;flex:none;display:block}
+.spill.tg svg,.sbtn.tg svg,.msoc .tg svg{color:#27A6E5}
+.spill:hover,.sbtn:hover{transform:translateY(-1px);background:color-mix(in srgb,var(--fg) 12%,transparent);border-color:color-mix(in srgb,#27A6E5 55%,transparent)}
+.spill.tg{background:color-mix(in srgb,#27A6E5 14%,transparent);border-color:color-mix(in srgb,#27A6E5 50%,transparent)}
+.spill.tg:hover{background:color-mix(in srgb,#27A6E5 24%,transparent)}
+.spill:active,.sbtn:active{transform:scale(.96)}
+footer .w.soc{justify-content:flex-start;gap:10px;margin-top:18px;padding-top:0}
+footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
+.cta.comm{padding:clamp(32px,6vw,56px) 20px}
+.cta.comm h2{font-size:clamp(26px,4.5vw,40px)}
+.cta.comm .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.cta.comm .spill{font-size:15px;padding:11px 18px}
+.hsoc{display:inline-flex;gap:6px;margin-left:8px}
+.sbtn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg);transition:transform .2s,border-color .2s,background .2s}
+.sbtn svg{width:16px;height:16px}
+.msoc{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;font-size:18px;font-weight:500}
+.msoc div{display:flex;gap:8px}
+.msoc .sbtn{width:42px;height:42px}
+@media(max-width:700px){.hsoc{display:none}footer .w.soc{margin-top:14px}}
+@media(min-width:701px){.msoc{display:none}}

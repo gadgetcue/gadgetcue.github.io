@@ -38,6 +38,7 @@ document.querySelectorAll('.yt').forEach(function(box){
   var p=document.createElement('div');p.id='mpanel';p.className='mpanel';p.hidden=true;
   var html='<a href="index.html">Home</a>';
   nav.querySelectorAll('a').forEach(function(a){html+='<a href="'+a.getAttribute('href')+'"'+(a.hasAttribute('aria-current')?' aria-current="page"':'')+'>'+a.textContent+'</a>'});
+  var so=document.querySelectorAll('header .hsoc .sbtn');if(so.length){html+='<hr><div class="msoc"><span>Community</span><div>';so.forEach(function(a){html+=a.outerHTML});html+='</div></div>'}
   html+='<hr><div class="mtheme"><span>Theme</span><button type="button" class="mthemebtn"></button></div>';
   p.innerHTML=html;
   var tb=p.querySelector('.mthemebtn');
