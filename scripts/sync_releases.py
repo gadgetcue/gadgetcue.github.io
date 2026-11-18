@@ -10,10 +10,11 @@ For every app in scripts/apps.json it:
      older versions of the same file,
   3. rewrites file names (and version/size text) in the HTML/JS files,
   4. writes versions.json (version, file names, byte sizes, release date),
-  5. bumps the ?v= cache tag when anything changed.
+  5. rewrites the <!--CHANGELOG--> block of pages with "changelog": true from release notes,
+  6. bumps the ?v= cache tag when anything changed.
 Assets over MAX_BYTES are skipped (GitHub's file limit is 100 MB) and reported.
 """
-import json, os, re, sys, glob, urllib.request, urllib.error
+import json, os, re, sys, glob, html, datetime, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
@@ -37,6 +38,46 @@ def latest_release(repo):
     except urllib.error.HTTPError as e:
         print(f"::warning::{repo}: cannot read releases (HTTP {e.code}). Token missing or no access?")
     return None
+
+
+def md_inline(t):
+    t = html.escape(t, quote=False)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    return re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+
+def md_block(body):
+    """Tiny markdown -> HTML for GitHub release notes (headings, bullets, paragraphs)."""
+    out, in_ul = [], False
+    for line in (body or "").replace("\ufeff", "").replace("\r", "").split("\n"):
+        line = line.rstrip()
+        m = re.match(r"^\s*[-*]\s+(.*)$", line)
+        if m:
+            if not in_ul: out.append("<ul>"); in_ul = True
+            out.append("<li>" + md_inline(m.group(1)) + "</li>"); continue
+        if in_ul: out.append("</ul>"); in_ul = False
+        h = re.match(r"^(#{1,6})\s+(.*)$", line)
+        if h:
+            if len(h.group(1)) <= 2: continue  # release title repeats the summary line
+            out.append("<h4>" + md_inline(h.group(2)) + "</h4>")
+        elif line.strip():
+            out.append("<p>" + md_inline(line) + "</p>")
+    if in_ul: out.append("</ul>")
+    return "".join(out)
+
+def changelog_html(repo, rels, app_name):
+    items = []
+    for i, rel in enumerate(rels):
+        ver = rel["tag_name"].lstrip("vV")
+        d = datetime.datetime.strptime(rel["published_at"], "%Y-%m-%dT%H:%M:%SZ")
+        date = f"{d.strftime('%b')} {d.day}, {d.year}"
+        items.append(f'<details{" open" if i == 0 else ""}><summary>Version {html.escape(ver)} \u00b7 {date}</summary><div class="cl">{md_block(rel.get("body"))}</div></details>')
+    return '<section class="ap-sec" id="changelog"><div class="w"><div class="ap-h"><h2>What\'s new</h2><p>Release notes for ' + html.escape(app_name) + '.</p></div><div class="faq ap-faq">' + "".join(items) + '</div></div></section>'
+
+def recent_releases(repo, n=5):
+    try:
+        return [r for r in api(f"/repos/{repo}/releases?per_page=20") if not r["draft"] and not r["prerelease"]][:n]
+    except urllib.error.HTTPError:
+        return []
 
 def site_files():
     out = []
@@ -122,6 +163,11 @@ def main():
             s2 = re.sub(r"(<dt>Size</dt><dd>About )[0-9.]+( MB</dd>)", lambda m: f"{m.group(1)}{mb(main_size)}{m.group(2)}", s)
             if s2 != s: write(page, s2); changed.append(f"{slug}: size text")
         new[slug] = entry
+        if app.get("changelog") and os.path.exists(page):
+            s = read(page)
+            block = "<!--CHANGELOG-->" + changelog_html(repo, recent_releases(repo), app.get("name", slug)) + "<!--/CHANGELOG-->"
+            s2 = re.sub(r"<!--CHANGELOG-->.*?<!--/CHANGELOG-->", lambda m: block, s, flags=re.S)
+            if s2 != s: write(page, s2); changed.append(f"{slug}: changelog")
         if pv and pv != ver: changed.append(f"{slug}: {pv} -> {ver}")
 
     out = json.dumps(new, indent=2, sort_keys=True) + "\n"

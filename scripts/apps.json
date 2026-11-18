@@ -96,6 +96,8 @@
   },
   {
    "slug": "macdock",
+   "name": "MacDock",
+   "changelog": true,
    "repo": "gadgetcue/MacDock",
    "page": "macdock.html",
    "host": "release",

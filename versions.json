@@ -28,12 +28,12 @@
   },
   "macdock": {
     "files": {
-      "MacDock-v2.1.zip": 35688943
+      "MacDock-v2.2.zip": 35698495
     },
-    "released": "2026-11-16T13:59:11Z",
+    "released": "2026-11-18T12:09:25Z",
     "repo": "gadgetcue/MacDock",
-    "tag": "v2.1",
-    "version": "2.1"
+    "tag": "v2.2",
+    "version": "2.2"
   },
   "rustzip": {
     "files": {
