@@ -113,7 +113,8 @@ document.querySelectorAll('.dev-pc img').forEach(function(i){i.complete?fit(i):i
   var bar=document.querySelector('.osp');if(!bar)return;
   var links=[].slice.call(bar.querySelectorAll('a')),blob=bar.querySelector('.osb'),cur=null;
   var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function mark(l){
+  function fit(){bar.classList.remove('scroll');if(bar.scrollWidth>bar.clientWidth+1)bar.classList.add('scroll')}
+  function mark(l){fit();
     if(!l)return;cur=l;
     links.forEach(function(a){var on=a===l;a.classList.toggle('on',on);on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')});
     blob.style.width=l.offsetWidth+'px';blob.style.transform='translateX('+l.offsetLeft+'px)';bar.classList.add('ready');
