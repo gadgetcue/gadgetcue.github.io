@@ -562,3 +562,5 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 @media(max-width:380px){.fx,.fx.c3{grid-template-columns:1fr}}
 
 .dev img.fit{object-fit:contain;object-position:center;background:#14141c}
+
+.hn{display:flex;align-items:center;gap:10px}.hn .nico{width:28px;height:28px;border-radius:7px;flex:none;display:block}figcaption .hn{font-weight:650;font-size:17px;justify-content:center;margin-bottom:8px}
