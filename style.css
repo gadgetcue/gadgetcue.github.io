@@ -439,14 +439,14 @@ footer .w{max-width:1212px}
 .chips button:hover{transform:none}
 @media(hover:hover){.chips button:hover{transform:translateY(-1px)}}
 .chips button:active{transform:scale(.94);filter:none}
-.chips button[aria-pressed=true]{box-shadow:0 6px 18px -6px color-mix(in srgb,var(--brand,var(--acc)) 75%,transparent)}
+.chips button[aria-pressed=true]{box-shadow:0 4px 14px -6px color-mix(in srgb,var(--brand,var(--acc)) 65%,transparent)}
 .chips button.pop{animation:chipPop .38s var(--ease)}
 @keyframes chipPop{0%{transform:scale(.92)}55%{transform:scale(1.06)}100%{transform:scale(1)}}
 .chips .rip{position:absolute;border-radius:50%;pointer-events:none;background:color-mix(in srgb,var(--brand,var(--acc)) 45%,#fff);opacity:.5;transform:scale(0);animation:chipRip .55s ease-out forwards}
 @keyframes chipRip{to{transform:scale(1);opacity:0}}
 .chips button:focus-visible{outline:2px solid var(--brand,var(--acc));outline-offset:2px}
 @media(max-width:640px){
- #filters.chips{overflow-x:auto;overflow-y:hidden;padding:8px 28px 10px 0;margin:6px -16px 0 0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain;
+ #filters.chips{overflow-x:auto;overflow-y:hidden;padding:14px 36px 24px 22px;margin:-6px -16px -14px -22px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain;
   -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent 100%)}
  #filters.chips::-webkit-scrollbar{display:none}
  #filters.chips button{scroll-snap-align:center}
