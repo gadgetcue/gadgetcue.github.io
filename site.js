@@ -166,27 +166,43 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   var SECS=5,links=document.querySelectorAll('a.btn[download],a[data-repo]');if(!links.length)return;
   var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ov=document.createElement('div');ov.className='dlov';ov.hidden=true;
-  ov.innerHTML='<div class="dlm" role="dialog" aria-modal="true" aria-labelledby="dlt" aria-describedby="dlc"><h2 id="dlt">Your download is almost ready</h2><div class="dlad"></div><p id="dlc" class="dlc" aria-live="polite"></p><div class="dlbar" aria-hidden="true"><i></i></div><div class="dlb"><button type="button" class="btn dlgo">Download now</button><button type="button" class="btn g dlx">Close</button></div><p class="dln">Ads help keep these apps free.</p></div>';
+  ov.innerHTML='<div class="dlm" role="dialog" aria-modal="true" aria-labelledby="dlt" aria-describedby="dlc"><h2 id="dlt">Your download is almost ready</h2><div class="dlad"></div><p id="dlc" class="dlc" aria-live="polite"></p><div class="dlbar" aria-hidden="true"><i></i></div><div class="dlb"><button type="button" class="btn dlgo">Download now</button><button type="button" class="btn g dlx">Close</button></div><div class="dq"><p class="dqh">Enjoying the apps? Chip in \u2764</p><p class="dqs">Totally optional \u2014 your download starts either way. Any small amount from \u20b95 helps keep this website running and the apps free.</p><div class="dqc" role="group" aria-label="Choose an amount in rupees"><button type="button" data-a="5">\u20b95</button><button type="button" data-a="10">\u20b910</button><button type="button" data-a="20">\u20b920</button><button type="button" data-a="50">\u20b950</button><button type="button" data-a="100">\u20b9100</button></div><form class="dqf" novalidate><label for="dqa" class="dqv">Custom amount in rupees</label><span aria-hidden="true">\u20b9</span><input id="dqa" type="number" inputmode="numeric" min="5" step="1" placeholder="Other (min 5)" autocomplete="off"><button type="submit" class="dqp">Donate</button></form><p class="dqe" role="status" aria-live="polite"></p><div class="dqr" hidden><img src="img/upi-qr.png" width="160" height="160" alt="UPI QR code to donate" loading="lazy"><p class="dqrt">Scan with any UPI app to pay.</p></div><div class="dqm"><button type="button" class="dqy">Copy UPI ID</button><button type="button" class="dqt" aria-expanded="false">Show QR</button></div></div><p class="dln">Ads help keep these apps free.</p></div>';
   document.body.appendChild(ov);
   var m=ov.querySelector('.dlm'),adbox=ov.querySelector('.dlad'),msg=ov.querySelector('.dlc'),bar=ov.querySelector('.dlbar i'),go=ov.querySelector('.dlgo'),x=ov.querySelector('.dlx');
-  var cur=null,timer=null,left=0,from=null,done=false;
-  function start(){if(done||!cur)return;done=true;var a=document.createElement('a');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%'}
+  var cur=null,timer=null,left=0,from=null,done=false,used=false;
+  var VPA='9923081936@kotakbank',PN='SIDDHANT RAMESH TAMGADGE',MOB=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var dq=ov.querySelector('.dq'),dqe=dq.querySelector('.dqe'),dqr=dq.querySelector('.dqr'),dqrt=dq.querySelector('.dqrt'),dqa=dq.querySelector('#dqa'),dqt=dq.querySelector('.dqt'),dqy=dq.querySelector('.dqy');
+  function upi(n){return'upi://pay?pa='+encodeURIComponent(VPA).replace('%40','@')+'&pn='+encodeURIComponent(PN)+'&am='+n+'&cu=INR&tn='+encodeURIComponent('GadgetCue support')}
+  function showQR(on,txt){dqr.hidden=!on;dqt.textContent=on?'Hide QR':'Show QR';dqt.setAttribute('aria-expanded',on?'true':'false');if(txt)dqrt.textContent=txt}
+  function pay(n){
+    n=Math.floor(Number(n));used=true;
+    if(!(n>=5)){dqe.textContent='Please enter at least \u20b95.';dqa.focus();return}
+    dqe.textContent='';
+    if(MOB){dqe.textContent='Opening your UPI app\u2026 thank you!';location.href=upi(n)}
+    else{showQR(true,'UPI links open on phones. Scan this with any UPI app to pay \u20b9'+n+'.')}
+  }
+  dq.querySelector('.dqc').addEventListener('click',function(e){var b=e.target.closest('button[data-a]');if(b)pay(b.getAttribute('data-a'))});
+  dq.querySelector('.dqf').addEventListener('submit',function(e){e.preventDefault();pay(dqa.value)});
+  dqt.addEventListener('click',function(){used=true;showQR(dqr.hidden,'Scan with any UPI app to pay.')});
+  dqy.addEventListener('click',function(){used=true;var ok=function(){dqy.textContent='Copied!';setTimeout(function(){dqy.textContent='Copy UPI ID'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(VPA).then(ok,function(){dqe.textContent='UPI ID: '+VPA});else dqe.textContent='UPI ID: '+VPA});
+  function start(){if(done||!cur)return;done=true;var a=document.createElement('a');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%';clearInterval(timer)}
   function close(){clearInterval(timer);ov.hidden=true;document.documentElement.classList.remove('dlopen');adbox.innerHTML='';if(from&&from.focus)from.focus()}
-  function tick(){left--;if(left<=0){clearInterval(timer);start();setTimeout(close,1200);return}msg.textContent='Download starts in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
+  function tick(){left--;if(left<=0){clearInterval(timer);start();if(!used)setTimeout(close,1200);else msg.textContent='Your download has started. Thank you for the support!';return}msg.textContent='Download starts in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
   function open(a){
-    cur=a;from=a;done=false;left=SECS;
+    cur=a;from=a;done=false;left=SECS;used=false;dqe.textContent='';dqa.value='';showQR(false);
     adbox.innerHTML='<div class="adslot" data-ad="dl"></div>';gcAds(adbox);
     msg.textContent='Download starts in '+left+' seconds.';bar.style.width='0%';
     ov.hidden=false;document.documentElement.classList.add('dlopen');go.focus();
     clearInterval(timer);timer=setInterval(tick,1000);
   }
-  go.addEventListener('click',function(){start();close()});
+  go.addEventListener('click',function(){start();if(used){msg.textContent='Your download has started. Thank you for the support!'}else close()});
   x.addEventListener('click',function(){done=true;close()});
   ov.addEventListener('click',function(e){if(e.target===ov){done=true;close()}});
   document.addEventListener('keydown',function(e){
     if(ov.hidden)return;
     if(e.key==='Escape'){done=true;close();return}
-    if(e.key==='Tab'){var f=m.querySelectorAll('button'),a=f[0],z=f[f.length-1];
+    if(e.key==='Tab'){var f=m.querySelectorAll('button,input'),a=f[0],z=f[f.length-1];
       if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}else if(!m.contains(document.activeElement)){e.preventDefault();a.focus()}}});
   links.forEach(function(a){a.addEventListener('click',function(e){
     if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.classList.contains('off'))return;
