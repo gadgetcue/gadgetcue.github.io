@@ -1,3 +1,12 @@
+// Ads. Paste each AdSense ad unit's data-ad-slot number between the quotes. Empty = that placement stays hidden.
+var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"",apps:""}};
+function gcAdHTML(k){var s=ADS.slots[k];if(!s)return"";return'<ins class="adsbygoogle" style="display:block" data-ad-client="'+ADS.client+'" data-ad-slot="'+s+'" data-ad-format="auto" data-full-width-responsive="true"></ins>'}
+// Fills the .adslot boxes inside scope (or the whole page) and asks AdSense to serve them. Empty slot number = box stays collapsed.
+function gcAds(scope){(scope||document).querySelectorAll('.adslot:not([data-done])').forEach(function(b){
+  var h=gcAdHTML(b.dataset.ad);if(!h)return;b.dataset.done=1;
+  b.innerHTML='<span class="adl">Advertisement</span>'+h;b.classList.add('on');
+  try{(window.adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}})}
+document.addEventListener('DOMContentLoaded',function(){gcAds()});
 // Put each video's YouTube ID here (the part after v= in the URL). Empty = shows "coming soon".
 var VIDEOS={macdock:"",gallery:"",tv:""};
 var CHANNEL="https://www.youtube.com/channel/UC-5tnuqQOovxDPligynrg6Q";

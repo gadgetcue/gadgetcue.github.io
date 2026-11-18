@@ -627,3 +627,10 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .osnav~section h2[id]{scroll-margin-top:130px}
 @media (max-width:640px){.osp{gap:6px;padding-inline:4px}.osp a{padding:0 12px;font-size:14px}.osp a svg{display:none}}
 @media (prefers-reduced-motion:reduce){.osnav,.osb,.osp a{transition:none}.osp a:hover,.osp a:active{transform:none}}
+
+/* Ads: hidden until a slot number is set in site.js */
+.adslot{display:none}
+.adslot.on{display:block;margin:28px 0;min-height:120px;text-align:center}
+.adslot .adl{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.adslot ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}
+.grid>.adslot.ad-wide.on{grid-column:1/-1;margin:6px 0}
