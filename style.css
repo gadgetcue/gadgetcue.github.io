@@ -835,3 +835,10 @@ footer .w.soc{justify-content:center}
 @media(max-width:700px){.page-home .apps{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .page-home .acard .dv{padding:10px 10px 2px}.page-home .acard .b{padding:8px 10px 12px}
 .page-home .acard h3{font-size:14px}.page-home .acard .badge{font-size:10.5px;padding:3px 8px}.page-home .acard .tlink{font-size:13px}}
+
+/* Shorter At a glance table (v20261166) */
+.page-home .cmp th,.page-home .cmp td{padding:9px 16px}
+.page-home #compare .sec-h{margin-bottom:14px}
+@media(max-width:700px){.page-home .cmp{min-width:0;font-size:13.5px}
+.page-home .cmp th,.page-home .cmp td{padding:8px 12px}
+.page-home .cmp th:nth-child(2),.page-home .cmp td:nth-child(2){display:none}}
