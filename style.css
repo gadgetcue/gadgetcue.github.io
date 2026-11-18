@@ -845,3 +845,18 @@ footer .w.soc{justify-content:center}
 .page-home .cmp th{font-size:10.5px;letter-spacing:.04em}
 .page-home .cmp th:nth-child(1),.page-home .cmp td:nth-child(1){width:29%}
 .page-home .cmp th:nth-child(2),.page-home .cmp td:nth-child(2){width:27%}}
+
+/* ===== OLED theme: true black page, near-black cards/panels, same blue accent. Set as data-theme=dark + data-pref=oled so every dark rule still applies. ===== */
+:root[data-pref=oled]{--bg:#000;--card:#090b0f;--line:rgba(255,255,255,.11);--glass:linear-gradient(170deg,rgba(255,255,255,.06),rgba(255,255,255,.012));--glass-edge:rgba(255,255,255,.11);color-scheme:dark}
+:root[data-pref=oled] body{background:#000 radial-gradient(70% 520px at 50% -120px,color-mix(in srgb,#0A74D6 18%,transparent),transparent 72%) no-repeat}
+:root[data-pref=oled] header.top .w{background:rgba(0,0,0,.72);box-shadow:0 10px 30px -14px rgba(0,0,0,.9)}
+:root[data-pref=oled] .mpanel,:root[data-pref=oled] .tpop{background:#05070a;box-shadow:0 24px 50px -18px rgba(0,0,0,.95)}
+:root[data-pref=oled] .dlm{background:#07090c;box-shadow:0 30px 80px -20px rgba(0,0,0,.95)}
+:root[data-pref=oled] .dlov{background:rgba(0,0,0,.72)}
+:root[data-pref=oled] .six a,:root[data-pref=oled] .more div,:root[data-pref=oled] .steps3 div,:root[data-pref=oled] .card,:root[data-pref=oled] .app,:root[data-pref=oled] .cat,:root[data-pref=oled] .faq details,:root[data-pref=oled] .mc,:root[data-pref=oled] .fx>div,:root[data-pref=oled] .dc>div,:root[data-pref=oled] .av>div{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -14px rgba(0,0,0,.9)}
+:root[data-pref=oled] .win{box-shadow:0 30px 80px -24px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.06)}
+:root[data-pref=oled] .sc-bar{background:rgba(0,0,0,.7)}
+:root[data-pref=oled] .sc-s .soon,:root[data-pref=oled] .dev-tv .soon{background:#05070a}
+:root[data-pref=oled] .mu{background:#05070a}
+:root[data-pref=oled] .dq{background:rgba(255,255,255,.035)}
+:root[data-pref=oled] .mtheme .seg button{padding:0 12px}
