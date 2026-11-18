@@ -53,3 +53,11 @@ render('');
 grid.addEventListener('click',function(e){var b=e.target.closest('.play');if(!b)return;
   var f=document.createElement('iframe');f.src=b.dataset.embed;f.className='vid';f.setAttribute('allowfullscreen','');f.setAttribute('allow','autoplay; encrypted-media; fullscreen');f.setAttribute('title','Video');f.loading='lazy';
   b.replaceWith(f)});
+/* press feedback: ripple + pop, and keep the selected pill in view */
+(function(){var f=document.getElementById('filters');if(!f)return;
+f.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+var r=b.getBoundingClientRect(),s=Math.max(r.width,r.height)*2,d=document.createElement('span');d.className='rip';
+d.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(e.clientX-r.left-s/2||r.width/2-s/2)+'px;top:'+(e.clientY-r.top-s/2||r.height/2-s/2)+'px';
+b.appendChild(d);setTimeout(function(){d.remove()},600);
+b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
+try{b.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}catch(x){}});})();

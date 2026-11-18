@@ -432,3 +432,26 @@ footer .w{max-width:1212px}
  .mtheme{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 16px;font-size:18px;font-weight:500}
  .mthemebtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--fg);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 }
+
+/* ===== Filter pills: no clipping, smooth scroll, edge fade, press effect ===== */
+.chips{position:relative}
+.chips button{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:transform .18s var(--ease),background-color .25s,border-color .25s,color .25s,box-shadow .25s}
+.chips button:hover{transform:none}
+@media(hover:hover){.chips button:hover{transform:translateY(-1px)}}
+.chips button:active{transform:scale(.94);filter:none}
+.chips button[aria-pressed=true]{box-shadow:0 6px 18px -6px color-mix(in srgb,var(--brand,var(--acc)) 75%,transparent)}
+.chips button.pop{animation:chipPop .38s var(--ease)}
+@keyframes chipPop{0%{transform:scale(.92)}55%{transform:scale(1.06)}100%{transform:scale(1)}}
+.chips .rip{position:absolute;border-radius:50%;pointer-events:none;background:color-mix(in srgb,var(--brand,var(--acc)) 45%,#fff);opacity:.5;transform:scale(0);animation:chipRip .55s ease-out forwards}
+@keyframes chipRip{to{transform:scale(1);opacity:0}}
+.chips button:focus-visible{outline:2px solid var(--brand,var(--acc));outline-offset:2px}
+@media(max-width:640px){
+ #filters.chips{overflow-x:auto;overflow-y:hidden;padding:8px 28px 10px 0;margin:6px -16px 0 0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 36px),transparent 100%)}
+ #filters.chips::-webkit-scrollbar{display:none}
+ #filters.chips button{scroll-snap-align:center}
+}
+@media(prefers-reduced-motion:reduce){.chips button.pop,.chips .rip{animation:none}.chips button:active{transform:none}}
+/* every filter pill: same height, fully round */
+.chips button{border-radius:999px;height:44px;min-height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;line-height:1;white-space:nowrap}
+.chips button:first-child{min-width:44px;padding:0 18px}
