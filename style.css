@@ -840,5 +840,8 @@ footer .w.soc{justify-content:center}
 .page-home .cmp th,.page-home .cmp td{padding:9px 16px}
 .page-home #compare .sec-h{margin-bottom:14px}
 @media(max-width:700px){.page-home .cmp{min-width:0;font-size:13.5px}
-.page-home .cmp th,.page-home .cmp td{padding:8px 12px}
-.page-home .cmp th:nth-child(2),.page-home .cmp td:nth-child(2){display:none}}
+.page-home .cmp{font-size:12.5px;table-layout:fixed}
+.page-home .cmp th,.page-home .cmp td{padding:8px 8px}
+.page-home .cmp th{font-size:10.5px;letter-spacing:.04em}
+.page-home .cmp th:nth-child(1),.page-home .cmp td:nth-child(1){width:29%}
+.page-home .cmp th:nth-child(2),.page-home .cmp td:nth-child(2){width:27%}}
