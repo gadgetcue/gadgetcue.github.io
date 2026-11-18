@@ -218,3 +218,25 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.classList.contains('off'))return;
     e.preventDefault();open(a)})});
 })();
+
+/* Open YouTube links in the YouTube app when possible (one shared handler for every youtube.com / youtu.be link, including ones added later).
+   Desktop and anything else: plain https link, unchanged. Android: intent:// with the https URL as fallback. iOS: youtube:// with a timed https fallback. */
+(function(){
+  var ua=navigator.userAgent||'',android=/Android/i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+  if(!android&&!ios)return;
+  function yt(a){var u;try{u=new URL(a.href)}catch(e){return null}
+    var h=u.hostname.replace(/^(www|m)\./,'');if(h!=='youtube.com'&&h!=='youtu.be')return null;
+    var path=u.pathname+u.search;if(h==='youtu.be')path='/watch?v='+u.pathname.slice(1)+(u.search?'&'+u.search.slice(1):'');
+    return {https:u.href,path:path}}
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    var a=e.target.closest&&e.target.closest('a[href]');if(!a||a.hasAttribute('download'))return;
+    var y=yt(a);if(!y)return;
+    e.preventDefault();
+    if(android){location.href='intent://www.youtube.com'+y.path+'#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url='+encodeURIComponent(y.https)+';end';return}
+    var left=false,onv=function(){if(document.hidden)left=true};
+    document.addEventListener('visibilitychange',onv);
+    location.href='youtube://www.youtube.com'+y.path;
+    setTimeout(function(){document.removeEventListener('visibilitychange',onv);if(!left&&!document.hidden)location.href=y.https},1600);
+  },true);
+})();
