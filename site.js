@@ -196,21 +196,23 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(VPA).then(ok,function(){dqe.textContent='UPI ID: '+VPA});else dqe.textContent='UPI ID: '+VPA});
   function start(){if(done||!cur)return;done=true;var a=document.createElement('a');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%';clearInterval(timer)}
   function close(){clearInterval(timer);ov.hidden=true;document.documentElement.classList.remove('dlopen');adbox.innerHTML='';if(from&&from.focus)from.focus()}
-  function tick(){left--;if(left<=0){clearInterval(timer);start();if(!used)setTimeout(close,1200);else msg.textContent='Your download has started. Thank you for the support!';return}msg.textContent='Download starts in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
+  function wait(){go.classList.add('dlwait');go.disabled=true;go.setAttribute('aria-hidden','true');go.tabIndex=-1}
+  function reveal(){go.disabled=false;go.removeAttribute('aria-hidden');go.removeAttribute('tabindex');go.classList.remove('dlwait');msg.textContent='Your download is ready. Tap Download now.'}
+  function tick(){left--;if(left<=0){clearInterval(timer);bar.style.width='100%';reveal();return}msg.textContent='Download button appears in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
   function open(a){
     cur=a;from=a;done=false;left=SECS;used=false;dqe.textContent='';dqa.value='';showQR(false);dqa2.hidden=true;
     adbox.innerHTML='<div class="adslot" data-ad="dl"></div>';gcAds(adbox);
-    msg.textContent='Download starts in '+left+' seconds.';bar.style.width='0%';
+    msg.textContent='Download button appears in '+left+' seconds.';wait();bar.style.width='0%';
     ov.hidden=false;document.documentElement.classList.add('dlopen');m.focus({preventScroll:true});
     clearInterval(timer);timer=setInterval(tick,1000);
   }
-  go.addEventListener('click',function(){start();if(used){msg.textContent='Your download has started. Thank you for the support!'}else close()});
+  go.addEventListener('click',function(){start();if(used){msg.textContent='Your download has started. Thank you for the support!'}else setTimeout(close,1200)});
   x.addEventListener('click',function(){done=true;close()});
   ov.addEventListener('click',function(e){if(e.target===ov){done=true;close()}});
   document.addEventListener('keydown',function(e){
     if(ov.hidden)return;
     if(e.key==='Escape'){done=true;close();return}
-    if(e.key==='Tab'){var f=m.querySelectorAll('button,input'),a=f[0],z=f[f.length-1];
+    if(e.key==='Tab'){var f=m.querySelectorAll('button:not([disabled]),input,a[href]'),a=f[0],z=f[f.length-1];
       if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}else if(!m.contains(document.activeElement)){e.preventDefault();a.focus()}}});
   links.forEach(function(a){a.addEventListener('click',function(e){
     if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.classList.contains('off'))return;
