@@ -87,5 +87,7 @@ body.wfp .rv,body.wfp .rv.in{opacity:1;transform:none;transition:none}
 @media(max-width:899px),(hover:none){.wf-r[data-r=right],.wf-r[data-r=left]{transform:translateY(24px)}.wf-r[data-r=up]{transform:translateY(24px)}.wf-r[data-r=pop]{transform:translateY(16px)}.wf-tidy i{animation-duration:3.4s}}
 @media(prefers-reduced-motion:reduce){.wfp .heroc .lead{animation:none}}
 
-.wfp .h1ico.wf-ico{animation:wf-chip .9s var(--d,0ms) cubic-bezier(.16,1,.3,1) both}
+.wfp .h1ico.wf-ico{display:inline-block;vertical-align:-.12em;width:.82em;height:.82em;margin-inline:.04em;border-radius:24%;border:0;
+background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 30'%3E%3Crect x='1.5' y='1.5' width='21' height='27' rx='5.5' fill='none' stroke='%231B9BFF' stroke-width='3'/%3E%3Cpath d='M9 10.5v9l7.5-4.5z' fill='%231B9BFF' stroke='%231B9BFF' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") center/46% auto no-repeat,linear-gradient(160deg,#10202f,#08111c);
+box-shadow:0 8px 24px -8px rgba(10,60,160,.55),inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1px rgba(255,255,255,.08);animation:wf-chip .9s var(--d,0ms) cubic-bezier(.16,1,.3,1) both}
 @media(prefers-reduced-motion:reduce){.wfp .h1ico.wf-ico{animation:none}}
