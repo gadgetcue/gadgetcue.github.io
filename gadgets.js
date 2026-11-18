@@ -3,12 +3,12 @@
 // Amazon Associates India tracking ID. Added to full amazon.in links that have no tag.
 // Short links (amzn.to, link.amazon) from SiteStripe are already tagged; they are left unchanged.
 var AMAZON_TAG='siddhantsar0a-21';
-var GADGETS=[
-  {name:"OnePlus Nord Buds 4 Pro",blurb:"Wireless earbuds. Watch the video, then use the tagged product link on Instagram.",tag:"Audio",instagram:"https://www.instagram.com/reel/DedlTDWon_2/",thumb:"img/gad/nordbuds.jpg"},
-  {name:"Apple gadget pick",blurb:"An Apple accessory I recommend. Buy link below.",tag:"Apple",instagram:"https://www.instagram.com/reel/Ddf-Xzgocvg/",thumb:"img/gad/apple.jpg",amazon:"https://link.amazon/B0hd7Pmxg"},
-  {name:"Portronics toolkit",blurb:"A handy toolkit from Portronics. Watch the video for the details.",tag:"Accessories",instagram:"https://www.instagram.com/reel/DeBVr8gortN/",thumb:"img/gad/portronics.jpg"},
-  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"}
-,
+// YouTube Shorts: add one line per Short. yt = the ID from youtube.com/shorts/<ID>. name, tag and amazon (buy link) are optional.
+// Example: {name:"Product name",yt:"AbCdEfGhIjK",tag:"Audio",amazon:"https://amzn.to/xxxx"},
+var SHORTS=[
+];
+// Earlier Instagram video picks. Not shown on the page; kept here in case they are needed again.
+var INSTAGRAM_FALLBACK=[
   {name:"Video pick 1",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Deo57vwIMkE/"},
   {name:"Video pick 2",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Dd6bLk7IPWP/"},
   {name:"Video pick 3",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Ddto8bgo9KX/"},
@@ -22,6 +22,13 @@ var GADGETS=[
   {name:"Video pick 11",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Daj0IfjMmk3/"},
   {name:"Video pick 12",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Dag90hkIFuH/"},
   {name:"Video pick 13",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/DaZomgLsF38/"},
+];
+var GADGETS=[
+  {name:"OnePlus Nord Buds 4 Pro",blurb:"Wireless earbuds. Watch the video, then use the tagged product link on Instagram.",tag:"Audio",instagram:"https://www.instagram.com/reel/DedlTDWon_2/",thumb:"img/gad/nordbuds.jpg"},
+  {name:"Apple gadget pick",blurb:"An Apple accessory I recommend. Buy link below.",tag:"Apple",instagram:"https://www.instagram.com/reel/Ddf-Xzgocvg/",thumb:"img/gad/apple.jpg",amazon:"https://link.amazon/B0hd7Pmxg"},
+  {name:"Portronics toolkit",blurb:"A handy toolkit from Portronics. Watch the video for the details.",tag:"Accessories",instagram:"https://www.instagram.com/reel/DeBVr8gortN/",thumb:"img/gad/portronics.jpg"},
+  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"}
+,
   {name:"Ant Esports KM1610",image:"img/gad/ant-esports-km1610.jpg",tag:"Gaming",amazon:"https://amzn.to/4sbS26X"},
   {name:"Amkette Hush Pro Epic M",image:"img/gad/amkette-hush-pro-epic-m.jpg",tag:"Productivity",amazon:"https://amzn.to/4c56Myy"},
   {name:"Pure Aroma Cute Panda Scent Oil Diffuser Humidifier",tag:"Utility",amazon:"https://amzn.to/4tOLYTp"},
@@ -45,6 +52,7 @@ var GADGETS=[
   {name:"Amkette XS Series Flow 2 Programmable Wireless Mouse",image:"img/gad/amkette-xs-series-flow-2-programmable-wi.jpg",tag:"Productivity",amazon:"https://bitli.in/HUwd5Bt"},
   {name:"DailyObjects Cover",image:"img/gad/dailyobjects-cover.jpg",tag:"Utility",amazon:"https://amzn.to/4y0kfSB"}
 ];
+GADGETS=GADGETS.slice(0,4).concat(SHORTS,GADGETS.slice(4));
 var grid=document.getElementById('gadgets'),filters=document.getElementById('filters');
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
@@ -52,9 +60,10 @@ function amazonUrl(u){var h=host(u);if(/^amazon\.(in|com)$/.test(h)){try{var x=n
 function store(u){var h=host(u);if(/(^|\.)(amazon\.[a-z.]+|amzn\.to|link\.amazon)$/.test(h))return 'Amazon';if(/(^|\.)(flipkart\.com|fktr\.in|fkrt\.cc)$/.test(h))return 'Flipkart';return ''}
 function render(tag){
   var cards=GADGETS.filter(function(g){return !tag||g.tag===tag}).map(function(g){
-    var img=g.instagram?'<button type="button" class="play" data-embed="'+esc(g.instagram.replace(/\/?$/,'/embed/'))+'" aria-label="Play video: '+esc(g.name)+'">'+(g.thumb?'<img class="th" src="'+esc(g.thumb)+'" alt="" loading="lazy">':'<span class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</span>')+'<i aria-hidden="true"></i></button>':g.image?'<img src="'+esc(g.image)+'" alt="'+esc(g.name)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</div>';
+    var yt=g.yt?String(g.yt).replace(/[^\w-]/g,''):'';var vthumb=g.thumb||(yt?'https://i.ytimg.com/vi/'+yt+'/hqdefault.jpg':'');var embed=yt?'https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0&playsinline=1':g.instagram?g.instagram.replace(/\/?$/,'/embed/'):'';
+    var img=embed?'<button type="button" class="play" data-embed="'+esc(embed)+'" aria-label="Play video: '+esc(g.name)+'">'+(vthumb?'<img class="th" src="'+esc(vthumb)+'" alt="" loading="lazy">':'<span class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</span>')+'<i aria-hidden="true"></i></button>':g.image?'<img src="'+esc(g.image)+'" alt="'+esc(g.name)+'" loading="lazy">':'<div class="ph" aria-hidden="true">'+esc(g.name.charAt(0))+'</div>';
     var buy=g.link?'<a class="btn" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(g.linkLabel||'Get it')+'</a>':g.amazon?'<a class="btn" href="'+esc(amazonUrl(g.amazon))+'" target="_blank" rel="sponsored nofollow noopener">'+(store(g.amazon)?'Buy on '+store(g.amazon):'Buy now')+'</a>':'';
-    var ig=g.instagram?'<a class="btn g" href="'+esc(g.instagram)+'" target="_blank" rel="noopener">Open in Instagram</a>':'';
+    var ig=yt?'<a class="btn g" href="https://www.youtube.com/shorts/'+esc(yt)+'" target="_blank" rel="noopener">Watch on YouTube</a>':g.instagram?'<a class="btn g" href="'+esc(g.instagram)+'" target="_blank" rel="noopener">Open in Instagram</a>':'';
     return '<article class="card gad">'+img+'<div class="b"><span class="badge">'+esc(g.tag)+(g.example?' · example':'')+'</span><h3>'+esc(g.name)+'</h3>'+(g.blurb?'<p>'+esc(g.blurb)+'</p>':'')+''+(g.price?'<p class="price">'+esc(g.price)+'</p>':'')+'<div class="btns">'+buy+ig+'</div></div></article>';
   });
   if(cards.length>6&&window.gcAdHTML&&gcAdHTML('gadgets'))cards.splice(6,0,'<div class="adslot ad-wide" data-ad="gadgets"></div>');
@@ -68,7 +77,7 @@ filters.addEventListener('click',function(e){var b=e.target.closest('button');if
 render('');
 
 grid.addEventListener('click',function(e){var b=e.target.closest('.play');if(!b)return;
-  var f=document.createElement('iframe');f.src=b.dataset.embed;f.className='vid';f.setAttribute('allowfullscreen','');f.setAttribute('allow','autoplay; encrypted-media; fullscreen');f.setAttribute('title','Video');f.loading='lazy';
+  var f=document.createElement('iframe');f.src=b.dataset.embed;f.className='vid';f.setAttribute('allowfullscreen','');f.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');f.setAttribute('title','Video');f.loading='lazy';
   var c=b.closest('.card');if(c)c.classList.add('playing');b.replaceWith(f)});
 /* press feedback: ripple + pop, and keep the selected pill in view */
 (function(){var f=document.getElementById('filters');if(!f)return;
