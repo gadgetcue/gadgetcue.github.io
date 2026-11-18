@@ -687,8 +687,9 @@ header.top:not(.nav-hide)~.osnav{top:68px}
 .cta.comm .spill.ytb:hover{filter:brightness(1.08);background:var(--brand,#0A74D6)}
 .spill.ytb svg,.sbtn.ytb svg{color:#FF3B30}.cta.comm .spill.ytb svg{color:#fff}
 .spill:active,.sbtn:active{transform:scale(.96)}
-footer .w.soc{justify-content:flex-start;gap:10px;margin-top:18px;padding-top:0}
-footer .spill{color:var(--fg);font-size:13px;padding:8px 14px}
+footer .w.soc{justify-content:flex-start;gap:8px;margin-top:18px;padding-top:0;flex-wrap:nowrap}
+footer .spill{color:var(--fg);font-size:13px;padding:8px 14px;min-width:0;white-space:nowrap}
+@media(max-width:480px){footer .spill{padding:8px 11px;gap:6px;font-size:12.5px}}
 .cta.comm{padding:clamp(32px,6vw,56px) 20px}
 .cta.comm h2{font-size:clamp(26px,4.5vw,40px)}
 .cta.comm .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
