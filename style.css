@@ -566,3 +566,21 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .dev img.fit{object-fit:contain;object-position:center;background:#14141c}
 
 .hn{display:flex;align-items:center;gap:10px}.hn .nico{width:28px;height:28px;border-radius:7px;flex:none;display:block}figcaption .hn{font-weight:650;font-size:17px;justify-content:center;margin-bottom:8px}
+
+/* Featured app */
+.fbadge{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--font,inherit);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:var(--acc);color:var(--onacc)}
+.fbadge svg{width:13px;height:13px;fill:currentColor}
+.fbadge.sm{margin-left:6px;padding:2px 10px;font-size:11px}
+.feat-s{padding-block:clamp(24px,5vw,56px) 0}
+.feat{position:relative;border:1px solid color-mix(in srgb,var(--acc) 45%,var(--line));border-radius:32px;padding:clamp(20px,4vw,40px);background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 14%,var(--card)),var(--card) 65%);box-shadow:0 30px 70px -40px color-mix(in srgb,var(--acc) 60%,transparent);transition:transform .25s,box-shadow .25s}
+.feat:hover{transform:translateY(-3px)}
+.feat-t{display:flex;gap:8px;align-items:center;margin-bottom:18px}
+.feat-b{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,60px);align-items:center}
+.feat-x h2{margin:16px 0 10px}
+.feat-x .btn{margin-top:18px}
+@media(max-width:800px){.feat-b{grid-template-columns:1fr}.feat{border-radius:24px}}
+@media(prefers-reduced-motion:reduce){.feat{transition:none}.feat:hover{transform:none}}
+.feat-id{display:flex;align-items:center;gap:12px}
+.feat-id img{width:44px;height:44px;border-radius:12px;object-fit:cover}
+.feat-id div{display:flex;flex-direction:column;line-height:1.3}
+.feat-id span{font-size:13px;color:var(--mut)}
