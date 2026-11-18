@@ -6,6 +6,31 @@ var AMAZON_TAG='siddhantsar0a-21';
 // YouTube Shorts: add one line per Short. yt = the ID from youtube.com/shorts/<ID>. name, tag and amazon (buy link) are optional.
 // Example: {name:"Product name",yt:"AbCdEfGhIjK",tag:"Audio",amazon:"https://amzn.to/xxxx"},
 var SHORTS=[
+  {name:"Video 1",yt:"ssjguhVwXUA",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 2",yt:"xFsvUNYe-C8",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 3",yt:"ta4SZvrnWoQ",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 4",yt:"pSUtDIlo80k",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 5",yt:"GVP2q_Svido",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 6",yt:"SgH8y4cYIlE",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 7",yt:"f6WOnh-A-Hc",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 8",yt:"bX9g7eUAHgA",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 9",yt:"eQW0qPO9w-E",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 10",yt:"aREaU_HysoU",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 11",yt:"orq0elcMI-M",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 12",yt:"NNkbqzwtjS8",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 13",yt:"OnDMNWAcqFA",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 14",yt:"s7lTVd_SCn8",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 15",yt:"C8AW-R1IMrE",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 16",yt:"T47uqui_P5M",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 17",yt:"UIQg1plXLnU",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 18",yt:"OmwklOhb0ow",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 19",yt:"g_qHAISB5AE",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 20",yt:"uQfeYlyZ-Bc",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 21",yt:"r4mee9F2AZY",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 22",yt:"EnzViP-qazc",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 23",yt:"GQsUzX-Owa4",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 24",yt:"lKcGi3W-eww",tag:"Videos",blurb:"Watch the video for the details."},
+  {name:"Video 25",yt:"c9wEX6mBrrk",tag:"Videos",blurb:"Watch the video for the details."},
 ];
 // Earlier Instagram video picks. Not shown on the page; kept here in case they are needed again.
 var INSTAGRAM_FALLBACK=[
@@ -22,13 +47,12 @@ var INSTAGRAM_FALLBACK=[
   {name:"Video pick 11",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Daj0IfjMmk3/"},
   {name:"Video pick 12",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/Dag90hkIFuH/"},
   {name:"Video pick 13",blurb:"Watch the video for the details.",tag:"Videos",instagram:"https://www.instagram.com/reel/DaZomgLsF38/"},
+  {name:"OnePlus Nord Buds 4 Pro",blurb:"Wireless earbuds. Watch the video, then use the tagged product link on Instagram.",tag:"Audio",instagram:"https://www.instagram.com/reel/DedlTDWon_2/",thumb:"img/gad/nordbuds.jpg"},
+  {name:"Portronics toolkit",blurb:"A handy toolkit from Portronics. Watch the video for the details.",tag:"Accessories",instagram:"https://www.instagram.com/reel/DeBVr8gortN/",thumb:"img/gad/portronics.jpg"},
+  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"},
 ];
 var GADGETS=[
-  {name:"OnePlus Nord Buds 4 Pro",blurb:"Wireless earbuds. Watch the video, then use the tagged product link on Instagram.",tag:"Audio",instagram:"https://www.instagram.com/reel/DedlTDWon_2/",thumb:"img/gad/nordbuds.jpg"},
-  {name:"Apple gadget pick",blurb:"An Apple accessory I recommend. Buy link below.",tag:"Apple",instagram:"https://www.instagram.com/reel/Ddf-Xzgocvg/",thumb:"img/gad/apple.jpg",amazon:"https://link.amazon/B0hd7Pmxg"},
-  {name:"Portronics toolkit",blurb:"A handy toolkit from Portronics. Watch the video for the details.",tag:"Accessories",instagram:"https://www.instagram.com/reel/DeBVr8gortN/",thumb:"img/gad/portronics.jpg"},
-  {name:"Flipkart Big Billion Days pick",blurb:"A deal I found during Big Billion Days. Use the tagged product link on Instagram.",tag:"Deals",instagram:"https://www.instagram.com/reel/DeTUEVFos-X/",thumb:"img/gad/flipkart.jpg"}
-,
+  {name:"Apple gadget pick",blurb:"An Apple accessory I recommend. Buy link below.",tag:"Apple",image:"img/gad/apple.jpg",amazon:"https://link.amazon/B0hd7Pmxg"},
   {name:"Ant Esports KM1610",image:"img/gad/ant-esports-km1610.jpg",tag:"Gaming",amazon:"https://amzn.to/4sbS26X"},
   {name:"Amkette Hush Pro Epic M",image:"img/gad/amkette-hush-pro-epic-m.jpg",tag:"Productivity",amazon:"https://amzn.to/4c56Myy"},
   {name:"Pure Aroma Cute Panda Scent Oil Diffuser Humidifier",tag:"Utility",amazon:"https://amzn.to/4tOLYTp"},
@@ -52,7 +76,7 @@ var GADGETS=[
   {name:"Amkette XS Series Flow 2 Programmable Wireless Mouse",image:"img/gad/amkette-xs-series-flow-2-programmable-wi.jpg",tag:"Productivity",amazon:"https://bitli.in/HUwd5Bt"},
   {name:"DailyObjects Cover",image:"img/gad/dailyobjects-cover.jpg",tag:"Utility",amazon:"https://amzn.to/4y0kfSB"}
 ];
-GADGETS=GADGETS.slice(0,4).concat(SHORTS,GADGETS.slice(4));
+GADGETS=SHORTS.concat(GADGETS);
 var grid=document.getElementById('gadgets'),filters=document.getElementById('filters');
 function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
