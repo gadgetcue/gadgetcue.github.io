@@ -90,11 +90,19 @@ def insert_changelog(s, block):
             return s.replace(anchor, block + anchor, 1)
     return s
 
+def release_date(rel):
+    """Real release date: a 'Built YYYY-MM-DD' line in the notes wins (releases created in bulk share one
+    published_at), else the release's published_at."""
+    m = re.search(r"(?:built|released)[: ]+(20\d\d-\d\d-\d\d)", rel.get("body") or "", re.I)
+    if m:
+        return datetime.datetime.strptime(m.group(1), "%Y-%m-%d")
+    return datetime.datetime.strptime(rel["published_at"], "%Y-%m-%dT%H:%M:%SZ")
+
 def changelog_html(repo, rels, app_name):
     items = []
     for i, rel in enumerate(rels):
         ver = rel["tag_name"].lstrip("vV")
-        d = datetime.datetime.strptime(rel["published_at"], "%Y-%m-%dT%H:%M:%SZ")
+        d = release_date(rel)
         date = f"{d.strftime('%b')} {d.day}, {d.year}"
         items.append(f'<details{" open" if i == 0 else ""}><summary>Version {html.escape(ver)} \u00b7 {date}</summary>{cl_div(rel)}</details>')
     return '<section class="ap-sec" id="changelog"><div class="w"><div class="ap-h"><h2>What\'s new</h2><p>Release notes for ' + html.escape(app_name) + '.</p></div><div class="faq ap-faq">' + "".join(items) + '</div></div></section>'
