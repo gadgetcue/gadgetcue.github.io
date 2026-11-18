@@ -510,10 +510,9 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .fx small{font:600 14px var(--font);color:var(--mut);margin-top:10px}
 .fx b{font:600 clamp(20px,2.6vw,28px)/1.15 var(--disp);letter-spacing:-.03em}
 .fx span.d{color:var(--mut);font-size:clamp(14px,1.6vw,16px);line-height:1.5}
-.fi{position:relative;display:grid;place-items:center;width:60px;height:50px;--c1:#3DB4FF;--c2:#0A74D6}
-.fi:before{content:"";position:absolute;left:0;top:0;width:55%;height:22%;border-radius:8px 8px 0 0;background:var(--c1);filter:brightness(.85)}
-.fi:after{content:"";position:absolute;inset:6px 0 0;border-radius:9px;background:linear-gradient(170deg,var(--c1),var(--c2));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 16px -8px var(--c2)}
-.fi svg{position:relative;z-index:1;width:22px;height:22px;margin-top:8px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.fi{position:relative;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;--c1:#3DB4FF;--c2:#0A74D6;background:linear-gradient(150deg,var(--c1),var(--c2));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -6px 12px -6px rgba(0,0,0,.25),0 10px 22px -8px var(--c2),0 0 0 1px rgba(255,255,255,.08)}
+.fi:before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 90% at 20% 0%,rgba(255,255,255,.32),transparent 60%);pointer-events:none}
+.fi svg{position:relative;z-index:1;width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.95}
 /* feature sections */
 .ft{padding-block:clamp(56px,9vw,120px) 0}
 .ft .ap-h{margin-bottom:clamp(24px,4vw,44px)}
@@ -559,7 +558,7 @@ body.ap .heroc h1{max-width:15ch;text-shadow:0 0 80px color-mix(in srgb,var(--br
 .ap-end{padding-block:clamp(56px,9vw,120px)}
 .ap-vid{max-width:900px;margin:0 auto}
 .soon-frame{max-width:760px;margin:0 auto}
-@media(max-width:700px){.fx.c3,.fx{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.fx>div{border-radius:22px;padding:18px}.fi{width:48px;height:40px}.fi svg{width:18px;height:18px;margin-top:6px}.dc,.av{grid-template-columns:1fr}.ap-h h2{letter-spacing:-.04em}}
+@media(max-width:700px){.fx.c3,.fx{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.fx>div{border-radius:22px;padding:18px}.fi{width:44px;height:44px;border-radius:14px}.fi svg{width:21px;height:21px}.dc,.av{grid-template-columns:1fr}.ap-h h2{letter-spacing:-.04em}}
 @media(max-width:380px){.fx,.fx.c3{grid-template-columns:1fr}}
 
 .dev img.fit{object-fit:contain;object-position:center;background:#14141c}
