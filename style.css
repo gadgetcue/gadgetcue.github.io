@@ -911,3 +911,8 @@ html,body{overflow-x:clip;max-width:100%}
 .faq code,.cl code,li code,p code{overflow-wrap:anywhere;word-break:break-all}
 /* phones: carousel pill had more dots than room (last dot spilled past the pill); shrink dots and let the active label give way */
 @media(max-width:520px){.sc-bar{gap:2px;padding:5px;max-width:100%;box-sizing:border-box}.sc-play{width:38px;height:38px}.sc-d{width:10px;height:38px}.sc-d.on{flex:0 1 var(--wmax,var(--w,100px));width:auto;min-width:64px;max-width:100%}.sc-d.on span{overflow:hidden;text-overflow:ellipsis;padding:0 8px}}
+/* Hero secondary "See gadgets": subtle breathing (stays quieter than the primary) */
+@keyframes gc-breathe{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 0%,transparent)}50%{transform:scale(1.025);box-shadow:0 0 14px 0 color-mix(in srgb,var(--brand) 16%,transparent)}}
+.heroc .btns .btn.g{animation:gc-breathe 4.5s ease-in-out infinite;will-change:transform}
+.heroc .btns .btn.g:hover,.heroc .btns .btn.g:active{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.heroc .btns .btn.g{animation:none;will-change:auto}}
