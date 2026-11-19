@@ -918,3 +918,8 @@ html,body{overflow-x:clip;max-width:100%}
 @media(prefers-reduced-motion:reduce){.sc-d.on:after{width:calc(100% - 32px)!important}}
 @media(max-width:520px){.sc-bar{gap:4px;padding:7px 8px}.sc-d.on:after{left:12px;bottom:5px}@keyframes scp{to{width:calc(100% - 24px)}}@media(prefers-reduced-motion:reduce){.sc-d.on:after{width:calc(100% - 24px)!important}}}
 @media(max-width:520px){.sc-d{width:8px}.sc-d:before{width:7px;height:7px}.sc-bar{gap:3px}.sc-d.on{min-width:96px}.sc-d.on span{padding:0 6px}}
+/* Hero secondary "See gadgets": subtle breathing (stays quieter than the primary) */
+@keyframes gc-breathe{0%,100%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 0%,transparent)}50%{transform:scale(1.025);box-shadow:0 0 14px 0 color-mix(in srgb,var(--brand) 16%,transparent)}}
+.heroc .btns .btn.g{animation:gc-breathe 4.5s ease-in-out infinite;will-change:transform}
+.heroc .btns .btn.g:hover,.heroc .btns .btn.g:active{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.heroc .btns .btn.g{animation:none;will-change:auto}}
