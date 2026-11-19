@@ -39,7 +39,7 @@ document.querySelectorAll('.yt').forEach(function(box){
   var b=document.createElement('button');b.id='themebtn';b.type='button';b.innerHTML=ICON;b.setAttribute('aria-label','Appearance');b.setAttribute('aria-haspopup','true');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','tpop');
   var pop=document.createElement('div');pop.id='tpop';pop.className='tpop';pop.hidden=true;pop.setAttribute('role','dialog');pop.setAttribute('aria-label','Appearance');
   pop.innerHTML='<span class="tl">Theme</span>';pop.appendChild(seg('Theme'));
-  function openPop(o){pop.hidden=!o;b.setAttribute('aria-expanded',o);if(o){var r=b.getBoundingClientRect();pop.style.top=(r.bottom+10)+'px';pop.style.right=Math.max(12,document.documentElement.clientWidth-r.right)+'px'}}
+  function openPop(o){pop.hidden=!o;b.setAttribute('aria-expanded',o);if(o){var r=b.getBoundingClientRect();var cw=document.documentElement.clientWidth,pw=pop.offsetWidth||280;pop.style.top=(r.bottom+10)+'px';pop.style.right='auto';pop.style.left=Math.max(12,Math.min(r.right-pw,cw-pw-12))+'px'}}
   b.addEventListener('click',function(e){e.stopPropagation();openPop(pop.hidden)});
   document.addEventListener('click',function(e){if(!pop.hidden&&!pop.contains(e.target))openPop(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pop.hidden){openPop(false);b.focus()}});

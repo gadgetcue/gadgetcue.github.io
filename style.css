@@ -965,3 +965,30 @@ footer .fstats b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nu
 .dev.dev-tv .ytv{display:block;position:relative;z-index:1;width:99%;max-width:none;margin:.6cqw auto 0;border:0;border-radius:0;
  box-shadow:0 .21cqw 0 .55cqw #050506,0 0 0 .55cqw #050506,0 .21cqw 0 calc(.55cqw + 1px) #5c5d60,0 0 0 calc(.55cqw + 1px) #5c5d60,0 4cqw 5cqw -3cqw rgba(10,20,60,.45)}
 .dev.dev-tv .ytv img.ytv-th{position:absolute!important;inset:0;width:100%!important;height:100%!important;margin:0!important;aspect-ratio:auto!important;box-shadow:none!important;z-index:auto}
+
+/* ===== Language switcher (reuses the Theme control look: round header button, glass popover, pill options) ===== */
+#langbtn{font:inherit;font-size:13px;cursor:pointer;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;min-height:40px;width:40px;padding:0;display:inline-flex;justify-content:center;align-items:center;flex:none;margin-inline-start:8px}
+#langbtn:hover{border-color:var(--acc)}
+@media(max-width:700px){#langbtn{display:none}}
+.lpop{max-width:calc(100vw - 24px)}
+.lgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:min(60vh,420px);overflow-y:auto;overscroll-behavior:contain}
+.lgrid[hidden]{display:none}
+.lgrid button{min-height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--fg) 6%,transparent);color:var(--fg);font:600 14px var(--font);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background-color .2s,transform .15s var(--ease,ease),box-shadow .2s}
+.lgrid button:hover{background:color-mix(in srgb,var(--fg) 12%,transparent)}
+.lgrid button:active{transform:scale(.97)}
+.lgrid button[aria-pressed=true]{background:var(--brand);border-color:transparent;color:#fff;box-shadow:0 4px 14px -6px color-mix(in srgb,var(--brand) 65%,transparent)}
+.mlang{flex-wrap:wrap;gap:8px}
+.mlang .mlb{min-height:42px;padding:0 18px;font-size:15px}
+.mlang .lgrid{width:100%;max-height:none;margin-top:4px}
+/* right-to-left languages (Arabic, Urdu): mirror the page flow; keep product mockups and numerals as they are */
+html[dir=rtl] body{text-align:start}
+html[dir=rtl] .lgrid button{text-align:center}
+/* long words (German, Russian) wrap instead of overflowing cards and pills */
+.card,.app,.cat,.six a,.fx>div,.faq,.steps3 div,.more div{overflow-wrap:anywhere;hyphens:auto}
+html[dir=rtl] .sc-vp,html[dir=rtl] .sc-track{direction:ltr}
+html[dir=rtl] .sc-s{direction:rtl}
+/* longer translated labels: give the header room on tablets */
+@media(min-width:701px) and (max-width:1100px){html:not([lang=en]) header.top .hsoc{display:none}html:not([lang=en]) header nav a{white-space:nowrap;font-size:14px}html:not([lang=en]) header nav{gap:14px;margin-inline:12px}html:not([lang=en]) header.top .hbtn{padding:9px 12px;white-space:nowrap}}
+html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:focus{transform:none}
+@media(min-width:701px) and (max-width:1100px){html:not([lang=en]) header.top .hbtn{display:none}}
+@media(min-width:701px) and (max-width:1100px){html:not([lang=en]) header nav{flex:1 1 0;min-width:0;overflow-x:auto;scrollbar-width:none;margin-left:12px}html:not([lang=en]) header nav::-webkit-scrollbar{display:none}html:not([lang=en]) header.top .w{gap:8px}}
