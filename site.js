@@ -8,7 +8,7 @@ function gcAds(scope){(scope||document).querySelectorAll('.adslot:not([data-done
   try{(window.adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}})}
 document.addEventListener('DOMContentLoaded',function(){gcAds()});
 // Put each video's YouTube ID here (the part after v= in the URL). Empty = shows "coming soon".
-var VIDEOS={macdock:"",gallery:"",tv:""};
+var VIDEOS={macdock:"RyFkczwOGX0",gallery:"",tv:""};
 var CHANNEL="https://www.youtube.com/channel/UC-5tnuqQOovxDPligynrg6Q";
 document.querySelectorAll('.yt').forEach(function(box){
   var id=VIDEOS[box.dataset.app]||"";
