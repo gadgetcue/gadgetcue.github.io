@@ -1,11 +1,12 @@
 name: Sync app installers
 
-# Runs every 3 hours and on demand (Actions tab -> Sync app installers -> Run workflow).
+# Scheduled runs are OFF (no APP_REPOS_TOKEN set up). To turn them back on, restore:
+#   schedule:
+#     - cron: "17 */3 * * *"
+# On demand only for now (Actions tab -> Sync app installers -> Run workflow).
 # Needs the repository secret APP_REPOS_TOKEN: a fine-grained personal access token with
 # read-only "Contents" access to the app repos. See scripts/README.md.
 on:
-  schedule:
-    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
