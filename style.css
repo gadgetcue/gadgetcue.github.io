@@ -959,3 +959,9 @@ header.top .w{transform:translateZ(0)}
 /* Footer counters: plain quiet text, shown only once real numbers load */
 footer .w.fstats{gap:6px 22px;margin-top:14px;padding-top:0;font-size:12.5px;color:var(--mut);justify-content:center}
 footer .fstats b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* Install guide video sits in the TV frame (same screen/bezel as the screenshots) */
+.ig-vid .dev.dev-tv{max-width:820px;margin:0 auto}
+.dev.dev-tv .ytv{display:block;position:relative;z-index:1;width:99%;max-width:none;margin:.6cqw auto 0;border:0;border-radius:0;
+ box-shadow:0 .21cqw 0 .55cqw #050506,0 0 0 .55cqw #050506,0 .21cqw 0 calc(.55cqw + 1px) #5c5d60,0 0 0 calc(.55cqw + 1px) #5c5d60,0 4cqw 5cqw -3cqw rgba(10,20,60,.45)}
+.dev.dev-tv .ytv img.ytv-th{position:absolute!important;inset:0;width:100%!important;height:100%!important;margin:0!important;aspect-ratio:auto!important;box-shadow:none!important;z-index:auto}
