@@ -117,6 +117,13 @@ def recent_releases(repo, n=None):
     except urllib.error.HTTPError:
         return []
 
+def release_downloads(repo):
+    """Real GitHub download counts (all assets, all releases) of a public repo, or None if unreadable."""
+    try:
+        return sum(a.get("download_count", 0) for r in api(f"/repos/{repo}/releases?per_page=100") for a in r.get("assets", []))
+    except urllib.error.HTTPError:
+        return None
+
 def site_files():
     out = []
     for ext in ("html", "js"):
@@ -211,6 +218,23 @@ def main():
             if s2 != s: write(page, s2); changed.append(f"{slug}: changelog")
         if pv and pv != ver: changed.append(f"{slug}: {pv} -> {ver}")
 
+    # stats.json: downloads that happen on GitHub itself. Only apps whose site button links straight to the
+    # GitHub release (host=release) are counted; site-hosted installers are counted by the on-site counter.
+    spath = os.path.join(ROOT, "stats.json")
+    prev_stats = json.load(open(spath)) if os.path.exists(spath) else {"apps": {}}
+    apps_dl = dict(prev_stats.get("apps", {}))
+    for app in cfg["apps"]:
+        if app["host"] == "release":
+            n = release_downloads(app["repo"])
+            if n is not None: apps_dl[app["slug"]] = n
+    stats_changed = False
+    if apps_dl:
+        total = sum(apps_dl.values())
+        if apps_dl != prev_stats.get("apps"):
+            write(spath, json.dumps({"github_downloads": total, "apps": apps_dl,
+                  "updated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")}, indent=2, sort_keys=True) + "\n")
+            stats_changed = True
+
     out = json.dumps(new, indent=2, sort_keys=True) + "\n"
     if not os.path.exists(vpath) or read(vpath) != out:
         write(vpath, out)
@@ -230,7 +254,7 @@ def main():
     ghs = os.environ.get("GITHUB_STEP_SUMMARY")
     if ghs: open(ghs, "a").write("### Installer sync\n```\n" + summary + "\n```\n")
     gho = os.environ.get("GITHUB_OUTPUT")
-    if gho: open(gho, "a").write(f"changed={'true' if real or 'versions.json' in changed else 'false'}\n")
+    if gho: open(gho, "a").write(f"changed={'true' if real or stats_changed or 'versions.json' in changed else 'false'}\n")
 
 if __name__ == "__main__":
     main()

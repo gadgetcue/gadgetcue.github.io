@@ -245,3 +245,40 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     setTimeout(function(){document.removeEventListener('visibilitychange',onv);if(!left&&!document.hidden)location.href=y.https},1600);
   },true);
 })();
+
+// Footer counters (real numbers only; nothing is shown until both counts load).
+// Visits + site-hosted download clicks come from GoatCounter (cookieless, no personal data). Set GC_CODE to your
+// GoatCounter site code (the part before .goatcounter.com) to switch it on. GitHub-hosted downloads come from stats.json,
+// written by the 3-hourly sync from real release download counts.
+(function(){
+  var GC_CODE='';
+  if(!GC_CODE)return;
+  var base='https://'+GC_CODE+'.goatcounter.com/';
+  if(!window.goatcounter||!window.goatcounter.count){
+    window.goatcounter={no_onload:false};
+    var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter',base+'count');document.head.appendChild(sc);
+  }
+  // Count a download once when its file really starts (site-hosted installers only; GitHub-hosted ones are in stats.json).
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[download]');
+    if(!a||a.hasAttribute('data-repo')||!window.goatcounter||!window.goatcounter.count)return;
+    if(a.closest('.dlm'))return;
+    try{window.goatcounter.count({path:'download',title:(a.getAttribute('href')||'').split('/').pop(),event:true})}catch(x){}
+  },true);
+  var f=document.querySelector('footer');if(!f||!window.fetch)return;
+  function num(v){var n=parseInt(String(v).replace(/\D/g,''),10);return isNaN(n)?null:n}
+  function j(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
+  Promise.all([
+    j(base+'counter/TOTAL.json').then(function(d){return num(d.count)}).catch(function(){return null}),
+    Promise.all([
+      j(base+'counter/download.json').then(function(d){return num(d.count)}).catch(function(){return 0}),
+      j('stats.json').then(function(d){return typeof d.github_downloads==='number'?d.github_downloads:null}).catch(function(){return null})
+    ]).then(function(a){return a[1]===null?null:a[0]+a[1]})
+  ]).then(function(r){
+    var parts=[];
+    if(r[1]!==null)parts.push('<span><b>'+r[1].toLocaleString()+'</b> downloads</span>');
+    if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
+    if(!parts.length)return;
+    var d=document.createElement('div');d.className='w fstats';d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');f.appendChild(d);
+  });
+})();

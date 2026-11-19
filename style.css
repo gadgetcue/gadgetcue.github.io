@@ -955,3 +955,7 @@ header.top .w{transform:translateZ(0)}
 .sc-s{backface-visibility:hidden}
 .six a:before,.card:before,.app:before,.cat:before{visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 .six a:hover:before,.card:hover:before,.app:hover:before,.cat:hover:before{visibility:visible;transition:opacity .3s,visibility 0s}
+
+/* Footer counters: plain quiet text, shown only once real numbers load */
+footer .w.fstats{gap:6px 22px;margin-top:14px;padding-top:0;font-size:12.5px;color:var(--mut);justify-content:center}
+footer .fstats b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
