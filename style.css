@@ -935,3 +935,4 @@ html,body{overflow-x:clip;max-width:100%}
 .btn.g.ytb{display:inline-flex;align-items:center;gap:9px;box-shadow:none;animation:none}
 .btn.g.ytb svg{flex:none}
 .btn.g.ytb:hover{transform:translateY(-2px);box-shadow:none;border-color:rgba(255,59,48,.5);background:rgba(255,59,48,.08)}
+.btn.g.ytb svg{color:#e5302a}
