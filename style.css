@@ -334,7 +334,7 @@ body.mac,body.gal,body.tv{--acc:#3DB4FF;--onacc:#04121F}
 :root:not([data-theme=dark]) body.mac,:root:not([data-theme=dark]) body.gal,:root:not([data-theme=dark]) body.tv{--acc:#0A6CC4}
 :root[data-theme=light] body.mac,:root[data-theme=light] body.gal,:root[data-theme=light] body.tv{--acc:#0A6CC4}
 /* ambient purple wash behind every page, like the reference's night glass */
-body{background:var(--bg) radial-gradient(70% 520px at 50% -120px,color-mix(in srgb,#0A74D6 26%,transparent),transparent 72%) no-repeat;background-attachment:scroll}
+body{background:var(--bg);background-attachment:scroll}
 h1,h2,h3,.logo,.six b,.more b,.steps3 b{font-family:var(--disp)}
 h1,h2{font-weight:600;letter-spacing:-.035em}
 .btn,.hbtn,.chips button,#themebtn,.badge{font-family:var(--font)}
@@ -360,7 +360,7 @@ header nav a:hover,header nav a[aria-current]{background:color-mix(in srgb,var(-
 .chips button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}
 /* hero: huge tight headline, soft purple glow, framed window */
 .heroc{padding-block:clamp(44px,6vw,84px) 8px!important}
-.heroc:before{height:620px;background:radial-gradient(48% 55% at 50% 18%,color-mix(in srgb,#0A74D6 34%,transparent),transparent 72%),radial-gradient(28% 36% at 88% 12%,color-mix(in srgb,#6FE3FF 14%,transparent),transparent 70%)}
+.heroc:before{display:none}
 .heroc h1{font-size:clamp(44px,8.4vw,104px);line-height:.98;letter-spacing:-.05em;max-width:12ch;font-weight:600}
 .h1ico{display:inline-block;vertical-align:middle;width:1.15em;height:.8em;border-radius:.22em;margin:0 .06em;background:linear-gradient(135deg,#2FA8FF,#0A74D6 55%,#6FE3FF);border:3px solid color-mix(in srgb,var(--fg) 85%,transparent);box-shadow:0 8px 22px rgba(10,116,214,.5),inset 0 2px 3px rgba(255,255,255,.5)}
 .heroc .lead{font-size:clamp(18px,2.2vw,24px);color:var(--mut)}
@@ -858,7 +858,7 @@ footer .w.soc{justify-content:center}
 
 /* ===== OLED theme: true black page, near-black cards/panels, same blue accent. Set as data-theme=dark + data-pref=oled so every dark rule still applies. ===== */
 :root[data-pref=oled]{--bg:#000;--card:#090b0f;--line:rgba(255,255,255,.11);--glass:linear-gradient(170deg,rgba(255,255,255,.06),rgba(255,255,255,.012));--glass-edge:rgba(255,255,255,.11);color-scheme:dark}
-:root[data-pref=oled] body{background:#000 radial-gradient(70% 520px at 50% -120px,color-mix(in srgb,#0A74D6 18%,transparent),transparent 72%) no-repeat}
+:root[data-pref=oled] body{background:#000}
 :root[data-pref=oled] header.top .w{background:rgba(0,0,0,.72);box-shadow:0 10px 30px -14px rgba(0,0,0,.9)}
 :root[data-pref=oled] .mpanel,:root[data-pref=oled] .tpop{background:#05070a;box-shadow:0 24px 50px -18px rgba(0,0,0,.95)}
 :root[data-pref=oled] .dlm{background:#07090c;box-shadow:0 30px 80px -20px rgba(0,0,0,.95)}
