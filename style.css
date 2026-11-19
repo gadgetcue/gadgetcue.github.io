@@ -923,3 +923,10 @@ html,body{overflow-x:clip;max-width:100%}
 .heroc .btns .btn.g{animation:gc-breathe 4.5s ease-in-out infinite;will-change:transform}
 .heroc .btns .btn.g:hover,.heroc .btns .btn.g:active{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.heroc .btns .btn.g{animation:none;will-change:auto}}
+
+/* Soft press: every button, chip, pill and tab dips slightly on press and eases back. Uses the independent `scale` property so it composes with hover lifts and animations; no layout shift. */
+.btn,.spill,.sbtn,.chips button,button,[role=button],[role=tab],summary{transition-property:scale,transform,filter,background-color,border-color,box-shadow,color;transition-duration:.22s;transition-timing-function:cubic-bezier(.34,1.4,.64,1);-webkit-tap-highlight-color:transparent}
+.btn:active,.spill:active,.sbtn:active,.chips button:active,button:active,[role=button]:active,[role=tab]:active,summary:active{scale:.96;transition-duration:.08s;transition-timing-function:ease-out}
+.btn.g:active,.spill:active,.chips button:active{scale:.97}
+.btn:disabled:active,.btn.off:active,button:disabled:active{scale:1}
+@media(prefers-reduced-motion:reduce){.btn,.spill,.sbtn,.chips button,button,[role=button],[role=tab],summary{transition-property:background-color,border-color,color}.btn:active,.spill:active,.sbtn:active,.chips button:active,button:active,[role=button]:active,[role=tab]:active,summary:active{scale:1}}
