@@ -937,3 +937,7 @@ html,body{overflow-x:clip;max-width:100%}
 .btn.g.ytb{border-color:rgba(255,59,48,.4)}
 .btn.g.ytb:hover{transform:translateY(-2px);box-shadow:none;border-color:rgba(255,59,48,.6)}
 .btn.g.ytb svg{color:#e5302a}
+.feat-acts{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;margin-top:18px}
+.feat-x .feat-acts .btn,.feat-acts .btn.g{margin:0;flex:0 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;min-width:0}
+@media(max-width:430px){.feat-acts{gap:8px}.feat-acts .btn{padding:12px 16px;font-size:15px}.feat-acts .btn svg{width:18px;height:18px}}
+@media(max-width:370px){.feat-acts{gap:6px}.feat-acts .btn{padding:11px 13px;font-size:14px}.feat-acts .btn svg{width:16px;height:16px}}
