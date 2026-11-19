@@ -28,21 +28,21 @@
   },
   "iphoneconnect": {
     "files": {
-      "iPhone-Connect-Setup-1.0.0.exe": 11026944
+      "iPhone-Connect-Setup-1.1.0.exe": 11151872
     },
-    "released": "2026-11-18T04:49:00Z",
+    "released": "2026-11-19T07:46:10Z",
     "repo": "gadgetcue/iPhone-Connect",
-    "tag": "v1.0.0",
-    "version": "1.0.0"
+    "tag": "v1.1.0",
+    "version": "1.1.0"
   },
   "macdock": {
     "files": {
-      "MacDock-v2.2.zip": 35698495
+      "MacDock-v2.3.zip": 35712759
     },
-    "released": "2026-11-18T12:09:25Z",
+    "released": "2026-11-19T09:58:51Z",
     "repo": "gadgetcue/MacDock",
-    "tag": "v2.2",
-    "version": "2.2"
+    "tag": "v2.3",
+    "version": "2.3"
   },
   "rustzip": {
     "files": {
@@ -75,12 +75,12 @@
   },
   "threefingerdrag": {
     "files": {
-      "ThreeFingerDrag-Setup.exe": 4252160
+      "ThreeFingerDrag-Setup.exe": 5203968
     },
-    "released": "2026-11-18T03:58:58Z",
+    "released": "2026-11-19T10:38:40Z",
     "repo": "gadgetcue/3-finger-drag",
-    "tag": "v0.1.0",
-    "version": "0.1.0"
+    "tag": "v0.2.0",
+    "version": "0.2.0"
   },
   "tv": {
     "files": {
@@ -112,11 +112,11 @@
   },
   "windowsfiles": {
     "files": {
-      "Windows-Files-Setup-0.4.0.exe": 12466728
+      "Windows-Files-Setup-0.5.0.exe": 12692576
     },
-    "released": "2026-11-18T17:26:59Z",
+    "released": "2026-11-19T10:08:09Z",
     "repo": "gadgetcue/Windows-Files",
-    "tag": "v0.4.0",
-    "version": "0.4.0"
+    "tag": "v0.5.0",
+    "version": "0.5.0"
   }
 }
