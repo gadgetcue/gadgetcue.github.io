@@ -240,3 +240,31 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     setTimeout(function(){document.removeEventListener('visibilitychange',onv);if(!left&&!document.hidden)location.href=y.https},1600);
   },true);
 })();
+
+// Soft click: a very quiet, short WebAudio tick (plus a tiny vibration on phones that support it) on every button, chip, pill and tab.
+// One delegated listener, so current and future buttons get it automatically. No audio files. Skipped when reduced motion is requested.
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var SEL='button,.btn,.spill,.chip,.pill,[role=button],[role=tab],summary,input[type=button],input[type=submit]';
+  var ctx=null,last=0;
+  function tick(){
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+      if(!ctx)ctx=new AC();
+      if(ctx.state==='suspended')ctx.resume();
+      var t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.setValueAtTime(900,t);o.frequency.exponentialRampToValueAtTime(520,t+0.035);
+      g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.045,t+0.004);g.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
+      o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+0.06);
+    }catch(e){}
+    try{if(navigator.vibrate)navigator.vibrate(8)}catch(e){}
+  }
+  function hit(e){
+    var n=e.target&&e.target.closest?e.target.closest(SEL):null;
+    if(!n||n.disabled||n.getAttribute('aria-disabled')==='true')return;
+    var now=Date.now();if(now-last<80)return;last=now;tick();
+  }
+  document.addEventListener('pointerdown',function(e){if(e.button===0||e.pointerType==='touch')hit(e)},true);
+  document.addEventListener('click',function(e){if(e.detail===0)hit(e)},true); // keyboard activation
+})();
