@@ -99,8 +99,11 @@ def release_date(rel):
         return datetime.datetime.strptime(m.group(1), "%Y-%m-%d")
     return datetime.datetime.strptime(rel["published_at"], "%Y-%m-%dT%H:%M:%SZ")
 
-def changelog_html(repo, rels, app_name):
+def changelog_html(repo, rels, app_name, hide=None):
     items = []
+    if hide:  # per-app: drop release-note lines the owner does not want shown
+        rx = re.compile(hide, re.I)
+        rels = [dict(r, body="\n".join(l for l in (r.get("body") or "").split("\n") if not rx.search(l))) for r in rels]
     for i, rel in enumerate(rels):
         ver = rel["tag_name"].lstrip("vV")
         d = release_date(rel)
@@ -200,7 +203,7 @@ def main():
         new[slug] = entry
         if app.get("changelog") and os.path.exists(page):
             s = read(page)
-            block = "<!--CHANGELOG-->" + changelog_html(repo, recent_releases(repo), app.get("name", slug)) + "<!--/CHANGELOG-->"
+            block = "<!--CHANGELOG-->" + changelog_html(repo, recent_releases(repo, app.get("changelog_limit")), app.get("name", slug), app.get("changelog_hide")) + "<!--/CHANGELOG-->"
             if "<!--CHANGELOG-->" in s:
                 s2 = re.sub(r"<!--CHANGELOG-->.*?<!--/CHANGELOG-->", lambda m: block, s, flags=re.S)
             else:

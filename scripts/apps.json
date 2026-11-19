@@ -1,5 +1,5 @@
 {
- "_note": "One entry per app. 'page' is the app page whose version/file names get updated. 'host' is 'downloads' (file copied into downloads/, used for private repos) or 'release' (public repo; page links to GitHub release URL, only the file name is updated). 'files' are regexes matching the asset names to publish. 'update_text' false = do not touch 'Version x' text (used while a notice is shown).",
+ "_note": "One entry per app. 'page' is the app page whose version/file names get updated. 'host' is 'downloads' (file copied into downloads/, used for private repos) or 'release' (public repo; page links to GitHub release URL, only the file name is updated). 'files' are regexes matching the asset names to publish. 'update_text' false = do not touch 'Version x' text (used while a notice is shown). 'changelog_limit' keeps only the newest N release entries; 'changelog_hide' is a regex of release-note lines to leave out.",
  "apps": [
   {
    "slug": "rustzip",
@@ -158,7 +158,9 @@
     "^Folio-PDF-Manager-.*\\.apk$"
    ],
    "changelog": true,
-   "name": "Folio PDF Manager"
+   "name": "Folio PDF Manager",
+   "changelog_limit": 1,
+   "changelog_hide": "gadgetcue|onboarding"
   }
  ]
 }
