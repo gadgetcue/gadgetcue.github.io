@@ -122,7 +122,12 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
     else if(d<-4)h.classList.remove('nav-hide');
     if(Math.abs(d)>4||y<=10)last=y;
   }
-  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  // pause looping decorative animations (glow/breathe/crossfade) while the page is moving so scrolling stays on the compositor
+  var de=document.documentElement,sto=0;
+  window.addEventListener('scroll',function(){
+    if(!de.classList.contains('is-scrolling'))de.classList.add('is-scrolling');
+    clearTimeout(sto);sto=setTimeout(function(){de.classList.remove('is-scrolling')},140);
+    if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
   h.addEventListener('focusin',function(){h.classList.remove('nav-hide')});
 })();
 

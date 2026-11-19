@@ -300,7 +300,6 @@ footer{padding-block:36px}footer a{text-decoration:none;transition:color .2s}foo
 .js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
 .js .rv-card{transform:translateY(34px) scale(.955);transition-duration:.85s,.85s}
 .js .rv.in{opacity:1;transform:none}
-.js .rv{will-change:opacity,transform}
 /* mobile polish */
 @media(max-width:700px){
  .gad .grid{grid-template-columns:1fr}
@@ -947,3 +946,12 @@ html,body{overflow-x:clip;max-width:100%}
 .dev-phone::after{content:"";position:absolute;left:50%;top:2.4%;width:4.2%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#0b0c10;box-shadow:0 0 0 1px rgba(255,255,255,.08);pointer-events:none;z-index:2}
 .app .dv .dev.dev-phone img{border-width:3px;border-radius:15px}
 .app .dv .dev.dev-phone::after{top:2.2%;width:5%}
+
+/* scroll smoothness: no animation work (shadow paint / width layout) while scrolling; rest of the time unchanged */
+html.is-scrolling .heroc .btns .btn.g,html.is-scrolling .btn.g.ytb,html.is-scrolling .cta.comm .spill.ytb,html.is-scrolling .xf img,html.is-scrolling .sc:not(.paused) .sc-d.on:after{animation-play-state:paused}
+header.top .w{transform:translateZ(0)}
+/* scroll smoothness: isolate the carousel's paint/layout, and don't keep idle card spotlights in the paint tree */
+.sc{contain:layout paint style}
+.sc-s{backface-visibility:hidden}
+.six a:before,.card:before,.app:before,.cat:before{visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.six a:hover:before,.card:hover:before,.app:hover:before,.cat:hover:before{visibility:visible;transition:opacity .3s,visibility 0s}
