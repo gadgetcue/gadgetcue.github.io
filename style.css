@@ -189,7 +189,7 @@ body.mac .hero-bg,body.gal .hero-bg{background:none}
 .dev-tv:before{content:"";position:absolute;z-index:2;pointer-events:none;left:4px;right:4px;top:4px;bottom:20px;border-radius:3px;background:linear-gradient(115deg,rgba(255,255,255,.08) 0,rgba(255,255,255,.025) 28%,transparent 29%)}
 .dev-tv .soon{border:4px solid #0b0c10;border-radius:6px;background:#0d1520;color:#9fb3c8;box-shadow:0 0 0 1px #2a2d36,0 26px 50px -24px rgba(10,20,60,.55)}
 .dev-phone{max-width:230px}
-.dev-phone img{aspect-ratio:9/19;border:8px solid #14161c;border-radius:34px;background:#000;box-shadow:0 30px 60px -22px rgba(30,20,80,.5)}
+.dev-phone img{display:block;aspect-ratio:9/19;border:4px solid #14161c;border-radius:20px;background:#000;box-shadow:0 30px 60px -22px rgba(30,20,80,.5)}
 .app .dv{padding:26px 30px 10px;background:linear-gradient(160deg,color-mix(in srgb,var(--acc,#8b6cff) 14%,transparent),transparent 70%)}
 .app .dv .dev{max-width:none}
 .app .dv .dev img{aspect-ratio:16/10;width:100%}
@@ -944,3 +944,6 @@ html,body{overflow-x:clip;max-width:100%}
 /* Folio: show the whole phone screen in the card (not cropped to 16:10) */
 .app .dv .dev.dev-phone{max-width:132px;margin:0 auto}
 .app .dv .dev.dev-phone img{aspect-ratio:9/19;width:100%;height:auto;object-fit:cover;object-position:50% 0}
+.dev-phone::after{content:"";position:absolute;left:50%;top:2.4%;width:4.2%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#0b0c10;box-shadow:0 0 0 1px rgba(255,255,255,.08);pointer-events:none;z-index:2}
+.app .dv .dev.dev-phone img{border-width:3px;border-radius:15px}
+.app .dv .dev.dev-phone::after{top:2.2%;width:5%}
