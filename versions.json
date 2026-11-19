@@ -8,6 +8,15 @@
     "tag": "v1.0.5",
     "version": "1.0.5"
   },
+  "folio": {
+    "files": {
+      "Folio-PDF-Manager-1.7.0.apk": 4923109
+    },
+    "released": "2026-11-19T03:19:11Z",
+    "repo": "gadgetcue/folio-pdf-manager",
+    "tag": "v1.7.0",
+    "version": "1.7.0"
+  },
   "gallery": {
     "files": {
       "Gallery-Setup-2.0.0.exe": 46429819

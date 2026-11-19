@@ -147,6 +147,18 @@
    ],
    "changelog": true,
    "name": "File Manager TV"
+  },
+  {
+   "slug": "folio",
+   "repo": "gadgetcue/folio-pdf-manager",
+   "page": "folio.html",
+   "host": "release",
+   "update_text": true,
+   "files": [
+    "^Folio-PDF-Manager-.*\\.apk$"
+   ],
+   "changelog": true,
+   "name": "Folio PDF Manager"
   }
  ]
 }
