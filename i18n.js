@@ -3,7 +3,7 @@
 // picked from the browser language. No third-party scripts. Text that has no translation simply stays in English.
 (function(){
   var LANGS=[['en','English'],['hi','हिन्दी'],['es','Español'],['fr','Français'],['de','Deutsch'],['pt','Português'],['ru','Русский'],['ar','العربية'],['zh','中文'],['ja','日本語'],['ko','한국어'],['id','Bahasa Indonesia'],['tr','Türkçe'],['it','Italiano'],['bn','বাংলা'],['ta','தமிழ்'],['te','తెలుగు'],['mr','मराठी'],['ur','اردو'],['vi','Tiếng Việt']];
-  var RTL={ar:1,ur:1},V='20261245';
+  var RTL={ar:1,ur:1},V='20261257';
   var codes=LANGS.map(function(l){return l[0]});
   function stored(){var v=null;try{v=localStorage.getItem('lang')}catch(e){}return codes.indexOf(v)>-1?v:null}
   function detect(){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en'];
