@@ -247,16 +247,41 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce)return;
   var SEL='button,.btn,.spill,.chip,.pill,[role=button],[role=tab],summary,input[type=button],input[type=submit]';
-  var ctx=null,last=0;
+  var ctx=null,buf=null,last=0,pending=false;
+  // The tick is rendered once into a buffer so a press only has to start a ready-made sound (no per-press synthesis).
+  function build(){
+    var sr=ctx.sampleRate,n=Math.floor(sr*0.06),b=ctx.createBuffer(1,n,sr),d=b.getChannelData(0),ph=0;
+    for(var i=0;i<n;i++){
+      var t=i/sr,f=t<0.035?900*Math.pow(520/900,t/0.035):520;
+      ph+=2*Math.PI*f/sr;
+      var env=t<0.004?t/0.004:Math.exp(-(t-0.004)*60);
+      d[i]=Math.sin(ph)*env*0.045;
+    }
+    buf=b;
+  }
+  // Create + unlock the audio engine on the very first gesture of any kind, so the first real button press is not late or silent.
+  function unlock(){
+    try{
+      if(!ctx){var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ctx=new AC({latencyHint:'interactive'});build()}
+      if(ctx.state!=='running'){var p=ctx.resume();if(p&&p.catch)p.catch(function(){})}
+      var s=ctx.createBufferSource();s.buffer=ctx.createBuffer(1,1,ctx.sampleRate);s.connect(ctx.destination);s.start(0); // silent primer
+    }catch(e){}
+  }
+  ['pointerdown','touchstart','touchend','keydown','click'].forEach(function(ev){document.addEventListener(ev,unlock,{capture:true,passive:true})});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&ctx&&ctx.state!=='running'){try{ctx.resume()}catch(e){}}});
+  function play(){
+    var s=ctx.createBufferSource();s.buffer=buf;s.connect(ctx.destination);s.start(0);
+  }
   function tick(){
     try{
-      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
-      if(!ctx)ctx=new AC();
-      if(ctx.state==='suspended')ctx.resume();
-      var t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();
-      o.type='sine';o.frequency.setValueAtTime(900,t);o.frequency.exponentialRampToValueAtTime(520,t+0.035);
-      g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.045,t+0.004);g.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
-      o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+0.06);
+      if(!ctx||!buf)unlock();
+      if(ctx&&buf){
+        if(ctx.state==='running')play();
+        else if(!pending){ // first-ever press: engine still waking, play the moment it is ready
+          pending=true;var born=Date.now();
+          ctx.resume().then(function(){pending=false;if(Date.now()-born<400)play()}).catch(function(){pending=false});
+        }
+      }
     }catch(e){}
     try{if(navigator.vibrate)navigator.vibrate(8)}catch(e){}
   }
@@ -266,5 +291,5 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     var now=Date.now();if(now-last<80)return;last=now;tick();
   }
   document.addEventListener('pointerdown',function(e){if(e.button===0||e.pointerType==='touch')hit(e)},true);
-  document.addEventListener('click',function(e){if(e.detail===0)hit(e)},true); // keyboard activation
+  document.addEventListener('click',function(e){if(e.detail===0)hit(e)},true); // keyboard activation (Enter/Space), no double fire after a real press
 })();
