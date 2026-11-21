@@ -991,3 +991,11 @@ html[dir=rtl] .sc-s{direction:rtl}
 html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:focus{transform:none}
 @media(min-width:701px) and (max-width:1100px){html:not([lang=en]) header.top .hbtn{display:none}}
 @media(min-width:701px) and (max-width:1100px){html:not([lang=en]) header nav{flex:1 1 0;min-width:0;overflow-x:auto;scrollbar-width:none;margin-left:12px}html:not([lang=en]) header nav::-webkit-scrollbar{display:none}html:not([lang=en]) header.top .w{gap:8px}}
+
+/* Apps without a screenshot yet: show the app icon in the card's image area */
+.app .dv.ico{display:grid;place-items:center;aspect-ratio:16/10;box-sizing:border-box;padding:18px}
+.app .dv.ico .mimg2{display:grid;place-items:center}
+.app .dv .bigico{width:112px;height:112px;border-radius:26px;display:block}
+.page-home .acard .dv.ico .bigico{width:84px;height:84px;border-radius:20px}
+.app:not(.acard) .b>p.soon{aspect-ratio:auto;display:block;place-items:initial;text-align:left;margin:8px 0 0;padding:10px 14px;line-height:1.45;border-radius:14px}
+.app .dv.ico{aspect-ratio:auto;min-height:190px}
