@@ -282,3 +282,26 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     var d=document.createElement('div');d.className='w fstats';d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');f.appendChild(d);
   });
 })();
+
+/* Home stats strip: derive "free apps" and "platforms" from the app cards so they never go stale. */
+(function(){
+  var a=document.querySelector('[data-stat="apps"]'),p=document.querySelector('[data-stat="platforms"]');
+  if(!a||!p)return;
+  var cards=document.querySelectorAll('article.app.acard');
+  if(!cards.length)return;
+  var fam={};
+  cards.forEach(function(c){
+    var b=c.querySelector('.badge');if(!b)return;
+    b.textContent.split(/[·,\/]/).forEach(function(t){
+      t=t.trim().toLowerCase();
+      if(!t)return;
+      if(t.indexOf('windows')===0)fam.windows=1;
+      else if(t.indexOf('mac')===0)fam.macos=1;
+      else if(t.indexOf('linux')===0)fam.linux=1;
+      else if(t.indexOf('android')===0)fam.android=1;
+      else if(t==='ipad'||t==='iphone'||t==='ios')fam.apple=1;
+    });
+  });
+  a.textContent=cards.length;
+  var n=Object.keys(fam).length;if(n)p.textContent=n;
+})();
