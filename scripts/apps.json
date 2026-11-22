@@ -107,7 +107,8 @@
    "host": "downloads",
    "update_text": true,
    "files": [
-    "^Fast-Download-Manager-Setup.*\\.exe$"
+    "^Fast-Download-Manager-Setup.*\\.exe$",
+    "^Fast-Download-Manager-Extension-.*\\.zip$"
    ],
    "changelog": true,
    "name": "Fast Download Manager"
