@@ -101,6 +101,18 @@
    "name": "iPhone Connect"
   },
   {
+   "slug": "fastdownloadmanager",
+   "repo": "gadgetcue/fast-download-manager",
+   "page": "fastdownloadmanager.html",
+   "host": "downloads",
+   "update_text": true,
+   "files": [
+    "^Fast-Download-Manager-Setup.*\\.exe$"
+   ],
+   "changelog": true,
+   "name": "Fast Download Manager"
+  },
+  {
    "slug": "safariwindows",
    "repo": "gadgetcue/safari-for-windows",
    "page": "safariwindows.html",

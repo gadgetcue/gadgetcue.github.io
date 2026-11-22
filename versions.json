@@ -8,6 +8,15 @@
     "tag": "v1.0.5",
     "version": "1.0.5"
   },
+  "fastdownloadmanager": {
+    "files": {
+      "Fast-Download-Manager-Setup-0.3.0.exe": 9563648
+    },
+    "released": "2026-11-22T07:48:04Z",
+    "repo": "gadgetcue/fast-download-manager",
+    "tag": "v0.3.0",
+    "version": "0.3.0"
+  },
   "folio": {
     "files": {
       "Folio-PDF-Manager-1.7.0.apk": 4923109
