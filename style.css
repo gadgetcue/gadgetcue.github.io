@@ -1000,11 +1000,12 @@ html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:fo
 .app:not(.acard) .b>p.soon{aspect-ratio:auto;display:block;place-items:initial;text-align:left;margin:8px 0 0;padding:10px 14px;line-height:1.45;border-radius:14px}
 .app .dv.ico{aspect-ratio:auto;min-height:190px}
 
-/* Stats: a tiny glass icon pinned bottom-left; tapping it opens the counts pill beside it. Hidden while the download popup is open. */
-.fstat{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:4;display:flex;align-items:center;gap:8px}
-html.dlopen .fstat{display:none}
-.fstat-b{width:36px;height:36px;padding:0;display:grid;place-items:center;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass),var(--card);color:var(--mut);cursor:pointer;opacity:.75;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:opacity .2s}
-.fstat-b:hover,.fstat-b[aria-expanded=true],.fstat-b:focus-visible{opacity:1;color:var(--fg)}
-.fpill{display:flex;gap:4px 14px;align-items:center;padding:7px 14px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass),var(--card);color:var(--mut);font:600 12px var(--font);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);white-space:nowrap}
-.fpill[hidden]{display:none}
+/* Floating stats pill: glass pill pinned to the bottom-left corner (not a full-width bar); ignores taps so it never blocks content */
+.fpill{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:4;display:flex;gap:6px 16px;align-items:center;padding:6px 16px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass),var(--card);color:var(--mut);font:600 12.5px var(--font);box-shadow:0 10px 24px -12px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);pointer-events:none;white-space:nowrap}
 .fpill b{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums}
+@media(max-width:600px){.fpill{font-size:12px;padding:5px 13px;left:max(10px,env(safe-area-inset-left,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+
+/* Quieter pill: smaller, softer, fades out while scrolling and while the download popup is open */
+.fpill{font-size:11.5px;padding:4px 12px;gap:4px 12px;opacity:.78;box-shadow:none;transition:opacity .25s ease}
+.fpill.fpill-hide,html.dlopen .fpill{opacity:0}
+@media(max-width:600px){.fpill{font-size:11px;padding:4px 11px}}
