@@ -199,7 +199,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   dqt.addEventListener('click',function(){used=true;showQR(dqr.hidden,'Scan with any UPI app to pay.')});
   dqy.addEventListener('click',function(){used=true;var ok=function(){dqy.textContent='Copied!';setTimeout(function(){dqy.textContent='Copy UPI ID'},1800)};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(VPA).then(ok,function(){dqe.textContent='UPI ID: '+VPA});else dqe.textContent='UPI ID: '+VPA});
-  function start(){if(done||!cur)return;done=true;var a=document.createElement('a');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%';clearInterval(timer)}
+  function start(){if(done||!cur)return;done=true;if(window.gcDL)window.gcDL(cur);var a=document.createElement('a');a.setAttribute('data-nocount','');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%';clearInterval(timer)}
   function close(){clearInterval(timer);ov.hidden=true;document.documentElement.classList.remove('dlopen');adbox.innerHTML='';if(from&&from.focus)from.focus()}
   function wait(){go.classList.add('dlwait');go.disabled=true;go.setAttribute('aria-hidden','true');go.tabIndex=-1}
   function reveal(){go.disabled=false;go.removeAttribute('aria-hidden');go.removeAttribute('tabindex');go.classList.remove('dlwait');msg.textContent='Your download is ready. Tap Download now.'}
@@ -246,35 +246,29 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   },true);
 })();
 
-// Footer counters (real numbers only; nothing is shown until both counts load).
-// Visits + site-hosted download clicks come from GoatCounter (cookieless, no personal data). Set GC_CODE to your
-// GoatCounter site code (the part before .goatcounter.com) to switch it on. GitHub-hosted downloads come from stats.json,
-// written by the 3-hourly sync from real release download counts.
+// Footer counters (real numbers only; a number shows only after it really loads).
+// Visits and site-hosted download clicks are counted with counterapi.dev (no sign-up, no cookies, no personal data; counts only
+// on gadgetcue.in). Downloads of GitHub-hosted files come from stats.json (real release download counts). Download clicks are
+// counted when the file really starts: the download popup calls window.gcDL(), and other plain download links count on click.
 (function(){
-  var GC_CODE='';
-  if(!GC_CODE)return;
-  var base='https://'+GC_CODE+'.goatcounter.com/';
-  if(!window.goatcounter||!window.goatcounter.count){
-    window.goatcounter={no_onload:false};
-    var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter',base+'count');document.head.appendChild(sc);
-  }
-  // Count a download once when its file really starts (site-hosted installers only; GitHub-hosted ones are in stats.json).
+  var API='https://api.counterapi.dev/v1/gadgetcue-in/',live=/(^|\.)gadgetcue\.in$/.test(location.hostname);
+  function j(u){return fetch(u,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
+  function num(v){var n=parseInt(String(v).replace(/\D/g,''),10);return isNaN(n)?null:n}
+  function hit(k){if(!live||!window.fetch)return;try{fetch(API+k+'/up',{keepalive:true,cache:'no-store'}).catch(function(){})}catch(x){}}
+  window.gcDL=function(a){if(a&&a.hasAttribute&&a.hasAttribute('data-repo'))return;hit('downloads')};
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[download]');
-    if(!a||a.hasAttribute('data-repo')||!window.goatcounter||!window.goatcounter.count)return;
-    if(a.closest('.dlm'))return;
-    try{window.goatcounter.count({path:'download',title:(a.getAttribute('href')||'').split('/').pop(),event:true})}catch(x){}
+    if(!a||a.hasAttribute('data-repo')||a.matches('a.btn[download]')||a.hasAttribute('data-nocount'))return;
+    window.gcDL(a);
   },true);
   var f=document.querySelector('footer');if(!f||!window.fetch)return;
-  function num(v){var n=parseInt(String(v).replace(/\D/g,''),10);return isNaN(n)?null:n}
-  function j(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
-  Promise.all([
-    j(base+'counter/TOTAL.json').then(function(d){return num(d.count)}).catch(function(){return null}),
-    Promise.all([
-      j(base+'counter/download.json').then(function(d){return num(d.count)}).catch(function(){return 0}),
-      j('stats.json').then(function(d){return typeof d.github_downloads==='number'?d.github_downloads:null}).catch(function(){return null})
-    ]).then(function(a){return a[1]===null?null:a[0]+a[1]})
-  ]).then(function(r){
+  var seen=false;try{seen=sessionStorage.getItem('gc_v')==='1'}catch(x){}
+  var visits=j(API+'visits/'+(live&&!seen?'up':'')).then(function(d){if(live&&!seen){try{sessionStorage.setItem('gc_v','1')}catch(x){}}return num(d.count)}).catch(function(){return null});
+  var dl=Promise.all([
+    j(API+'downloads/').then(function(d){return num(d.count)}).catch(function(){return 0}),
+    j('stats.json').then(function(d){return typeof d.github_downloads==='number'?d.github_downloads:null}).catch(function(){return null})
+  ]).then(function(a){return a[1]===null?null:a[0]+a[1]});
+  Promise.all([visits,dl]).then(function(r){
     var parts=[];
     if(r[1]!==null)parts.push('<span><b>'+r[1].toLocaleString()+'</b> downloads</span>');
     if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
