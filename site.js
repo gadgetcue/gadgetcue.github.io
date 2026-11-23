@@ -282,6 +282,8 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
     if(!parts.length)return;
     var d=document.createElement('div');d.className='fpill';d.setAttribute('role','status');d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');document.body.appendChild(d);
+    // Stay out of the way: fade while scrolling, come back once the page is still.
+    var t=0;window.addEventListener('scroll',function(){d.classList.add('fpill-hide');clearTimeout(t);t=setTimeout(function(){d.classList.remove('fpill-hide')},900)},{passive:true});
   });
 })();
 
