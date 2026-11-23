@@ -1000,7 +1000,7 @@ html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:fo
 .app:not(.acard) .b>p.soon{aspect-ratio:auto;display:block;place-items:initial;text-align:left;margin:8px 0 0;padding:10px 14px;line-height:1.45;border-radius:14px}
 .app .dv.ico{aspect-ratio:auto;min-height:190px}
 
-/* Floating stats pill: glass pill, fixed just under the top bar, never a bottom bar; ignores taps so it never blocks content */
-.fpill{position:fixed;top:calc(env(safe-area-inset-top,0px) + var(--topbar-h,86px) + 6px);left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:6px 16px;align-items:center;padding:6px 16px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass),var(--card);color:var(--mut);font:600 12.5px var(--font);box-shadow:0 10px 24px -12px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);pointer-events:none;white-space:nowrap}
+/* Floating stats pill: glass pill pinned to the bottom-left corner (not a full-width bar); ignores taps so it never blocks content */
+.fpill{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:4;display:flex;gap:6px 16px;align-items:center;padding:6px 16px;border-radius:999px;border:1px solid var(--glass-edge);background:var(--glass),var(--card);color:var(--mut);font:600 12.5px var(--font);box-shadow:0 10px 24px -12px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);pointer-events:none;white-space:nowrap}
 .fpill b{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums}
-@media(max-width:600px){.fpill{top:calc(env(safe-area-inset-top,0px) + var(--topbar-h,86px) + 4px);font-size:12px;padding:5px 13px}}
+@media(max-width:600px){.fpill{font-size:12px;padding:5px 13px;left:max(10px,env(safe-area-inset-left,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
