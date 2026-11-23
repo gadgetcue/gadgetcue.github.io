@@ -246,34 +246,42 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   },true);
 })();
 
-// Footer counters (real numbers only; a number shows only after it really loads).
-// Visits and site-hosted download clicks are counted with counterapi.dev (no sign-up, no cookies, no personal data; counts only
-// on gadgetcue.in). Downloads of GitHub-hosted files come from stats.json (real release download counts). Download clicks are
-// counted when the file really starts: the download popup calls window.gcDL(), and other plain download links count on click.
+// Floating counters pill (real numbers only; a number shows only after it really loads).
+// Downloads of GitHub-hosted files come from stats.json (real release download counts, refreshed by the sync).
+// Visits + site-hosted download clicks come from GoatCounter (cookieless, no personal data): set GC_CODE to the GoatCounter
+// site code (the part before .goatcounter.com) to switch them on. Until then only the real GitHub download total shows.
 (function(){
-  var API='https://api.counterapi.dev/v1/gadgetcue-in/',live=/(^|\.)gadgetcue\.in$/.test(location.hostname);
-  function j(u){return fetch(u,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
+  var GC_CODE='';
+  var live=/(^|\.)gadgetcue\.in$/.test(location.hostname),base=GC_CODE?'https://'+GC_CODE+'.goatcounter.com/':'';
+  function j(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
   function num(v){var n=parseInt(String(v).replace(/\D/g,''),10);return isNaN(n)?null:n}
-  function hit(k){if(!live||!window.fetch)return;try{fetch(API+k+'/up',{keepalive:true,cache:'no-store'}).catch(function(){})}catch(x){}}
-  window.gcDL=function(a){if(a&&a.hasAttribute&&a.hasAttribute('data-repo'))return;hit('downloads')};
+  if(base&&live&&!window.goatcounter){
+    window.goatcounter={no_onload:false};
+    var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter',base+'count');document.head.appendChild(sc);
+  }
+  // Count a download once when its file really starts (popup "Download now", or a plain download link).
+  window.gcDL=function(a){
+    if(!base||!live||!window.goatcounter||!window.goatcounter.count||(a&&a.hasAttribute&&a.hasAttribute('data-repo')))return;
+    try{window.goatcounter.count({path:'download',title:((a&&a.getAttribute&&a.getAttribute('href'))||'').split('/').pop(),event:true})}catch(x){}
+  };
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[download]');
-    if(!a||a.hasAttribute('data-repo')||a.matches('a.btn[download]')||a.hasAttribute('data-nocount'))return;
+    if(!a||a.matches('a.btn[download]')||a.hasAttribute('data-nocount'))return;
     window.gcDL(a);
   },true);
-  var f=document.querySelector('footer');if(!f||!window.fetch)return;
-  var seen=false;try{seen=sessionStorage.getItem('gc_v')==='1'}catch(x){}
-  var visits=j(API+'visits/'+(live&&!seen?'up':'')).then(function(d){if(live&&!seen){try{sessionStorage.setItem('gc_v','1')}catch(x){}}return num(d.count)}).catch(function(){return null});
-  var dl=Promise.all([
-    j(API+'downloads/').then(function(d){return num(d.count)}).catch(function(){return 0}),
-    j('stats.json').then(function(d){return typeof d.github_downloads==='number'?d.github_downloads:null}).catch(function(){return null})
-  ]).then(function(a){return a[1]===null?null:a[0]+a[1]});
-  Promise.all([visits,dl]).then(function(r){
+  if(!window.fetch)return;
+  Promise.all([
+    base?j(base+'counter/TOTAL.json').then(function(d){return num(d.count)}).catch(function(){return null}):Promise.resolve(null),
+    Promise.all([
+      base?j(base+'counter/download.json').then(function(d){return num(d.count)}).catch(function(){return 0}):Promise.resolve(0),
+      j('stats.json').then(function(d){return typeof d.github_downloads==='number'?d.github_downloads:null}).catch(function(){return null})
+    ]).then(function(a){return a[1]===null?null:a[0]+a[1]})
+  ]).then(function(r){
     var parts=[];
     if(r[1]!==null)parts.push('<span><b>'+r[1].toLocaleString()+'</b> downloads</span>');
     if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
     if(!parts.length)return;
-    var d=document.createElement('div');d.className='w fstats';d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');f.appendChild(d);
+    var d=document.createElement('div');d.className='fpill';d.setAttribute('role','status');d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');document.body.appendChild(d);
   });
 })();
 
