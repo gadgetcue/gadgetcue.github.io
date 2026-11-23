@@ -281,9 +281,16 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     if(r[1]!==null)parts.push('<span><b>'+r[1].toLocaleString()+'</b> downloads</span>');
     if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
     if(!parts.length)return;
-    var d=document.createElement('div');d.className='fpill';d.setAttribute('role','status');d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');document.body.appendChild(d);
-    // Stay out of the way: fade while scrolling, come back once the page is still.
-    var t=0;window.addEventListener('scroll',function(){d.classList.add('fpill-hide');clearTimeout(t);t=setTimeout(function(){d.classList.remove('fpill-hide')},900)},{passive:true});
+    // Tap-to-open: a tiny glass icon bottom-left; tapping it opens the counts pill beside it, tapping again (or elsewhere) closes it.
+    var w=document.createElement('div');w.className='fstat';
+    var btn=document.createElement('button');btn.type='button';btn.className='fstat-b';btn.setAttribute('aria-label','Site statistics');btn.setAttribute('aria-expanded','false');
+    btn.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>';
+    var d=document.createElement('div');d.className='fpill';d.setAttribute('role','status');d.hidden=true;d.innerHTML=parts.join('');
+    function set(o){d.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false')}
+    btn.addEventListener('click',function(e){e.stopPropagation();set(d.hidden)});
+    document.addEventListener('click',function(e){if(!d.hidden&&!w.contains(e.target))set(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d.hidden){set(false);btn.focus()}});
+    w.appendChild(btn);w.appendChild(d);document.body.appendChild(w);
   });
 })();
 
