@@ -1,12 +1,13 @@
 name: Sync app installers
 
-# Scheduled runs are OFF (no APP_REPOS_TOKEN set up). To turn them back on, restore:
-#   schedule:
-#     - cron: "17 */3 * * *"
-# On demand only for now (Actions tab -> Sync app installers -> Run workflow).
+# Runs once a day and on demand (Actions tab -> Sync app installers -> Run workflow).
 # Needs the repository secret APP_REPOS_TOKEN: a fine-grained personal access token with
 # read-only "Contents" access to the app repos. See scripts/README.md.
+# If the secret is missing, scheduled runs skip quietly (no failure emails);
+# a manual run still fails loudly so the problem is visible.
 on:
+  schedule:
+    - cron: "17 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -23,15 +24,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check token
+        id: token
         env:
           APP_REPOS_TOKEN: ${{ secrets.APP_REPOS_TOKEN }}
         run: |
           if [ -z "$APP_REPOS_TOKEN" ]; then
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              echo "::warning::Secret APP_REPOS_TOKEN is not set. Skipping the scheduled sync. See scripts/README.md"
+              echo "ready=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             echo "::error::Secret APP_REPOS_TOKEN is not set. Private app repos cannot be read. See scripts/README.md"
             exit 1
           fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
       - name: Sync releases
         id: sync
+        if: steps.token.outputs.ready == 'true'
         env:
           GH_TOKEN: ${{ secrets.APP_REPOS_TOKEN }}
         run: python3 scripts/sync_releases.py
