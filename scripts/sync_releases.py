@@ -49,7 +49,7 @@ def md_inline(t):
     return re.sub(r"(?<![\w*])\*([^*]+)\*(?![\w*])", r"<i>\1</i>", t)
 
 # Install/download boilerplate in release bodies is not a changelog; skip it.
-SKIP_SECTION = re.compile(r"^(downloads?|install(ation)?)\b", re.I)
+SKIP_SECTION = re.compile(r"^(downloads?|install(ation)?|sha-?256|checksums?|support)\b", re.I)
 SKIP_LINE = re.compile(r"free to download|sha-?256|^\*{0,2}download|^latest build|^silent install|smartscreen|windows protected your pc|^full history|^see the \[|^install guide|code-signed|^!\[|^\||^-{3,}$|no signing keys", re.I)
 
 def md_block(body):
@@ -69,7 +69,7 @@ def md_block(body):
             if len(h.group(1)) > 2 and not skip:
                 out.append("<h4>" + md_inline(h.group(2)) + "</h4>")
             continue
-        if skip: continue
+        if skip or line.strip().startswith("```"): continue
         m = re.match(r"^\s*[-*]\s+(.*)$", line)
         if m:
             if not in_ul: out.append("<ul>"); in_ul = True
