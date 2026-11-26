@@ -1009,3 +1009,18 @@ html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:fo
 .fpill{font-size:11.5px;padding:4px 12px;gap:4px 12px;opacity:.78;box-shadow:none;transition:opacity .25s ease}
 .fpill.fpill-hide,html.dlopen .fpill{opacity:0}
 @media(max-width:600px){.fpill{font-size:11px;padding:4px 11px}}
+
+/* Thank-you popup after a donation (same card as the download popup; primary Done button) */
+.tyov{z-index:110}
+.tym{position:relative;overflow:hidden}
+.tyh{font-size:44px;line-height:1;margin:2px 0 10px;color:#ff3b30;animation:typulse 1.6s ease-in-out infinite}
+.tyd{margin:0 0 8px;font-size:15px;line-height:1.5;color:var(--mut)}
+.tya{margin:0 0 6px;font-weight:700;font-size:15px}
+.tya[hidden]{display:none}
+.tym .dlb{margin-top:16px}
+.tyf{position:absolute;bottom:-30px;color:#ff3b30;opacity:0;pointer-events:none;font-style:normal;animation:tyfloat 3s ease-in forwards}
+@keyframes tyfloat{0%{transform:translateY(0) scale(.7);opacity:0}15%{opacity:.85}100%{transform:translateY(-420px) scale(1.15);opacity:0}}
+@keyframes typulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+.dqm .dqd{grid-column:1/-1}.dqm .dqd[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.tyh{animation:none}.tyf{display:none}}
+:root[data-pref=oled] .tyov{background:rgba(0,0,0,.72)}
