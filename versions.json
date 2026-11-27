@@ -48,12 +48,12 @@
   },
   "macdock": {
     "files": {
-      "MacDock-v3.0.zip": 51048607
+      "MacDock-v3.1.zip": 51059128
     },
-    "released": "2026-11-26T12:40:44Z",
+    "released": "2026-11-27T08:17:55Z",
     "repo": "gadgetcue/MacDock",
-    "tag": "v3.0",
-    "version": "3.0"
+    "tag": "v3.1",
+    "version": "3.1"
   },
   "rustzip": {
     "files": {
