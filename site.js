@@ -309,3 +309,11 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   a.textContent=cards.length;
   var n=Object.keys(fam).length;if(n)p.textContent=n;
 })();
+
+// In-page anchor links scroll smoothly from JS; the page itself no longer sets CSS scroll-behavior, which made wheel/keyboard scrolling laggy on desktop.
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;
+  var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(decodeURIComponent(id));if(!t)return;
+  e.preventDefault();var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  t.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});if(history.replaceState)history.replaceState(null,'','#'+id);
+});
