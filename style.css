@@ -753,9 +753,8 @@ html.dlopen{overflow:hidden}
 .dlm{width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;padding:22px;border-radius:28px;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 80px -20px rgba(0,0,0,.45);text-align:center;color:var(--fg)}
 :root[data-theme=dark] .dlm{background:#0E1C2B}
 .dlm h2{margin:0 0 14px;font-size:20px}
-.dlad{min-height:0}
-.dlad .adslot.on{margin:0 0 14px;min-height:100px;padding:10px;border-radius:18px;border:1px dashed var(--line)}
 .dlc{margin:0 0 10px;color:var(--mut);font-size:15px}
+.dlc:empty{display:none}
 .dlbar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:16px}
 .dlbar i{display:block;height:100%;width:0;background:var(--acc);border-radius:99px;transition:width 1s linear}
 .dlb{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
