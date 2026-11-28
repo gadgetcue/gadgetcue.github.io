@@ -1,5 +1,5 @@
 // Ads. Paste each AdSense ad unit's data-ad-slot number between the quotes. Empty = that placement stays hidden.
-var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:"3070926906",dl:"3070926906"}};
+var ADS={client:"ca-pub-1772519761593058",slots:{gadgets:"4352218981",apps:"3070926906"}};
 function gcAdHTML(k){var s=ADS.slots[k];if(!s)return"";return'<ins class="adsbygoogle" style="display:block" data-ad-client="'+ADS.client+'" data-ad-slot="'+s+'" data-ad-format="auto" data-full-width-responsive="true"></ins>'}
 // Fills the .adslot boxes inside scope (or the whole page) and asks AdSense to serve them. Empty slot number = box stays collapsed.
 function gcAds(scope){(scope||document).querySelectorAll('.adslot:not([data-done])').forEach(function(b){
@@ -165,16 +165,16 @@ document.querySelectorAll('a[data-repo]').forEach(function(a){
 /* tvOS Launcher: load the YouTube playlist only after a click */
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ytv-go');if(!b)return;var h=b.parentNode,l=h.getAttribute('data-list'),v=h.getAttribute('data-vid');if(!l&&!v)return;var f=document.createElement('iframe');f.src=v?'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v)+'?autoplay=1&rel=0':'https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(l)+'&autoplay=1';f.title=v?'Guide To Install & Set As Default tvOS Launcher in Android/ Google TV':'tvOS Launcher on YouTube';f.allow='accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';h.replaceChild(f,b)});
 
-// Download interstitial: a plain click on a real download button shows a labelled ad, counts down, then starts the file.
-// Never blocks the download: if the ad fails or is blocked, the countdown still ends and the file starts. Esc / Skip / Download now start it right away.
+// Download popup: a plain click on a real download button starts the file right away and shows a small thank-you popup with an optional donation.
+// No ads and no countdown in this popup (AdSense policy: no ads in pop-ups or next to download buttons).
 (function(){
-  var SECS=15,links=document.querySelectorAll('a.btn[download],a[data-repo]');if(!links.length)return;
+  var links=document.querySelectorAll('a.btn[download],a[data-repo]');if(!links.length)return;
   var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ov=document.createElement('div');ov.className='dlov';ov.hidden=true;
-  ov.innerHTML='<div class="dlm" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="dlt" aria-describedby="dlc"><h2 id="dlt">Your download is almost ready</h2><div class="dlad"></div><p id="dlc" class="dlc" aria-live="polite"></p><div class="dlbar" aria-hidden="true"><i></i></div><div class="dlb"><button type="button" class="btn dlgo">Download now</button><button type="button" class="btn g dlx">Close</button></div><div class="dq"><p class="dqh">Enjoying the apps? Chip in \u2764</p><p class="dqs">Totally optional \u2014 your download starts either way. Any small amount from \u20b919 helps keep this website running and the apps free.</p><div class="dqc" role="group" aria-label="Choose an amount in rupees"><button type="button" class="btn g" data-a="19">\u20b919</button><button type="button" class="btn g" data-a="49">\u20b949</button><button type="button" class="btn g" data-a="99">\u20b999</button><button type="button" class="btn g" data-a="149">\u20b9149</button></div><form class="dqf" novalidate><label for="dqa" class="dqv">Custom amount in rupees</label><span aria-hidden="true">\u20b9</span><input id="dqa" type="number" inputmode="numeric" min="19" step="1" placeholder="Other (min 19)" autocomplete="off"><button type="submit" class="btn g dqp">Donate</button></form><p class="dqe" role="status" aria-live="polite"></p><div class="dqr" hidden><img src="img/upi-qr.png" width="160" height="160" alt="UPI QR code to donate" loading="lazy"><p class="dqrt">Scan with any UPI app to pay.</p></div><div class="dqa" hidden><p class="dqat"></p><div class="dqab"><a class="btn g" data-p="gpay">Google Pay</a><a class="btn g" data-p="phonepe">PhonePe</a><a class="btn g" data-p="paytm">Paytm</a><a class="btn g" data-p="bhim">BHIM</a><a class="btn g" data-p="other">Other UPI app</a></div></div><div class="dqm"><button type="button" class="btn g dqy">Copy UPI ID</button><button type="button" class="btn g dqt" aria-expanded="false">Show QR</button></div></div><p class="dln">Ads help keep these apps free.</p></div>';
+  ov.innerHTML='<div class="dlm" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="dlt" aria-describedby="dlc"><h2 id="dlt">Your download has started.</h2><p id="dlc" class="dlc" aria-live="polite"></p><div class="dlb"><button type="button" class="btn dlgo">Download now</button><button type="button" class="btn g dlx">Close</button></div><div class="dq"><p class="dqh">Enjoying the apps? Chip in \u2764</p><p class="dqs">Totally optional \u2014 your download starts either way. Any small amount from \u20b919 helps keep this website running and the apps free.</p><div class="dqc" role="group" aria-label="Choose an amount in rupees"><button type="button" class="btn g" data-a="19">\u20b919</button><button type="button" class="btn g" data-a="49">\u20b949</button><button type="button" class="btn g" data-a="99">\u20b999</button><button type="button" class="btn g" data-a="149">\u20b9149</button></div><form class="dqf" novalidate><label for="dqa" class="dqv">Custom amount in rupees</label><span aria-hidden="true">\u20b9</span><input id="dqa" type="number" inputmode="numeric" min="19" step="1" placeholder="Other (min 19)" autocomplete="off"><button type="submit" class="btn g dqp">Donate</button></form><p class="dqe" role="status" aria-live="polite"></p><div class="dqr" hidden><img src="img/upi-qr.png" width="160" height="160" alt="UPI QR code to donate" loading="lazy"><p class="dqrt">Scan with any UPI app to pay.</p></div><div class="dqa" hidden><p class="dqat"></p><div class="dqab"><a class="btn g" data-p="gpay">Google Pay</a><a class="btn g" data-p="phonepe">PhonePe</a><a class="btn g" data-p="paytm">Paytm</a><a class="btn g" data-p="bhim">BHIM</a><a class="btn g" data-p="other">Other UPI app</a></div></div><div class="dqm"><button type="button" class="btn g dqy">Copy UPI ID</button><button type="button" class="btn g dqt" aria-expanded="false">Show QR</button></div></div></div>';
   document.body.appendChild(ov);
-  var m=ov.querySelector('.dlm'),adbox=ov.querySelector('.dlad'),msg=ov.querySelector('.dlc'),bar=ov.querySelector('.dlbar i'),go=ov.querySelector('.dlgo'),x=ov.querySelector('.dlx');
-  var cur=null,timer=null,left=0,from=null,done=false,used=false;
+  var m=ov.querySelector('.dlm'),msg=ov.querySelector('.dlc'),go=ov.querySelector('.dlgo'),x=ov.querySelector('.dlx');
+  var cur=null,from=null,used=false;
   var VPA='9923081936@kotakbank',PN='SIDDHANT RAMESH TAMGADGE',AND=/Android/i.test(navigator.userAgent),MOB=AND||/iPhone|iPad|iPod/i.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
   var dq=ov.querySelector('.dq'),dqe=dq.querySelector('.dqe'),dqr=dq.querySelector('.dqr'),dqrt=dq.querySelector('.dqrt'),dqa=dq.querySelector('#dqa'),dqt=dq.querySelector('.dqt'),dqy=dq.querySelector('.dqy');
   function upi(n){return'upi://pay?pa='+encodeURIComponent(VPA).replace('%40','@')+'&pn='+encodeURIComponent(PN)+'&am='+n+'&cu=INR&tn='+encodeURIComponent('GadgetCue support')}
@@ -199,24 +199,19 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
   dqt.addEventListener('click',function(){used=true;showQR(dqr.hidden,'Scan with any UPI app to pay.')});
   dqy.addEventListener('click',function(){used=true;var ok=function(){dqy.textContent='Copied!';setTimeout(function(){dqy.textContent='Copy UPI ID'},1800)};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(VPA).then(ok,function(){dqe.textContent='UPI ID: '+VPA});else dqe.textContent='UPI ID: '+VPA});
-  function start(){if(done||!cur)return;done=true;if(window.gcDL)window.gcDL(cur);var a=document.createElement('a');a.setAttribute('data-nocount','');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove();msg.textContent='Your download has started.';bar.style.width='100%';clearInterval(timer)}
-  function close(){clearInterval(timer);ov.hidden=true;document.documentElement.classList.remove('dlopen');adbox.innerHTML='';if(from&&from.focus)from.focus()}
-  function wait(){go.classList.add('dlwait');go.disabled=true;go.setAttribute('aria-hidden','true');go.tabIndex=-1}
-  function reveal(){go.disabled=false;go.removeAttribute('aria-hidden');go.removeAttribute('tabindex');go.classList.remove('dlwait');msg.textContent='Your download is ready. Tap Download now.'}
-  function tick(){left--;if(left<=0){clearInterval(timer);bar.style.width='100%';reveal();return}msg.textContent='Download button appears in '+left+' second'+(left===1?'':'s')+'.';bar.style.width=((SECS-left)/SECS*100)+'%'}
+  function start(){if(!cur)return;if(window.gcDL)window.gcDL(cur);var a=document.createElement('a');a.setAttribute('data-nocount','');a.href=cur.href;if(cur.hasAttribute('download'))a.setAttribute('download','');a.style.display='none';document.body.appendChild(a);a.click();a.remove()}
+  function close(){ov.hidden=true;document.documentElement.classList.remove('dlopen');if(from&&from.focus)from.focus()}
   function open(a){
-    cur=a;from=a;done=false;left=SECS;used=false;dqe.textContent='';dqa.value='';showQR(false);dqa2.hidden=true;
-    adbox.innerHTML='<div class="adslot" data-ad="dl"></div>';gcAds(adbox);
-    msg.textContent='Download button appears in '+left+' seconds.';wait();bar.style.width='0%';
+    cur=a;from=a;used=false;dqe.textContent='';dqa.value='';showQR(false);dqa2.hidden=true;msg.textContent='';
+    start();
     ov.hidden=false;document.documentElement.classList.add('dlopen');m.focus({preventScroll:true});
-    clearInterval(timer);timer=setInterval(tick,1000);
   }
-  go.addEventListener('click',function(){start();if(used){msg.textContent='Your download has started. Thank you for the support!'}else setTimeout(close,1200)});
-  x.addEventListener('click',function(){done=true;close()});
-  ov.addEventListener('click',function(e){if(e.target===ov){done=true;close()}});
+  go.addEventListener('click',function(){start();msg.textContent=used?'Your download has started. Thank you for the support!':'Your download has started.'});
+  x.addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close()});
   document.addEventListener('keydown',function(e){
     if(ov.hidden)return;
-    if(e.key==='Escape'){done=true;close();return}
+    if(e.key==='Escape'){close();return}
     if(e.key==='Tab'){var f=m.querySelectorAll('button:not([disabled]),input,a[href]'),a=f[0],z=f[f.length-1];
       if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}else if(!m.contains(document.activeElement)){e.preventDefault();a.focus()}}});
   links.forEach(function(a){a.addEventListener('click',function(e){
