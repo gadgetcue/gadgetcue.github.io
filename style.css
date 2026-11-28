@@ -1000,7 +1000,7 @@ html[dir=rtl] .skip{left:auto;transform:translateY(-300%)}html[dir=rtl] .skip:fo
 .app .dv.ico{aspect-ratio:auto;min-height:190px}
 
 /* Footer stats: same glass pill as the social pills, informational only (no hover lift) */
-footer .w.fstat{justify-content:flex-start;gap:8px;margin-top:12px;padding-top:0}
+footer .w.fstat{justify-content:center;gap:8px;margin-top:12px;padding-top:0}
 .fstat-p{cursor:default;color:var(--mut)!important}
 .fstat-p b{color:var(--fg);font-weight:700;font-variant-numeric:tabular-nums}
 .fstat-p:hover{transform:none;background:color-mix(in srgb,var(--fg) 6%,transparent);border-color:var(--line)}
