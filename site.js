@@ -273,12 +273,11 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
     ]).then(function(a){return a[1]===null?null:a[0]+a[1]})
   ]).then(function(r){
     var parts=[];
-    if(r[1]!==null)parts.push('<span><b>'+r[1].toLocaleString()+'</b> downloads</span>');
-    if(r[0]!==null)parts.push('<span><b>'+r[0].toLocaleString()+'</b> visits</span>');
-    if(!parts.length)return;
-    var d=document.createElement('div');d.className='fpill';d.setAttribute('role','status');d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');document.body.appendChild(d);
-    // Stay out of the way: fade while scrolling, come back once the page is still.
-    var t=0;window.addEventListener('scroll',function(){d.classList.add('fpill-hide');clearTimeout(t);t=setTimeout(function(){d.classList.remove('fpill-hide')},900)},{passive:true});
+    if(r[1]!==null)parts.push('<span class="spill fstat-p"><b>'+r[1].toLocaleString()+'</b><span>Downloads</span></span>');
+    if(r[0]!==null)parts.push('<span class="spill fstat-p"><b>'+r[0].toLocaleString()+'</b><span>Visits</span></span>');
+    var f=document.querySelector('footer');
+    if(!parts.length||!f)return;
+    var d=document.createElement('div');d.className='w fstat';d.setAttribute('role','status');d.setAttribute('aria-label','Site statistics');d.innerHTML=parts.join('');f.appendChild(d);
   });
 })();
 
